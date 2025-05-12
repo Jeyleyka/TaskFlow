@@ -429,6 +429,12 @@
 			null
 		],
 		[
+			"D:/Work/todo_app/deletebuttondelegate.h",
+			"MU",
+			"EWIEGA46WW/moc_deletebuttondelegate.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -521,6 +527,7 @@
 	"SOURCES" : 
 	[
 		[ "D:/Work/todo_app/database.cpp", "MU", null ],
+		[ "D:/Work/todo_app/deletebuttondelegate.cpp", "MU", null ],
 		[ "D:/Work/todo_app/main.cpp", "MU", null ],
 		[ "D:/Work/todo_app/mainwindow.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskdialog.cpp", "MU", null ],

@@ -21,6 +21,8 @@ public:
     void setTasks(const QList<Task> &tasks);
     Task taskAt(int row) const;
     void addTask(const Task& task);
+    void removeTask(int row);
+    int getTaskID(Task& task);
 
 private:
     QList<Task> m_tasks;

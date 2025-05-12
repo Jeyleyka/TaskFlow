@@ -10,7 +10,8 @@ class DatabaseManager
 {
 public:
     bool initializeDatabase();
-    bool insertTaskToDatabase(const Task& task);
+    bool insertTaskToDatabase(Task& task);
+    bool deleteTaskFromDatabase(int id);
     QList<Task> loadTasksFromDatabase();
     static QSqlDatabase getDatabase();
 

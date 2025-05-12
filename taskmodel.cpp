@@ -9,7 +9,7 @@ int TaskModel::rowCount(const QModelIndex& parent) const {
 }
 
 int TaskModel::columnCount(const QModelIndex& parent) const {
-    return 5; // title, description, dueDate, priority, status
+    return 6; // title, description, dueDate, priority, status
 }
 
 QVariant TaskModel::data(const QModelIndex& index, int role) const {
@@ -25,6 +25,7 @@ QVariant TaskModel::data(const QModelIndex& index, int role) const {
             case 2: return task.dueDate.toString("yyyy-MM-dd");
             case 3: return task.priority;
             case 4: return task.status;
+            case 5: return "";
             default: return QVariant();
         }
     }
@@ -57,9 +58,12 @@ void TaskModel::setTasks(const QList<Task> &tasks) {
 }
 
 Task TaskModel::taskAt(int row) const {
-    if (row >= 0 && row << this->m_tasks.size())
+    if (row >= 0 && row < this->m_tasks.size()) {
+        qDebug() << "VALID task\n";
         return this->m_tasks.at(row);
+    }
 
+    qDebug() << "INVALID task\n";
     return Task{};
 }
 
@@ -67,4 +71,18 @@ void TaskModel::addTask(const Task &task) {
     this->beginInsertRows(QModelIndex(), this->m_tasks.size(), this->m_tasks.size());
     this->m_tasks.append(task);
     this->endInsertRows();
+}
+
+void TaskModel::removeTask(int row) {
+    if (row < 0 || row >= this->m_tasks.size() + 1) {
+        qDebug() << "Failed to delete task from database";
+    }
+
+    beginRemoveRows(QModelIndex(), row, row);
+    this->m_tasks.removeAt(row);
+    endRemoveRows();
+}
+
+int TaskModel::getTaskID(Task& task) {
+    return task.id;
 }

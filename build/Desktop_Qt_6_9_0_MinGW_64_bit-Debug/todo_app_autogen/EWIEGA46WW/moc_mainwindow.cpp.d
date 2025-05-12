@@ -3,8 +3,12 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/QAbstractTableModel \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QCoreApplication \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QDate \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QSize \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QString \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h \
@@ -65,6 +69,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/qglobalstatic.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qhash.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qhashfunctions.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qiodevice.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qitemselectionmodel.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qiterable.h \
@@ -150,27 +155,40 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QPainter \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qbitmap.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qbrush.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qcolor.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qcursor.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qevent.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qeventpoint.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qfont.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qfontinfo.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qfontmetrics.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qfontvariableaxis.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qguiapplication.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qguiapplication_platform.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qicon.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qimage.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qinputdevice.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qinputmethod.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qpaintdevice.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qpainter.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qpalette.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qpen.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qpixmap.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qpointingdevice.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qpolygon.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qrgb.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qrgba64.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qscreen.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qscreen_platform.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qtextcursor.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qtextdocument.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qtextformat.h \
@@ -180,6 +198,8 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtGui/qtguiglobal.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qvalidator.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qvector2d.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.9.0/mingw_64/include/QtSql/QSqlDatabase \
@@ -187,6 +207,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsql-config.h \
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlexports.h \
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlglobal.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QApplication \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QComboBox \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDateEdit \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialog \
@@ -197,6 +218,8 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QMessageBox \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QPushButton \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyleOptionViewItem \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyledItemDelegate \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QTableView \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QTextEdit \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QVBoxLayout \
@@ -206,6 +229,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractslider.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractspinbox.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qapplication.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qboxlayout.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qcombobox.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdatetimeedit.h \
@@ -224,6 +248,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qslider.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qstyle.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qstyleditemdelegate.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qstyleoption.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtabbar.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtableview.h \
@@ -446,6 +471,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   D:/Work/todo_app/Task.h \
   D:/Work/todo_app/database.h \
+  D:/Work/todo_app/deletebuttondelegate.h \
   D:/Work/todo_app/task.h \
   D:/Work/todo_app/taskdialog.h \
   D:/Work/todo_app/taskmodel.h
