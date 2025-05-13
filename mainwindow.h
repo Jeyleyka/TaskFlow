@@ -14,21 +14,36 @@
 #include <QVBoxLayout>
 #include <QDialog>
 #include <QMessageBox>
+#include <QPropertyAnimation>
+#include <QPoint>
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
     QTableView* table;
+
     TaskModel* model;
+
     DatabaseManager* dataBase;
+
     QPushButton* addTaskButton;
-    QPushButton* deleteTaskButton;
+
+    TaskDialog* dialog = nullptr;
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    // Initialization
+    void initTable();
+    void initModel();
+    void initDatabase();
+    void initAddTaskBtn();
+
     void onDeleteTask(const int row);
+
+private:
+    void showTaskDialog();
 };
 #endif // MAINWINDOW_H

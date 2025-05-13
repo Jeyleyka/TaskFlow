@@ -1,6 +1,6 @@
 #include "taskdialog.h"
 
-TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent) {
+TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
     this->setWindowTitle("Add task");
 
     this->titleLineEdit = new QLineEdit(this);
@@ -18,8 +18,17 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent) {
 
     this->buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
 
-    connect(this->buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
-    connect(this->buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
+    connect(this->buttonBox, &QDialogButtonBox::accepted, this, [this] {
+        if (this->titleLineEdit->text().isEmpty() || this->descriptionTextEdit->toPlainText().isEmpty())
+        {
+            QMessageBox::warning(this, "Error", "the area must not be empty");
+            return;
+        }
+
+        QDialog::accept();
+    });
+
+    connect(this->buttonBox, &QDialogButtonBox::rejected, this, &TaskDialog::hideWithAnim);
 
     this->formLayout = new QFormLayout;
     this->formLayout->addRow("Title:", this->titleLineEdit);
@@ -33,6 +42,7 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent) {
     this->mainLayout->addWidget(this->buttonBox);
 
     this->setLayout(this->mainLayout);
+    this->setAttribute(Qt::WA_DeleteOnClose);
 }
 
 TaskDialog::~TaskDialog() {}
@@ -45,4 +55,35 @@ Task TaskDialog::getTask() const {
     t.priority = this->priorityComboBox->currentText();
     t.status = this->statusComboBox->currentText();
     return t;
+}
+
+void TaskDialog::hideWithAnim() {
+    QPoint startPos = pos();
+    QPoint endPos(startPos.x(), startPos.y() + this->height());
+
+    this->isClosing = true;
+
+    QPropertyAnimation* hide = new QPropertyAnimation(this, "pos");
+    hide->setDuration(600);
+    hide->setStartValue(startPos);
+    hide->setEndValue(endPos);
+    hide->setEasingCurve(QEasingCurve::OutCubic);
+
+    connect(hide, &QPropertyAnimation::finished, this, [this] {
+        this->close();
+    });
+
+    hide->start(QAbstractAnimation::DeleteWhenStopped);
+
+    // QDialog::reject();
+}
+
+void TaskDialog::closeEvent(QCloseEvent *event) {
+    if (!this->isClosing)
+    {
+        event->ignore();
+        this->hideWithAnim();
+    } else {
+        event->accept();
+    }
 }

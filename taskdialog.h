@@ -11,6 +11,9 @@
 #include <QDialogButtonBox>
 #include <QFormLayout>
 #include <QVBoxLayout>
+#include <QMessageBox>
+#include <QPropertyAnimation>
+#include <QCloseEvent>
 
 class TaskDialog : public QDialog
 {
@@ -21,6 +24,12 @@ public:
     ~TaskDialog();
 
     Task getTask() const;
+
+public slots:
+    void hideWithAnim();
+
+protected:
+    void closeEvent(QCloseEvent* event) override;
 
 private:
     QLineEdit* titleLineEdit;
@@ -37,6 +46,8 @@ private:
     QFormLayout* formLayout;
 
     QVBoxLayout* mainLayout;
+
+    bool isClosing;
 };
 
 #endif // TASKDIALOG_H
