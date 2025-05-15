@@ -5,15 +5,39 @@ MainWindow::MainWindow(QWidget *parent)
 {
 
     QWidget* central = new QWidget(this);
-    QVBoxLayout* layout = new QVBoxLayout(central);
+    this->layout = new QVBoxLayout(central);
 
     this->initDatabase();
-    this->initModel();
-    this->initTable();
+    // this->initModel();
+    // this->initTable();
     this->initAddTaskBtn();
 
-    layout->addWidget(this->table);
+    // layout->addWidget(this->table);
+    QList<Task> tasks = this->dataBase->loadTasksFromDatabase();
+
+    for (const Task& task: tasks) {
+        QLabel* priority = new QLabel();
+
+        if (task.priority == "High")
+            priority->setText(":/icons/red-circle.png");
+        else if (task.priority == "Medium")
+            priority->setText(":/icons/yellow-circle.png");
+        else
+            priority->setText(":/icons/blue-circle.png");
+
+        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), priority->text(), this);
+        taskUI->setFixedSize(700,100);
+        this->layout->addWidget(taskUI);
+    }
+
     layout->addWidget(this->addTaskButton);
+
+
+    // TaskUI* newTask = new TaskUI(this);
+    // newTask->setFixedSize(700, 300);
+
+    // layout->addWidget(newTask);
+
     central->setLayout(layout);
     this->setCentralWidget(central);
 
@@ -21,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(delegate, &DeleteButtonDelegate::deleteRowRequested, this, &MainWindow::onDeleteTask);
 
-    this->table->setItemDelegateForColumn(5, delegate);
+    // this->table->setItemDelegateForColumn(5, delegate);
     this->showMaximized();
 }
 
@@ -70,7 +94,6 @@ void MainWindow::onDeleteTask(const int row) {
 }
 
 void MainWindow::showTaskDialog() {
-
     if (this->dialog && this->dialog->isVisible()) {
         this->dialog->raise();
         this->dialog->activateWindow();
@@ -79,7 +102,7 @@ void MainWindow::showTaskDialog() {
 
     this->dialog = new TaskDialog(this);
     this->dialog->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    this->dialog->setModal(false);
+    this->dialog->setModal(true);
 
     int dialogHeight = 400;
     int dialogWidth = this->width();
@@ -87,8 +110,7 @@ void MainWindow::showTaskDialog() {
     QPoint startPos(this->x(), this->y() + this->height());
     QPoint endPos(this->x(), this->y() + this->height() - dialogHeight);
 
-    dialog->setGeometry(this->x(), this->y() + this->height(), dialogWidth, dialogHeight);
-    dialog->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+    dialog->setGeometry(startPos.x(), startPos.y(), dialogWidth, dialogHeight);
     dialog->show();
 
     QPropertyAnimation* show = new QPropertyAnimation(this->dialog, "pos");
@@ -98,19 +120,34 @@ void MainWindow::showTaskDialog() {
     show->setEasingCurve(QEasingCurve::OutCubic);
     show->start(QAbstractAnimation::DeleteWhenStopped);
 
-    connect(this->dialog, &TaskDialog::finished, this, [this]() {
+    connect(this->dialog, &TaskDialog::accepted, this, [this]() {
+        Task task = this->dialog->getTask();
+        if (this->dataBase->insertTaskToDatabase(task)) {
+            QString formattedDate = task.formatDateTime(task.dueDate);
+            QLabel* priority = new QLabel();
+
+            if (task.priority == "High")
+                priority->setText(":/icons/red-circle.png");
+            else if (task.priority == "Medium")
+                priority->setText(":/icons/yellow-circle.png");
+            else
+                priority->setText(":/icons/blue-circle.png");
+
+            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, priority->text());
+            taskUI->setFixedSize(700, 300);
+            this->layout->addWidget(taskUI);
+            // this->model->addTask(task);
+        } else {
+            QMessageBox::warning(this, "Error", "Failed to save task to database....");
+        }
+
         this->dialog->deleteLater();
         this->dialog = nullptr;
     });
 
-    if (dialog->exec() == QDialog::Accepted) {
-        Task task = dialog->getTask();
-
-        if (this->dataBase->insertTaskToDatabase(task)) {
-            qDebug() << "Added task with ID: " << task.id;
-            this->model->addTask(task);
-        } else {
-            QMessageBox::warning(this, "Error", "Failed to save task to database.");
-        }
-    }
+    connect(this->dialog, &TaskDialog::rejected, this, [this]() {
+        this->dialog->deleteLater();
+        this->dialog = nullptr;
+    });
 }
+

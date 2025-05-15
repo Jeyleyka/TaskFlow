@@ -41,9 +41,13 @@ bool DatabaseManager::insertTaskToDatabase(Task &task) {
                   "VALUES (?, ?, ?, ?, ?)");
     query.addBindValue(task.title);
     query.addBindValue(task.description);
-    query.addBindValue(task.dueDate.toString("yyyy-MM-dd"));
+    QString formattedDate = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+    query.addBindValue(formattedDate);
     query.addBindValue(task.priority);
     query.addBindValue(task.status);
+
+    qDebug() << "SQL:" << query.lastQuery();
+    qDebug() << "Bound Values:" << query.boundValues();
 
     if (!query.exec()) {
         qDebug() << "Insert error:" << query.lastError();
@@ -84,7 +88,14 @@ QList<Task> DatabaseManager::loadTasksFromDatabase() {
         task.id = query.value(0).toInt();
         task.title = query.value(1).toString();
         task.description = query.value(2).toString();
-        task.dueDate = QDate::fromString(query.value(3).toString(), "yyyy-MM-dd");
+        QString datetimeStr = query.value(3).toString().trimmed();
+        QDateTime dueDate = QDateTime::fromString(datetimeStr, "yyyy-MM-dd HH:mm:ss");
+
+        if (!dueDate.isValid()) {
+            qDebug() << "⚠️ Не удалось распарсить дату:" << datetimeStr;
+        } else {
+            task.dueDate = dueDate;
+        }
         task.priority = query.value(4).toString();
         task.status = query.value(5).toString();
         tasks.append(task);

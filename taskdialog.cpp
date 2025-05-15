@@ -51,7 +51,7 @@ Task TaskDialog::getTask() const {
     Task t;
     t.title = this->titleLineEdit->text();
     t.description = this->descriptionTextEdit->toPlainText();
-    t.dueDate = this->dueDateEdit->date();
+    t.dueDate = QDateTime(this->dueDateEdit->date(), QTime::currentTime());
     t.priority = this->priorityComboBox->currentText();
     t.status = this->statusComboBox->currentText();
     return t;

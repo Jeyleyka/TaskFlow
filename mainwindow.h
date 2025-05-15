@@ -5,6 +5,7 @@
 #include "taskdialog.h"
 #include "database.h"
 #include "deletebuttondelegate.h"
+#include "taskui.h"
 
 #include <QMainWindow>
 #include <QTableView>
@@ -28,6 +29,8 @@ class MainWindow : public QMainWindow
     DatabaseManager* dataBase;
 
     QPushButton* addTaskButton;
+
+    QVBoxLayout* layout;
 
     TaskDialog* dialog = nullptr;
 

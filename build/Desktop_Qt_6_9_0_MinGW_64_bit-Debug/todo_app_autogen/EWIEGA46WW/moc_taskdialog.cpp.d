@@ -1,6 +1,7 @@
 D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIEGA46WW/moc_taskdialog.cpp: D:/Work/todo_app/taskdialog.h \
   D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/moc_predefs.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QDate \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QDateTime \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation \

@@ -413,7 +413,8 @@
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginAdditionalTargetInfo.cmake",
-		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlVersionlessAliasTargets.cmake"
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlVersionlessAliasTargets.cmake",
+		"D:/Work/todo_app/icons.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "D:/Work/todo_app",
 	"CROSS_CONFIG" : false,
@@ -451,7 +452,8 @@
 			"MU",
 			"EWIEGA46WW/moc_taskmodel.cpp",
 			null
-		]
+		],
+		[ "D:/Work/todo_app/taskui.h", "MU", "EWIEGA46WW/moc_taskui.cpp", null ]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/include",
@@ -531,7 +533,8 @@
 		[ "D:/Work/todo_app/main.cpp", "MU", null ],
 		[ "D:/Work/todo_app/mainwindow.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskdialog.cpp", "MU", null ],
-		[ "D:/Work/todo_app/taskmodel.cpp", "MU", null ]
+		[ "D:/Work/todo_app/taskmodel.cpp", "MU", null ],
+		[ "D:/Work/todo_app/taskui.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
