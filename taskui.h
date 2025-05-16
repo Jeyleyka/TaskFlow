@@ -9,6 +9,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QFrame>
+#include <QString>
 
 class TaskUI : public QWidget
 {
@@ -16,6 +17,7 @@ class TaskUI : public QWidget
 public:
     explicit TaskUI(QString titleStr, QString desc, QString createData, QString priorityStr, QWidget* parent = nullptr);
 
+    void mousePressEvent(QMouseEvent *event) override;
 private:
     QLabel* title;
     QLabel* creationDate;
@@ -24,6 +26,8 @@ private:
     QPushButton* showDescription;
     QPushButton* successTask;
 
+signals:
+    void taskClicked();
     // QHBoxLayout* mainLayout;
 };
 

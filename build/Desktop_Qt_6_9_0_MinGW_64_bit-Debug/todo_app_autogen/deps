@@ -744,6 +744,8 @@ todo_app_autogen/timestamp: \
 	D:/Work/todo_app/mainwindow.h \
 	D:/Work/todo_app/taskdialog.cpp \
 	D:/Work/todo_app/taskdialog.h \
+	D:/Work/todo_app/taskinfo.cpp \
+	D:/Work/todo_app/taskinfo.h \
 	D:/Work/todo_app/taskmodel.cpp \
 	D:/Work/todo_app/taskmodel.h \
 	D:/Work/todo_app/taskui.cpp \

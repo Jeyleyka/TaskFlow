@@ -10,7 +10,10 @@
 	"INPUTS" : 
 	[
 		"D:/Work/todo_app/icons/red-flag.png",
+		"D:/Work/todo_app/icons/delete.png",
+		"D:/Work/todo_app/icons/clock.png",
 		"D:/Work/todo_app/icons/yellow-circle.png",
+		"D:/Work/todo_app/icons/subtitle.png",
 		"D:/Work/todo_app/icons/checked.png",
 		"D:/Work/todo_app/icons/blue-circle.png",
 		"D:/Work/todo_app/icons/red-circle.png"

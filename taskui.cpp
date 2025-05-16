@@ -62,3 +62,8 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, QString prior
     // Фон на весь TaskUI
     // this->setStyleSheet("background-color: #2D2D2D; border-radius: 8px;");
 }
+
+void TaskUI::mousePressEvent(QMouseEvent *event) {
+    emit this->taskClicked();
+    QWidget::mousePressEvent(event);
+}

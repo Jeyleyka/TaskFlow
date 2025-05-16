@@ -2,4 +2,5 @@
 #include "EWIEGA46WW/moc_deletebuttondelegate.cpp"
 #include "EWIEGA46WW/moc_mainwindow.cpp"
 #include "EWIEGA46WW/moc_taskdialog.cpp"
+#include "EWIEGA46WW/moc_taskinfo.cpp"
 #include "EWIEGA46WW/moc_taskui.cpp"

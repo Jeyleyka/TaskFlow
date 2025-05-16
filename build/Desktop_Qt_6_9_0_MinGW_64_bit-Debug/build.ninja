@@ -113,6 +113,14 @@ build CMakeFiles/todo_app.dir/taskui.cpp.obj: CXX_COMPILER__todo_app_unscanned_D
   OBJECT_DIR = CMakeFiles\todo_app.dir
   OBJECT_FILE_DIR = CMakeFiles\todo_app.dir
 
+build CMakeFiles/todo_app.dir/taskinfo.cpp.obj: CXX_COMPILER__todo_app_unscanned_Debug D$:/Work/todo_app/taskinfo.cpp || cmake_object_order_depends_target_todo_app
+  DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
+  DEP_FILE = CMakeFiles\todo_app.dir\taskinfo.cpp.obj.d
+  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
+  INCLUDES = -ID:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/include -isystem C:/Qt/6.9.0/mingw_64/include/QtCore -isystem C:/Qt/6.9.0/mingw_64/include -isystem C:/Qt/6.9.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.9.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.9.0/mingw_64/include/QtGui -isystem C:/Qt/6.9.0/mingw_64/include/QtSql
+  OBJECT_DIR = CMakeFiles\todo_app.dir
+  OBJECT_FILE_DIR = CMakeFiles\todo_app.dir
+
 build CMakeFiles/todo_app.dir/todo_app_autogen/EWIEGA46WW/qrc_icons.cpp.obj: CXX_COMPILER__todo_app_unscanned_Debug D$:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIEGA46WW/qrc_icons.cpp || cmake_object_order_depends_target_todo_app
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
   DEP_FILE = CMakeFiles\todo_app.dir\todo_app_autogen\EWIEGA46WW\qrc_icons.cpp.obj.d
@@ -129,7 +137,7 @@ build CMakeFiles/todo_app.dir/todo_app_autogen/EWIEGA46WW/qrc_icons.cpp.obj: CXX
 #############################################
 # Link the executable todo_app.exe
 
-build todo_app.exe: CXX_EXECUTABLE_LINKER__todo_app_Debug CMakeFiles/todo_app.dir/todo_app_autogen/mocs_compilation.cpp.obj CMakeFiles/todo_app.dir/main.cpp.obj CMakeFiles/todo_app.dir/mainwindow.cpp.obj CMakeFiles/todo_app.dir/taskmodel.cpp.obj CMakeFiles/todo_app.dir/database.cpp.obj CMakeFiles/todo_app.dir/taskdialog.cpp.obj CMakeFiles/todo_app.dir/deletebuttondelegate.cpp.obj CMakeFiles/todo_app.dir/taskui.cpp.obj CMakeFiles/todo_app.dir/todo_app_autogen/EWIEGA46WW/qrc_icons.cpp.obj | C$:/Qt/6.9.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.9.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.9.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.9.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.9.0/mingw_64/lib/libQt6EntryPoint.a || todo_app_autogen todo_app_autogen_timestamp_deps
+build todo_app.exe: CXX_EXECUTABLE_LINKER__todo_app_Debug CMakeFiles/todo_app.dir/todo_app_autogen/mocs_compilation.cpp.obj CMakeFiles/todo_app.dir/main.cpp.obj CMakeFiles/todo_app.dir/mainwindow.cpp.obj CMakeFiles/todo_app.dir/taskmodel.cpp.obj CMakeFiles/todo_app.dir/database.cpp.obj CMakeFiles/todo_app.dir/taskdialog.cpp.obj CMakeFiles/todo_app.dir/deletebuttondelegate.cpp.obj CMakeFiles/todo_app.dir/taskui.cpp.obj CMakeFiles/todo_app.dir/taskinfo.cpp.obj CMakeFiles/todo_app.dir/todo_app_autogen/EWIEGA46WW/qrc_icons.cpp.obj | C$:/Qt/6.9.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.9.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.9.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.9.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.9.0/mingw_64/lib/libQt6EntryPoint.a || todo_app_autogen todo_app_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.9.0/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.9.0/mingw_64/lib/libQt6Sql.a  C:/Qt/6.9.0/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  C:/Qt/6.9.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.9.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -233,7 +241,7 @@ build todo_app_autogen/timestamp todo_app_autogen/mocs_compilation.cpp | ${cmake
 #############################################
 # Custom command for todo_app_autogen\EWIEGA46WW\qrc_icons.cpp
 
-build todo_app_autogen/EWIEGA46WW/qrc_icons.cpp | ${cmake_ninja_workdir}todo_app_autogen/EWIEGA46WW/qrc_icons.cpp: CUSTOM_COMMAND D$:/Work/todo_app/icons.qrc CMakeFiles/todo_app_autogen.dir/AutoRcc_icons_EWIEGA46WW_Info.json D$:/Work/todo_app/icons/red-flag.png D$:/Work/todo_app/icons/yellow-circle.png D$:/Work/todo_app/icons/checked.png D$:/Work/todo_app/icons/blue-circle.png D$:/Work/todo_app/icons/red-circle.png C$:/Qt/6.9.0/mingw_64/bin/rcc.exe C$:/Qt/6.9.0/mingw_64/bin/rcc.exe || todo_app_autogen todo_app_autogen_timestamp_deps
+build todo_app_autogen/EWIEGA46WW/qrc_icons.cpp | ${cmake_ninja_workdir}todo_app_autogen/EWIEGA46WW/qrc_icons.cpp: CUSTOM_COMMAND D$:/Work/todo_app/icons.qrc CMakeFiles/todo_app_autogen.dir/AutoRcc_icons_EWIEGA46WW_Info.json D$:/Work/todo_app/icons/red-flag.png D$:/Work/todo_app/icons/delete.png D$:/Work/todo_app/icons/clock.png D$:/Work/todo_app/icons/yellow-circle.png D$:/Work/todo_app/icons/subtitle.png D$:/Work/todo_app/icons/checked.png D$:/Work/todo_app/icons/blue-circle.png D$:/Work/todo_app/icons/red-circle.png C$:/Qt/6.9.0/mingw_64/bin/rcc.exe C$:/Qt/6.9.0/mingw_64/bin/rcc.exe || todo_app_autogen todo_app_autogen_timestamp_deps
   COMMAND = C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Work\todo_app\build\Desktop_Qt_6_9_0_MinGW_64_bit-Debug && C:\Qt\Tools\CMake_64\bin\cmake.exe -E cmake_autorcc D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/todo_app_autogen.dir/AutoRcc_icons_EWIEGA46WW_Info.json Debug"
   DESC = Automatic RCC for icons.qrc
   restat = 1

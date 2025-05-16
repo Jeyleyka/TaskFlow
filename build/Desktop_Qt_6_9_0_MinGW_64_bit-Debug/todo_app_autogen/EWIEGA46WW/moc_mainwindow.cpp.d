@@ -489,5 +489,6 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   D:/Work/todo_app/deletebuttondelegate.h \
   D:/Work/todo_app/task.h \
   D:/Work/todo_app/taskdialog.h \
+  D:/Work/todo_app/taskinfo.h \
   D:/Work/todo_app/taskmodel.h \
   D:/Work/todo_app/taskui.h

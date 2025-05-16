@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     // layout->addWidget(this->table);
     QList<Task> tasks = this->dataBase->loadTasksFromDatabase();
+    this->tasksLayout = new QVBoxLayout;
+    this->tasksLayout->addStretch(0);
 
     for (const Task& task: tasks) {
         QLabel* priority = new QLabel();
@@ -27,9 +29,16 @@ MainWindow::MainWindow(QWidget *parent)
 
         TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), priority->text(), this);
         taskUI->setFixedSize(700,100);
-        this->layout->addWidget(taskUI);
+        this->tasksLayout->addWidget(taskUI);
+
+        connect(taskUI, &TaskUI::taskClicked, this, [=] {
+            TaskInfo* taskInfo = new TaskInfo(priority->text(), task.title, task.description, task.formatDateTime(task.dueDate), task.priority, this);
+            taskInfo->setFixedSize(500, 600);
+            taskInfo->show();
+        });
     }
 
+    layout->addLayout(tasksLayout);
     layout->addWidget(this->addTaskButton);
 
 
@@ -135,7 +144,7 @@ void MainWindow::showTaskDialog() {
 
             auto* taskUI = new TaskUI(task.title, task.description, formattedDate, priority->text());
             taskUI->setFixedSize(700, 300);
-            this->layout->addWidget(taskUI);
+            this->tasksLayout->addWidget(taskUI);
             // this->model->addTask(task);
         } else {
             QMessageBox::warning(this, "Error", "Failed to save task to database....");
@@ -150,4 +159,3 @@ void MainWindow::showTaskDialog() {
         this->dialog = nullptr;
     });
 }
-

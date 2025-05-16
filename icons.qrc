@@ -5,5 +5,8 @@
         <file>icons/blue-circle.png</file>
         <file>icons/red-circle.png</file>
         <file>icons/yellow-circle.png</file>
+        <file>icons/delete.png</file>
+        <file>icons/clock.png</file>
+        <file>icons/subtitle.png</file>
     </qresource>
 </RCC>

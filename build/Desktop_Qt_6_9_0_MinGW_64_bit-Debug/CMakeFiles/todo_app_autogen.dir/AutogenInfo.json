@@ -448,6 +448,12 @@
 			null
 		],
 		[
+			"D:/Work/todo_app/taskinfo.h",
+			"MU",
+			"EWIEGA46WW/moc_taskinfo.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/taskmodel.h",
 			"MU",
 			"EWIEGA46WW/moc_taskmodel.cpp",
@@ -533,6 +539,7 @@
 		[ "D:/Work/todo_app/main.cpp", "MU", null ],
 		[ "D:/Work/todo_app/mainwindow.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskdialog.cpp", "MU", null ],
+		[ "D:/Work/todo_app/taskinfo.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskmodel.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskui.cpp", "MU", null ]
 	],

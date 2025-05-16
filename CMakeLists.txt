@@ -29,6 +29,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         deletebuttondelegate.h deletebuttondelegate.cpp
         taskui.h taskui.cpp
         icons.qrc
+        taskinfo.h taskinfo.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET todo_app APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
