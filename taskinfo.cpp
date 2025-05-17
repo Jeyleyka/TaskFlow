@@ -1,6 +1,7 @@
 #include "taskinfo.h"
 
-TaskInfo::TaskInfo(QString priorityIco, QString titleStr, QString descStr, QString createData, QString priorityS, QWidget* parent) : QDialog(parent) {
+TaskInfo::TaskInfo(int id, QString priorityIco, QString titleStr, QString descStr, QString createData, QString priorityS, TaskUI* taskWidget, QWidget* parent)
+    : QDialog(parent), Taskid(id), taskUI(taskWidget) {
     // Убираем стандартную рамку и делаем закругленные углы
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
     this->setAttribute(Qt::WA_TranslucentBackground);  // Чтобы работали закругления
@@ -144,6 +145,8 @@ TaskInfo::TaskInfo(QString priorityIco, QString titleStr, QString descStr, QStri
     this->deleteTask->setIconSize(QSize(32,32));
     this->deleteTask->setStyleSheet("font-size: 17px; color: #E14242; border: none; ");
 
+    connect(this->deleteTask, &QPushButton::clicked, this, &TaskInfo::onDeleteTaskClicked);
+
     buttonLayout->addWidget(this->deleteTask, 0, Qt::AlignLeft);
 
     this->editTask = new QPushButton("Edit Task", this);
@@ -163,4 +166,23 @@ TaskInfo::TaskInfo(QString priorityIco, QString titleStr, QString descStr, QStri
     QVBoxLayout* outerLayout = new QVBoxLayout(this);
     outerLayout->addWidget(container);
     outerLayout->setContentsMargins(0, 0, 0, 0);
+}
+
+void TaskInfo::onDeleteTaskClicked() {
+    QSqlQuery query;
+    query.prepare("DELETE FROM tasks WHERE id = :id");
+    query.bindValue(":id", this->Taskid);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to delete task: " << query.lastError();
+        return;
+    }
+
+    if (this->taskUI) {
+        this->taskUI->deleteLater();
+    }
+
+    qDebug() << "Task deleted successfully";
+
+    this->accept();
 }

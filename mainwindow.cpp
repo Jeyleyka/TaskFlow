@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
         this->tasksLayout->addWidget(taskUI);
 
         connect(taskUI, &TaskUI::taskClicked, this, [=] {
-            TaskInfo* taskInfo = new TaskInfo(priority->text(), task.title, task.description, task.formatDateTime(task.dueDate), task.priority, this);
+            TaskInfo* taskInfo = new TaskInfo(task.id, priority->text(), task.title, task.description, task.formatDateTime(task.dueDate), task.priority, taskUI, this);
             taskInfo->setFixedSize(500, 600);
             taskInfo->show();
         });
