@@ -39,10 +39,17 @@ template <> constexpr inline auto TaskInfo::qt_create_metaobjectdata<qt_meta_tag
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "TaskInfo"
+        "TaskInfo",
+        "onChangeUI",
+        "",
+        "onDeleteTaskClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'onChangeUI'
+        QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'onDeleteTaskClicked'
+        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -64,10 +71,17 @@ Q_CONSTINIT const QMetaObject TaskInfo::staticMetaObject = { {
 void TaskInfo::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<TaskInfo *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->onChangeUI(); break;
+        case 1: _t->onDeleteTaskClicked(); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (TaskInfo::*)()>(_a, &TaskInfo::onChangeUI, 0))
+            return;
+    }
 }
 
 const QMetaObject *TaskInfo::metaObject() const
@@ -86,6 +100,24 @@ void *TaskInfo::qt_metacast(const char *_clname)
 int TaskInfo::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QDialog::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 2)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 2;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 2)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 2;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void TaskInfo::onChangeUI()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP

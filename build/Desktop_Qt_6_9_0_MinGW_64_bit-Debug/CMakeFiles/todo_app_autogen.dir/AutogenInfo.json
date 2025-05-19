@@ -424,6 +424,24 @@
 	[
 		[ "D:/Work/todo_app/Task.h", "MU", "EWIEGA46WW/moc_Task.cpp", null ],
 		[
+			"D:/Work/todo_app/categoryeditor.h",
+			"MU",
+			"EWIEGA46WW/moc_categoryeditor.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/categoryitemwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_categoryitemwidget.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/choosecategory.h",
+			"MU",
+			"EWIEGA46WW/moc_choosecategory.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/database.h",
 			"MU",
 			"EWIEGA46WW/moc_database.cpp",
@@ -540,6 +558,9 @@
 	"SETTINGS_FILE" : "D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/todo_app_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/Work/todo_app/categoryeditor.cpp", "MU", null ],
+		[ "D:/Work/todo_app/categoryitemwidget.cpp", "MU", null ],
+		[ "D:/Work/todo_app/choosecategory.cpp", "MU", null ],
 		[ "D:/Work/todo_app/database.cpp", "MU", null ],
 		[ "D:/Work/todo_app/deletebuttondelegate.cpp", "MU", null ],
 		[ "D:/Work/todo_app/edittask.cpp", "MU", null ],

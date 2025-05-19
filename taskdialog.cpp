@@ -10,13 +10,33 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
     this->dueDateEdit = new QDateEdit(QDate::currentDate(), this);
     this->dueDateEdit->setCalendarPopup(true);
 
-    this->priorityComboBox = new QComboBox(this);
-    this->priorityComboBox->addItems({"Low", "Medium", "High"});
-
-    this->statusComboBox = new QComboBox(this);
-    this->statusComboBox->addItems({"Todo", "In Progress", "Done"});
-
     this->buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel, this);
+
+    connect(this->buttonBox, &QDialogButtonBox::rejected, this, &TaskDialog::hideWithAnim);
+
+    this->chooseCategory = new QPushButton("Choose category", this);
+    this->chooseCategory->setStyleSheet("max-width: 100px; height: 25px; background-color: #2d2d2d");
+
+    this->chooseCategoryWnd = new ChooseCategory(this);
+
+    connect(this->chooseCategory, &QPushButton::clicked, this, [this] {
+        this->chooseCategoryWnd->show();
+    });
+
+    this->formLayout = new QFormLayout;
+    this->formLayout->addRow("Title:", this->titleLineEdit);
+    this->formLayout->addRow("Description:", this->descriptionTextEdit);
+    this->formLayout->addRow("Due Date:", this->dueDateEdit);
+    this->formLayout->addRow("Category: ", this->chooseCategory);
+
+
+    connect(this->chooseCategoryWnd, &ChooseCategory::categorySelected, this, [this](const QString& name, const QColor& color, const QIcon& icon) {
+        this->itemWidget = new CategoryItemWidget(name, color, icon, this);
+        this->itemWidget->setFixedSize(64,64);
+
+        this->formLayout->removeRow(3);
+        this->formLayout->addRow("Category: ", this->itemWidget);
+    });
 
     connect(this->buttonBox, &QDialogButtonBox::accepted, this, [this] {
         if (this->titleLineEdit->text().isEmpty() || this->descriptionTextEdit->toPlainText().isEmpty())
@@ -25,17 +45,13 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
             return;
         }
 
+        if (this->itemWidget)
+            emit categorySelectedWidget(this->itemWidget);
+        else
+            qDebug() << "Widget is nullptr";
+
         QDialog::accept();
     });
-
-    connect(this->buttonBox, &QDialogButtonBox::rejected, this, &TaskDialog::hideWithAnim);
-
-    this->formLayout = new QFormLayout;
-    this->formLayout->addRow("Title:", this->titleLineEdit);
-    this->formLayout->addRow("Description:", this->descriptionTextEdit);
-    this->formLayout->addRow("Due Date:", this->dueDateEdit);
-    this->formLayout->addRow("Priority:", this->priorityComboBox);
-    this->formLayout->addRow("Status:", this->statusComboBox);
 
     this->mainLayout = new QVBoxLayout(this);
     this->mainLayout->addLayout(this->formLayout);
@@ -52,9 +68,20 @@ Task TaskDialog::getTask() const {
     t.title = this->titleLineEdit->text();
     t.description = this->descriptionTextEdit->toPlainText();
     t.dueDate = QDateTime(this->dueDateEdit->date(), QTime::currentTime());
-    t.priority = this->priorityComboBox->currentText();
-    t.status = this->statusComboBox->currentText();
+    t.categoryName = this->itemWidget->getName();
+    t.categoryColor = this->itemWidget->getColor();
+    t.categoryIcon = this->itemWidget->getIcon();
     return t;
+}
+
+CategoryItemWidget* TaskDialog::getSelectedCategoryWidget() {
+    if (this->itemWidget)
+        return this->itemWidget;
+    else
+    {
+        QMessageBox::warning(this, "Error", "widget is invalid");
+        return this->itemWidget;
+    }
 }
 
 void TaskDialog::hideWithAnim() {

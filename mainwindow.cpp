@@ -18,27 +18,43 @@ MainWindow::MainWindow(QWidget *parent)
     this->tasksLayout->addStretch(0);
 
     for (const Task& task: tasks) {
-        QLabel* priority = new QLabel();
 
-        if (task.priority == "High")
-            priority->setText(":/icons/red-circle.png");
-        else if (task.priority == "Medium")
-            priority->setText(":/icons/yellow-circle.png");
-        else
-            priority->setText(":/icons/blue-circle.png");
-
-        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), priority->text(), this);
+        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), task.categoryName, task.categoryColor, task.categoryIcon, this);
         taskUI->setFixedSize(700,100);
         this->tasksLayout->addWidget(taskUI);
 
         connect(taskUI, &TaskUI::taskClicked, this, [=] {
-            TaskInfo* taskInfo = new TaskInfo(task.id, priority->text(), task.title, task.description, task.formatDateTime(task.dueDate), task.priority, taskUI, this);
+            TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);
             taskInfo->setFixedSize(500, 600);
             taskInfo->show();
+
+            connect(taskInfo, &TaskInfo::onChangeUI, this, [this, taskUI, taskInfo] {
+                qDebug() << "Signal onChangeUI received";
+
+                if (!taskUI || !taskInfo) return;
+
+                QString title = taskInfo->getTitle();
+                QString desc = taskInfo->getDesc();
+
+                qDebug() << "Got data:" << title << desc;
+
+                taskUI->setTitle(title);
+                // taskUI->setDesc(desc);
+            });
         });
     }
 
+    QPushButton* open = new QPushButton("open", this);
+
+    connect(open, &QPushButton::clicked, this, [this] {
+        this->chooseCategory = new ChooseCategory(this);
+        this->chooseCategory->show();
+    });
+
+    layout->addWidget(open);
+
     layout->addLayout(tasksLayout);
+
     layout->addWidget(this->addTaskButton);
 
 
@@ -133,16 +149,9 @@ void MainWindow::showTaskDialog() {
         Task task = this->dialog->getTask();
         if (this->dataBase->insertTaskToDatabase(task)) {
             QString formattedDate = task.formatDateTime(task.dueDate);
-            QLabel* priority = new QLabel();
 
-            if (task.priority == "High")
-                priority->setText(":/icons/red-circle.png");
-            else if (task.priority == "Medium")
-                priority->setText(":/icons/yellow-circle.png");
-            else
-                priority->setText(":/icons/blue-circle.png");
 
-            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, priority->text());
+            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.categoryName, task.categoryColor, task.categoryIcon, this);
             taskUI->setFixedSize(700, 300);
             this->tasksLayout->addWidget(taskUI);
             // this->model->addTask(task);

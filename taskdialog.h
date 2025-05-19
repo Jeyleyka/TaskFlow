@@ -2,6 +2,8 @@
 #define TASKDIALOG_H
 
 #include "task.h"
+#include "choosecategory.h"
+#include "categoryitemwidget.h"
 
 #include <QDialog>
 #include <QLineEdit>
@@ -14,6 +16,7 @@
 #include <QMessageBox>
 #include <QPropertyAnimation>
 #include <QCloseEvent>
+#include <QPushButton>
 
 class TaskDialog : public QDialog
 {
@@ -24,6 +27,10 @@ public:
     ~TaskDialog();
 
     Task getTask() const;
+    CategoryItemWidget* getSelectedCategoryWidget();
+
+signals:
+    void categorySelectedWidget(CategoryItemWidget* widget);
 
 public slots:
     void hideWithAnim();
@@ -32,6 +39,9 @@ protected:
     void closeEvent(QCloseEvent* event) override;
 
 private:
+    ChooseCategory* chooseCategoryWnd;
+    CategoryItemWidget* itemWidget;
+
     QLineEdit* titleLineEdit;
 
     QTextEdit* descriptionTextEdit;
@@ -40,6 +50,8 @@ private:
 
     QComboBox* priorityComboBox;
     QComboBox* statusComboBox;
+
+    QPushButton* chooseCategory;
 
     QDialogButtonBox* buttonBox;
 

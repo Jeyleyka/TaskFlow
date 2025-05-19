@@ -11,16 +11,27 @@
 #include <QSqlError>
 
 #include "taskui.h"
+#include "edittask.h"
 
 class TaskInfo : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit TaskInfo(int id, QString priorityIco, QString titleStr, QString descStr, QString createData, QString priorityS, TaskUI* taskWidget, QWidget* parent = nullptr);
+    explicit TaskInfo(int id, QString titleStr, QString descStr, QString createData, TaskUI* taskWidget, QWidget* parent = nullptr);
+
+    QString getTitle();
+    QString getDesc();
+    QString getPriority();
+
+    void onUpdateData();
+
+signals:
+    void onChangeUI();
 
 private:
     TaskUI* taskUI;
+    EditTask* editTaskWnd;
 
     QVBoxLayout* mainLayout;
 
@@ -37,6 +48,7 @@ private:
 
     int Taskid;
 
+private slots:
     void onDeleteTaskClicked();
 
 };

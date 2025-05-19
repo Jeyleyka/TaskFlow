@@ -5,6 +5,7 @@
 
 #include <QString>
 #include <QtSql/QSqlDatabase>
+#include <QBuffer>
 
 class DatabaseManager
 {

@@ -1,6 +1,6 @@
 #include "taskinfo.h"
 
-TaskInfo::TaskInfo(int id, QString priorityIco, QString titleStr, QString descStr, QString createData, QString priorityS, TaskUI* taskWidget, QWidget* parent)
+TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData, TaskUI* taskWidget, QWidget* parent)
     : QDialog(parent), Taskid(id), taskUI(taskWidget) {
     // Убираем стандартную рамку и делаем закругленные углы
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
@@ -36,16 +36,6 @@ TaskInfo::TaskInfo(int id, QString priorityIco, QString titleStr, QString descSt
     connect(closeTaskInfo, &QPushButton::clicked, this, &TaskInfo::close);
 
     QHBoxLayout* priorityAndTitleLayout = new QHBoxLayout();
-
-    QLabel* priorityLabelIco = new QLabel(this);
-    QPixmap icon(priorityIco);
-    icon = icon.scaled(30, 30, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    priorityLabelIco->setStyleSheet("border: none");
-    priorityLabelIco->setFixedSize(50, 50);
-    priorityLabelIco->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    priorityLabelIco->setPixmap(icon);
-
-    priorityAndTitleLayout->addWidget(priorityLabelIco);
 
     QHBoxLayout* topLayout = new QHBoxLayout();
     topLayout->addStretch();
@@ -89,30 +79,6 @@ TaskInfo::TaskInfo(int id, QString priorityIco, QString titleStr, QString descSt
     this->taskTime->setAlignment(Qt::AlignCenter);  // Qt-способ центрирования
     timeLayout->addWidget(this->taskTime);
 
-    QHBoxLayout* priorityLayout = new QHBoxLayout();
-    priorityLayout->setContentsMargins(0,20,0,0);
-
-    QLabel* priorityLabel = new QLabel(this);
-    QPixmap priorityIcon(":/icons/red-flag.png");
-    priorityIcon = priorityIcon.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    priorityLabel->setStyleSheet("border: none");
-    priorityLabel->setFixedSize(32, 32);
-    priorityLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    priorityLabel->setPixmap(priorityIcon);
-
-    priorityLayout->addWidget(priorityLabel);
-
-    QLabel* prior = new QLabel("Task Priority : ", this);
-    prior->setStyleSheet("font-size: 17px; color: #fff;");
-
-    priorityLayout->addWidget(prior);
-
-    this->taskpriority = new QLabel(priorityS, this);
-    this->taskpriority->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 37px; max-width: 70px");
-    this->taskpriority->setAlignment(Qt::AlignCenter);  // Qt-способ центрирования
-
-    priorityLayout->addWidget(this->taskpriority);
-
     QHBoxLayout* descLayout = new QHBoxLayout();
     descLayout->setContentsMargins(0,15,0,0);
 
@@ -152,11 +118,17 @@ TaskInfo::TaskInfo(int id, QString priorityIco, QString titleStr, QString descSt
     this->editTask = new QPushButton("Edit Task", this);
     this->editTask->setStyleSheet("background-color: #8687E7; font-size: 13px; color: #F8F8FE; height: 48px; margin-top: 60px");
 
+    connect(this->editTask, &QPushButton::clicked, this, [this] {
+        this->editTaskWnd = new EditTask(this->title->text(), this->description->text(), this);
+        editTaskWnd->show();
+
+        connect(this->editTaskWnd, &EditTask::updateEdit, this, &TaskInfo::onUpdateData);
+    });
+
     // Добавляем всё в layout
     containerLayout->addLayout(topLayout);
     containerLayout->addLayout(priorityAndTitleLayout);
     containerLayout->addLayout(timeLayout);
-    containerLayout->addLayout(priorityLayout);
     containerLayout->addLayout(descLayout);
     containerLayout->addLayout(buttonLayout);
     containerLayout->addStretch();
@@ -166,6 +138,14 @@ TaskInfo::TaskInfo(int id, QString priorityIco, QString titleStr, QString descSt
     QVBoxLayout* outerLayout = new QVBoxLayout(this);
     outerLayout->addWidget(container);
     outerLayout->setContentsMargins(0, 0, 0, 0);
+}
+
+QString TaskInfo::getTitle() {
+    return this->title->text();
+}
+
+QString TaskInfo::getDesc() {
+    return this->description->text();
 }
 
 void TaskInfo::onDeleteTaskClicked() {
@@ -185,4 +165,24 @@ void TaskInfo::onDeleteTaskClicked() {
     qDebug() << "Task deleted successfully";
 
     this->accept();
+}
+
+void TaskInfo::onUpdateData() {
+    this->title->setText(this->editTaskWnd->text());
+    this->description->setText(this->editTaskWnd->getDescription());
+
+    QSqlQuery query;
+
+    query.prepare("UPDATE tasks SET title = :title, description = :description WHERE id = :id");
+
+    query.bindValue(":title", this->title->text());
+    query.bindValue(":description", this->description->text());
+    query.bindValue(":id", this->Taskid);
+
+    if (!query.exec()) {
+        qDebug() << "Failed to update data: " << query.lastError();
+        return;
+    }
+
+    emit onChangeUI();
 }

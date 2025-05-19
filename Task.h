@@ -5,14 +5,17 @@
 #include <QDate>
 #include <QString>
 #include <QDateTime>
+#include <QLabel>
 
 struct Task {
     int id = -1;
     QString title;
     QString description;
     QDateTime dueDate;
-    QString priority;
-    QString status;
+
+    QString categoryName;
+    QColor categoryColor;
+    QIcon categoryIcon;
 
     QString formatDateTime(const QDateTime& dt) const {
         QDate today = QDate::currentDate();

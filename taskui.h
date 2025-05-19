@@ -3,32 +3,41 @@
 
 #include <QWidget>
 #include <QLabel>
-#include <QObject>
 #include <QPushButton>
-#include <QPixmap>
-#include <QHBoxLayout>
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QFrame>
-#include <QString>
+#include <QMouseEvent>
+#include <QBuffer>
+#include "categoryitemwidget.h"
 
-class TaskUI : public QWidget
-{
+class TaskUI : public QWidget {
     Q_OBJECT
+
 public:
-    explicit TaskUI(QString titleStr, QString desc, QString createData, QString priorityStr, QWidget* parent = nullptr);
+    TaskUI(QString titleStr, QString desc, QString createData,
+           QString categoryName, QColor categoryColor, QIcon categoryIcon,
+           QWidget* parent = nullptr);
 
-    void mousePressEvent(QMouseEvent *event) override;
-private:
-    QLabel* title;
-    QLabel* creationDate;
-    QLabel* description;
-
-    QPushButton* showDescription;
-    QPushButton* successTask;
+    void setTitle(QString& newTitle);
+    void setDesc(QString& newDesc);
 
 signals:
     void taskClicked();
-    // QHBoxLayout* mainLayout;
+
+protected:
+    void mousePressEvent(QMouseEvent* event) override;
+
+private:
+    QLabel* title;
+    QLabel* description;
+    QLabel* creationDate;
+    QLabel* categoryLabel;
+
+    QPushButton* showDescription;
+    QPushButton* circle;
+
+    int counter;
 };
 
 #endif // TASKUI_H

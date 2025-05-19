@@ -7,6 +7,7 @@
 #include "deletebuttondelegate.h"
 #include "taskui.h"
 #include "taskinfo.h"
+#include "choosecategory.h"
 
 #include <QMainWindow>
 #include <QTableView>
@@ -23,19 +24,6 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-    QTableView* table;
-
-    TaskModel* model;
-
-    DatabaseManager* dataBase;
-
-    QPushButton* addTaskButton;
-
-    QVBoxLayout* layout;
-    QVBoxLayout* tasksLayout;
-
-    TaskDialog* dialog = nullptr;
-
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
@@ -49,6 +37,21 @@ public:
     void onDeleteTask(const int row);
 
 private:
+    ChooseCategory* chooseCategory;
+
+    TaskDialog* dialog = nullptr;
+
+    QTableView* table;
+
+    TaskModel* model;
+
+    DatabaseManager* dataBase;
+
+    QPushButton* addTaskButton;
+
+    QVBoxLayout* layout;
+    QVBoxLayout* tasksLayout;
+
     void showTaskDialog();
 };
 #endif // MAINWINDOW_H

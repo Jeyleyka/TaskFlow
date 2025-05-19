@@ -8,5 +8,16 @@
         <file>icons/delete.png</file>
         <file>icons/clock.png</file>
         <file>icons/subtitle.png</file>
+        <file>icons/briefcase.png</file>
+        <file>icons/dumbbell.png</file>
+        <file>icons/graduation-cap.png</file>
+        <file>icons/healthcare.png</file>
+        <file>icons/home.png</file>
+        <file>icons/megaphone.png</file>
+        <file>icons/music.png</file>
+        <file>icons/ux-design.png</file>
+        <file>icons/video-camera.png</file>
+        <file>icons/plus.png</file>
+        <file>icons/empty-circle.png</file>
     </qresource>
 </RCC>

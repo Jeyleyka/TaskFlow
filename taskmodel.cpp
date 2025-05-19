@@ -9,7 +9,7 @@ int TaskModel::rowCount(const QModelIndex& parent) const {
 }
 
 int TaskModel::columnCount(const QModelIndex& parent) const {
-    return 6; // title, description, dueDate, priority, status
+    return 4; // title, description, dueDate,
 }
 
 QVariant TaskModel::data(const QModelIndex& index, int role) const {
@@ -23,8 +23,6 @@ QVariant TaskModel::data(const QModelIndex& index, int role) const {
             case 0: return task.title;
             case 1: return task.description;
             case 2: return task.dueDate.toString("yyyy-MM-dd");
-            case 3: return task.priority;
-            case 4: return task.status;
             case 5: return "";
             default: return QVariant();
         }
@@ -42,8 +40,6 @@ QVariant TaskModel::headerData(int section, Qt::Orientation orientation, int rol
             case 0: return "Title";
             case 1: return "Description";
             case 2: return "Due Date";
-            case 3: return "Priority";
-            case 4: return "Status";
             default: return QVariant();
         }
     }
