@@ -19,6 +19,7 @@
 #include <QMessageBox>
 #include <QPropertyAnimation>
 #include <QPoint>
+#include <QFont>
 
 class MainWindow : public QMainWindow
 {
@@ -32,7 +33,7 @@ public:
     void initTable();
     void initModel();
     void initDatabase();
-    void initAddTaskBtn();
+    void initNavigationBar();
 
     void onDeleteTask(const int row);
 
@@ -47,10 +48,21 @@ private:
 
     DatabaseManager* dataBase;
 
+    QLabel* indexLabel;
+    QLabel* calendarLabel;
+    QLabel* focusLabel;
+    QLabel* profileLabel;
+
     QPushButton* addTaskButton;
+    QPushButton* indexBtn;
+    QPushButton* calendarBtn;
+    QPushButton* focusBtn;
+    QPushButton* profileBtn;
 
     QVBoxLayout* layout;
     QVBoxLayout* tasksLayout;
+
+    QWidget* navigationBar;
 
     void showTaskDialog();
 };

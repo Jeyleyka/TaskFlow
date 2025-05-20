@@ -1971,6 +1971,7 @@ D:/Work/todo_app/mainwindow.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/QCloseEvent
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/QFont
  mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/QIcon
  mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/QKeyEvent
  mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent

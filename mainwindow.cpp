@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
     this->initDatabase();
     // this->initModel();
     // this->initTable();
-    this->initAddTaskBtn();
+    this->initNavigationBar();
 
     // layout->addWidget(this->table);
     QList<Task> tasks = this->dataBase->loadTasksFromDatabase();
@@ -44,25 +44,15 @@ MainWindow::MainWindow(QWidget *parent)
         });
     }
 
-    QPushButton* open = new QPushButton("open", this);
-
-    connect(open, &QPushButton::clicked, this, [this] {
-        this->chooseCategory = new ChooseCategory(this);
-        this->chooseCategory->show();
-    });
-
-    layout->addWidget(open);
-
     layout->addLayout(tasksLayout);
 
-    layout->addWidget(this->addTaskButton);
+    auto* navigationLayout = new QVBoxLayout;
 
+    navigationLayout->addWidget(this->navigationBar);
+    layout->setContentsMargins(0, 0, 0, 0);  // Убирает отступы со всех сторон
+    layout->setSpacing(0);
 
-    // TaskUI* newTask = new TaskUI(this);
-    // newTask->setFixedSize(700, 300);
-
-    // layout->addWidget(newTask);
-
+    layout->addLayout(navigationLayout);
     central->setLayout(layout);
     this->setCentralWidget(central);
 
@@ -90,10 +80,91 @@ void MainWindow::initDatabase() {
     this->dataBase->initializeDatabase();
 }
 
-void MainWindow::initAddTaskBtn() {
-    this->addTaskButton = new QPushButton("Add", this);
+void MainWindow::initNavigationBar() {
+    this->navigationBar = new QWidget(this);
+    this->navigationBar->setStyleSheet("background-color: #363636;");
+    this->navigationBar->setMinimumWidth(0);
+    this->navigationBar->setFixedHeight(100);
+    this->navigationBar->setMaximumWidth(QWIDGETSIZE_MAX);
+    this->navigationBar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+
+    this->indexBtn = new QPushButton(this->navigationBar);
+    this->indexBtn->setIcon(QIcon(":/icons/home.png"));
+    this->indexBtn->setIconSize(QSize(26,26));
+    this->indexBtn->setStyleSheet("width: 30px; height: 50px; border: none; background-color: transparent");
+
+    this->indexLabel = new QLabel("Index", this->navigationBar);
+    this->indexLabel->setStyleSheet("font-size: 14px;");
+
+    auto* indexLayout = new QVBoxLayout();
+    indexLayout->addWidget(this->indexBtn);
+    indexLayout->addWidget(this->indexLabel);
+    indexLayout->setAlignment(Qt::AlignCenter);
+    indexLayout->setContentsMargins(0,15,0,0);
+
+    this->calendarBtn = new QPushButton(this->navigationBar);
+    this->calendarBtn->setIcon(QIcon(":/icons/calendar.png"));
+    this->calendarBtn->setIconSize(QSize(26,26));
+    this->calendarBtn->setStyleSheet("width: 30px; height: 50px; border: none; background-color: transparent");
+
+    this->calendarLabel = new QLabel("Calendar", this->navigationBar);
+    this->calendarLabel->setStyleSheet("font-size: 14px;");
+
+    auto* calendarLayout = new QVBoxLayout();
+    calendarLayout->addWidget(this->calendarBtn);
+    calendarLayout->addWidget(this->calendarLabel);
+    calendarLayout->setAlignment(Qt::AlignCenter);
+    calendarLayout->setContentsMargins(20, 15, 30, 0);
+
+    this->addTaskButton = new QPushButton(this->navigationBar);
+    this->addTaskButton->setIcon(QIcon(":/icons/plus.png"));
+    this->addTaskButton->setIconSize(QSize(30,30));
+    this->addTaskButton->setStyleSheet("width: 64px; height: 64px; background-color: #8687E7; border-radius: 32px;");
 
     connect(this->addTaskButton, &QPushButton::clicked, this, &MainWindow::showTaskDialog);
+
+    auto* layout = new QHBoxLayout();
+    layout->setContentsMargins(0,0,0,0);
+    layout->setAlignment(Qt::AlignCenter);
+
+    layout->addWidget(this->addTaskButton);
+
+    this->focusBtn = new QPushButton(this->navigationBar);
+    this->focusBtn->setIcon(QIcon(":/icons/clock.png"));
+    this->focusBtn->setIconSize(QSize(35,35));
+    this->focusBtn->setStyleSheet("width: 30px; height: 50px; border: none; background-color: transparent");
+
+    this->focusLabel = new QLabel("Focuse", this->navigationBar);
+    this->focusLabel->setStyleSheet("font-size: 14px;");
+
+    auto* focusLayout = new QVBoxLayout();
+    focusLayout->addWidget(this->focusBtn);
+    focusLayout->addWidget(this->focusLabel);
+    focusLayout->setAlignment(Qt::AlignCenter);
+    focusLayout->setContentsMargins(30,15,20,0);
+
+    this->profileBtn = new QPushButton(this->navigationBar);
+    this->profileBtn->setIcon(QIcon(":/icons/human.png"));
+    this->profileBtn->setIconSize(QSize(32,32));
+    this->profileBtn->setStyleSheet("width: 30px; height: 50px; border: none; background-color: transparent");
+
+    this->profileLabel = new QLabel("Profile", this->navigationBar);
+    this->profileLabel->setStyleSheet("font-size: 14px;");
+
+    auto* profileLayout = new QVBoxLayout();
+    profileLayout->addWidget(this->profileBtn);
+    profileLayout->addWidget(this->profileLabel);
+    profileLayout->setAlignment(Qt::AlignCenter);
+    profileLayout->setContentsMargins(0, 15, 0, 0);
+
+    auto* mainLayout = new QHBoxLayout(this->navigationBar);
+    mainLayout->addLayout(indexLayout);
+    mainLayout->addLayout(calendarLayout);
+    mainLayout->addLayout(layout);
+    mainLayout->addLayout(focusLayout);
+    mainLayout->addLayout(profileLayout);
+    mainLayout->setContentsMargins(650,0,0,0);
+    mainLayout->addStretch();
 }
 
 void MainWindow::onDeleteTask(const int row) {

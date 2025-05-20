@@ -31,6 +31,10 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
 
 
     connect(this->chooseCategoryWnd, &ChooseCategory::categorySelected, this, [this](const QString& name, const QColor& color, const QIcon& icon) {
+        if (name == "Create new")
+            return;
+
+
         this->itemWidget = new CategoryItemWidget(name, color, icon, this);
         this->itemWidget->setFixedSize(64,64);
 
