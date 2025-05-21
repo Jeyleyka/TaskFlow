@@ -1,6 +1,6 @@
 #include "taskui.h"
 
-TaskUI::TaskUI(QString titleStr, QString desc, QString createData,
+TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                QString categoryName, QColor categoryColor, QIcon categoryIcon,
                QWidget* parent)
     : QWidget(parent), counter(0)
@@ -91,7 +91,8 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData,
     // Кнопка для показа описания
     this->showDescription = new QPushButton(frame);
     this->showDescription->setIcon(QIcon(":/icons/red-flag.png"));
-    this->showDescription->setIconSize(QSize(20, 20));
+    this->showDescription->setIconSize(QSize(15, 15));
+    this->showDescription->setText(QString::number(priority));
     this->showDescription->setStyleSheet("background-color: transparent; width: 42px; height: 29px; margin-bottom: 3px;");
 
 
@@ -117,6 +118,7 @@ void TaskUI::setDesc(QString& newDesc) {
 }
 
 void TaskUI::mousePressEvent(QMouseEvent *event) {
+    qDebug() << "Mouse clicked";
     emit this->taskClicked();
     QWidget::mousePressEvent(event);
 }

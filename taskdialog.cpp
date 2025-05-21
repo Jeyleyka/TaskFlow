@@ -23,11 +23,29 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
         this->chooseCategoryWnd->show();
     });
 
+    this->choosePriority = new QPushButton("Choose priority", this);
+    this->choosePriority->setStyleSheet("max-width: 100px; height: 25px; background-color: #2d2d2d");
+
+    this->choosePriorityWnd = new ChoosePriority(this);
+
+    connect(this->choosePriority, &QPushButton::clicked, this, [this] {
+        this->choosePriorityWnd->show();
+    });
+
     this->formLayout = new QFormLayout;
     this->formLayout->addRow("Title:", this->titleLineEdit);
     this->formLayout->addRow("Description:", this->descriptionTextEdit);
     this->formLayout->addRow("Due Date:", this->dueDateEdit);
+    this->formLayout->addRow("Priority: ", this->choosePriority);
     this->formLayout->addRow("Category: ", this->chooseCategory);
+
+    connect(this->choosePriorityWnd, &ChoosePriority::prioritySelected, this, [this](int priority) {
+        this->priorityWidget = new PriorityItemWidget(priority, this);
+        this->priorityWidget->setFixedSize(64,64);
+
+        this->formLayout->removeRow(3);
+        this->formLayout->addRow("Priority: ", priorityWidget);
+    });
 
 
     connect(this->chooseCategoryWnd, &ChooseCategory::categorySelected, this, [this](const QString& name, const QColor& color, const QIcon& icon) {
@@ -73,6 +91,7 @@ Task TaskDialog::getTask() const {
     t.description = this->descriptionTextEdit->toPlainText();
     t.dueDate = QDateTime(this->dueDateEdit->date(), QTime::currentTime());
     t.categoryName = this->itemWidget->getName();
+    t.priority = this->priorityWidget->getPriority();
     t.categoryColor = this->itemWidget->getColor();
     t.categoryIcon = this->itemWidget->getIcon();
     return t;

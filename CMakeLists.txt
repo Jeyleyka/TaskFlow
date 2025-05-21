@@ -34,6 +34,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         categoryeditor.h categoryeditor.cpp
         choosecategory.h choosecategory.cpp
         categoryitemwidget.h categoryitemwidget.cpp
+        choosepriority.h choosepriority.cpp
+        priorityitemwidget.h priorityitemwidget.cpp
+        flowlayout.h flowlayout.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET todo_app APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

@@ -24,6 +24,7 @@ bool DatabaseManager::initializeDatabase() {
         "title TEXT, "
         "description TEXT, "
         "due_date TEXT, "
+        "priority INTEGER, "
         "category_name TEXT,"
         "category_color TEXT,"
         "category_icon BLOB)";
@@ -50,8 +51,8 @@ bool DatabaseManager::initializeDatabase() {
 bool DatabaseManager::insertTaskToDatabase(Task &task) {
     QSqlQuery query;
     query.prepare(R"(
-        INSERT INTO tasks (title, description, due_date, category_name, category_color, category_icon)
-        VALUES (?, ?, ?, ?, ?, ?)
+        INSERT INTO tasks (title, description, due_date, priority, category_name, category_color, category_icon)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
     )");
 
     // Преобразуем иконку в QByteArray
@@ -66,6 +67,7 @@ bool DatabaseManager::insertTaskToDatabase(Task &task) {
     query.addBindValue(task.description);
     QString formattedDate = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
     query.addBindValue(formattedDate);
+    query.addBindValue(task.priority);
     query.addBindValue(task.categoryName);
     query.addBindValue(task.categoryColor.name());  // Цвет в формате "#RRGGBB"
     query.addBindValue(iconBytes);
@@ -105,7 +107,7 @@ bool DatabaseManager::deleteTaskFromDatabase(int id)
 
 QList<Task> DatabaseManager::loadTasksFromDatabase() {
     QList<Task> tasks;
-    QSqlQuery query("SELECT id, title, description, due_date, category_name, category_color, category_icon FROM tasks");
+    QSqlQuery query("SELECT id, title, description, due_date, priority, category_name, category_color, category_icon FROM tasks");
 
     while (query.next()) {
         Task task;
@@ -121,14 +123,15 @@ QList<Task> DatabaseManager::loadTasksFromDatabase() {
             task.dueDate = dueDate;
         }
 
-        task.categoryName = query.value(4).toString();
+        task.priority = query.value(4).toInt();
+        task.categoryName = query.value(5).toString();
 
         // Цвет
-        QString colorStr = query.value(5).toString();
+        QString colorStr = query.value(6).toString();
         task.categoryColor = QColor(colorStr);
 
         // Иконка
-        QByteArray iconData = query.value(6).toByteArray();
+        QByteArray iconData = query.value(7).toByteArray();
         QPixmap pixmap;
         if (pixmap.loadFromData(iconData)) {
             task.categoryIcon = QIcon(pixmap);

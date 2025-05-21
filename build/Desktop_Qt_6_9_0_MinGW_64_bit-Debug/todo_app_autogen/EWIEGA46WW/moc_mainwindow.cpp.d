@@ -244,10 +244,12 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QMessageBox \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QPushButton \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyle \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyleOptionViewItem \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyledItemDelegate \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QTableView \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QTextEdit \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QToolButton \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QVBoxLayout \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QWidget \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractbutton.h \
@@ -285,6 +287,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtableview.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtabwidget.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtextedit.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtoolbutton.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtwidgetsexports.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
@@ -504,9 +507,12 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   D:/Work/todo_app/categoryeditor.h \
   D:/Work/todo_app/categoryitemwidget.h \
   D:/Work/todo_app/choosecategory.h \
+  D:/Work/todo_app/choosepriority.h \
   D:/Work/todo_app/database.h \
   D:/Work/todo_app/deletebuttondelegate.h \
   D:/Work/todo_app/edittask.h \
+  D:/Work/todo_app/flowlayout.h \
+  D:/Work/todo_app/priorityitemwidget.h \
   D:/Work/todo_app/task.h \
   D:/Work/todo_app/taskdialog.h \
   D:/Work/todo_app/taskinfo.h \

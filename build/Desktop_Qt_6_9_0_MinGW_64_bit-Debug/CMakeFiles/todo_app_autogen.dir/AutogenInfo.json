@@ -442,6 +442,12 @@
 			null
 		],
 		[
+			"D:/Work/todo_app/choosepriority.h",
+			"MU",
+			"EWIEGA46WW/moc_choosepriority.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/database.h",
 			"MU",
 			"EWIEGA46WW/moc_database.cpp",
@@ -460,9 +466,21 @@
 			null
 		],
 		[
+			"D:/Work/todo_app/flowlayout.h",
+			"MU",
+			"EWIEGA46WW/moc_flowlayout.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/priorityitemwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_priorityitemwidget.cpp",
 			null
 		],
 		[
@@ -561,11 +579,14 @@
 		[ "D:/Work/todo_app/categoryeditor.cpp", "MU", null ],
 		[ "D:/Work/todo_app/categoryitemwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/choosecategory.cpp", "MU", null ],
+		[ "D:/Work/todo_app/choosepriority.cpp", "MU", null ],
 		[ "D:/Work/todo_app/database.cpp", "MU", null ],
 		[ "D:/Work/todo_app/deletebuttondelegate.cpp", "MU", null ],
 		[ "D:/Work/todo_app/edittask.cpp", "MU", null ],
+		[ "D:/Work/todo_app/flowlayout.cpp", "MU", null ],
 		[ "D:/Work/todo_app/main.cpp", "MU", null ],
 		[ "D:/Work/todo_app/mainwindow.cpp", "MU", null ],
+		[ "D:/Work/todo_app/priorityitemwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskdialog.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskinfo.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskmodel.cpp", "MU", null ],

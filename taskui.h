@@ -9,13 +9,14 @@
 #include <QFrame>
 #include <QMouseEvent>
 #include <QBuffer>
+
 #include "categoryitemwidget.h"
 
 class TaskUI : public QWidget {
     Q_OBJECT
 
 public:
-    TaskUI(QString titleStr, QString desc, QString createData,
+    TaskUI(QString titleStr, QString desc, QString createData, int priority,
            QString categoryName, QColor categoryColor, QIcon categoryIcon,
            QWidget* parent = nullptr);
 

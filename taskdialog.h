@@ -4,6 +4,8 @@
 #include "task.h"
 #include "choosecategory.h"
 #include "categoryitemwidget.h"
+#include "choosepriority.h"
+#include "priorityitemwidget.h"
 
 #include <QDialog>
 #include <QLineEdit>
@@ -40,7 +42,9 @@ protected:
 
 private:
     ChooseCategory* chooseCategoryWnd;
+    ChoosePriority* choosePriorityWnd;
     CategoryItemWidget* itemWidget;
+    PriorityItemWidget* priorityWidget;
 
     QLineEdit* titleLineEdit;
 
@@ -52,6 +56,7 @@ private:
     QComboBox* statusComboBox;
 
     QPushButton* chooseCategory;
+    QPushButton* choosePriority;
 
     QDialogButtonBox* buttonBox;
 

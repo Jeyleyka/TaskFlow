@@ -15,11 +15,13 @@ MainWindow::MainWindow(QWidget *parent)
     // layout->addWidget(this->table);
     QList<Task> tasks = this->dataBase->loadTasksFromDatabase();
     this->tasksLayout = new QVBoxLayout;
-    this->tasksLayout->addStretch(0);
+    // this->tasksLayout->addStretch(0);
+    this->tasksLayout->setSpacing(15);
+    this->tasksLayout->setContentsMargins(20,30,0,0);
 
     for (const Task& task: tasks) {
 
-        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), task.categoryName, task.categoryColor, task.categoryIcon, this);
+        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), task.priority, task.categoryName, task.categoryColor, task.categoryIcon, this);
         taskUI->setFixedSize(700,100);
         this->tasksLayout->addWidget(taskUI);
 
@@ -45,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     layout->addLayout(tasksLayout);
+    layout->addStretch();
 
     auto* navigationLayout = new QVBoxLayout;
 
@@ -163,8 +166,7 @@ void MainWindow::initNavigationBar() {
     mainLayout->addLayout(layout);
     mainLayout->addLayout(focusLayout);
     mainLayout->addLayout(profileLayout);
-    mainLayout->setContentsMargins(650,0,0,0);
-    mainLayout->addStretch();
+    mainLayout->setAlignment(Qt::AlignCenter);
 }
 
 void MainWindow::onDeleteTask(const int row) {
@@ -222,9 +224,29 @@ void MainWindow::showTaskDialog() {
             QString formattedDate = task.formatDateTime(task.dueDate);
 
 
-            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.categoryName, task.categoryColor, task.categoryIcon, this);
+            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.priority, task.categoryName, task.categoryColor, task.categoryIcon, this);
             taskUI->setFixedSize(700, 300);
             this->tasksLayout->addWidget(taskUI);
+
+            connect(taskUI, &TaskUI::taskClicked, this, [=] {
+                TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);
+                taskInfo->setFixedSize(500, 600);
+                taskInfo->show();
+
+                connect(taskInfo, &TaskInfo::onChangeUI, this, [this, taskUI, taskInfo] {
+                    qDebug() << "Signal onChangeUI received";
+
+                    if (!taskUI || !taskInfo) return;
+
+                    QString title = taskInfo->getTitle();
+                    QString desc = taskInfo->getDesc();
+
+                    qDebug() << "Got data:" << title << desc;
+
+                    taskUI->setTitle(title);
+                    // taskUI->setDesc(desc);
+                });
+            });
             // this->model->addTask(task);
         } else {
             QMessageBox::warning(this, "Error", "Failed to save task to database....");
