@@ -23,6 +23,10 @@ public:
     void setTitle(QString& newTitle);
     void setDesc(QString& newDesc);
 
+    QString getCategoryName() const;
+    QIcon getCategoryIcon() const;
+    int getPriority() const;
+
 signals:
     void taskClicked();
 
@@ -35,10 +39,14 @@ private:
     QLabel* creationDate;
     QLabel* categoryLabel;
 
+    QIcon categoryIcon;
+
+
     QPushButton* showDescription;
     QPushButton* circle;
 
     int counter;
+    int priority;
 };
 
 #endif // TASKUI_H

@@ -3,7 +3,7 @@
 TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                QString categoryName, QColor categoryColor, QIcon categoryIcon,
                QWidget* parent)
-    : QWidget(parent), counter(0)
+    : QWidget(parent), counter(0), categoryIcon(categoryIcon), priority(priority)
 {
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
@@ -35,6 +35,9 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
             this->counter--;
         }
     });
+
+    this->categoryLabel = new QLabel(categoryName);
+    this->categoryLabel->hide();
 
     // Название задачи
     this->title = new QLabel(titleStr, frame);
@@ -92,7 +95,7 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
     this->showDescription = new QPushButton(frame);
     this->showDescription->setIcon(QIcon(":/icons/red-flag.png"));
     this->showDescription->setIconSize(QSize(15, 15));
-    this->showDescription->setText(QString::number(priority));
+    this->showDescription->setText(QString::number(this->priority));
     this->showDescription->setStyleSheet("background-color: transparent; width: 42px; height: 29px; margin-bottom: 3px;");
 
 
@@ -115,6 +118,18 @@ void TaskUI::setDesc(QString& newDesc) {
         this->description->setStyleSheet("color: white;");
     }
     this->description->setText(newDesc);
+}
+
+QString TaskUI::getCategoryName() const {
+    return this->categoryLabel->text();
+}
+
+QIcon TaskUI::getCategoryIcon() const {
+    return this->categoryIcon;
+}
+
+int TaskUI::getPriority() const {
+    return this->priority;
 }
 
 void TaskUI::mousePressEvent(QMouseEvent *event) {

@@ -79,23 +79,48 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     this->taskTime->setAlignment(Qt::AlignCenter);  // Qt-способ центрирования
     timeLayout->addWidget(this->taskTime);
 
+    QPushButton* categoryBtn = new QPushButton(this);
+    categoryBtn->setIcon(QIcon(":/icons/category.png"));
+    categoryBtn->setIconSize(QSize(32,32));
+    categoryBtn->setText("   Task Category : ");
+    categoryBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
+
+    QPushButton* category = new QPushButton(this);
+    category->setIcon(taskUI->getCategoryIcon());
+    category->setIconSize(QSize(24,24));
+    category->setText(this->taskUI->getCategoryName());
+    category->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 40px; min-width: 118px; max-width: 118px");
+
+    QHBoxLayout* categoryLayout = new QHBoxLayout();
+    categoryLayout->setContentsMargins(0,15,0,0);
+    categoryLayout->addWidget(categoryBtn, 0, Qt::AlignLeft);
+    categoryLayout->addWidget(category, 0, Qt::AlignRight);
+
+    QPushButton* priorityBtn = new QPushButton(this);
+    priorityBtn->setIcon(QIcon(":/icons/red-flag.png"));
+    priorityBtn->setIconSize(QSize(32,32));
+    priorityBtn->setText("   Task Category : ");
+    priorityBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
+
+    QPushButton* priority = new QPushButton(this);
+    priority->setText(QString::number(this->taskUI->getPriority()));
+    priority->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 37px; min-width: 70px; max-width: 70px");
+
+    QHBoxLayout* priorityLayout = new QHBoxLayout();
+    priorityLayout->setContentsMargins(0,15,0,0);
+    priorityLayout->addWidget(priorityBtn, 0, Qt::AlignLeft);
+    priorityLayout->addWidget(priority, 0, Qt::AlignRight);
+
     QHBoxLayout* descLayout = new QHBoxLayout();
     descLayout->setContentsMargins(0,15,0,0);
 
-    QLabel* descLabel = new QLabel(this);
-    QPixmap descIcon(":/icons/subtitle.png");
-    descIcon = descIcon.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    descLabel->setStyleSheet("border: none");
-    descLabel->setFixedSize(32, 32);
-    descLabel->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-    descLabel->setPixmap(descIcon);
+    QPushButton* descBtn = new QPushButton(this);
+    descBtn->setIcon(QIcon(":/icons/subtitle.png"));
+    descBtn->setIconSize(QSize(32,32));
+    descBtn->setText("   Description : ");
+    descBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
 
-    descLayout->addWidget(descLabel);
-
-    QLabel* desc = new QLabel("Description", this);
-    desc->setStyleSheet("font-size: 17px; color: #fff;");
-
-    descLayout->addWidget(desc);
+    descLayout->addWidget(descBtn, 0, Qt::AlignLeft);
 
     this->editDesc = new QPushButton("Add Description", this);
     this->editDesc->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 37px; padding-left: 10px; padding-right: 10px");
@@ -110,6 +135,8 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     this->deleteTask->setIcon(QIcon(":/icons/delete.png"));
     this->deleteTask->setIconSize(QSize(32,32));
     this->deleteTask->setStyleSheet("font-size: 17px; color: #E14242; border: none; ");
+
+
 
     connect(this->deleteTask, &QPushButton::clicked, this, &TaskInfo::onDeleteTaskClicked);
 
@@ -129,6 +156,8 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     containerLayout->addLayout(topLayout);
     containerLayout->addLayout(priorityAndTitleLayout);
     containerLayout->addLayout(timeLayout);
+    containerLayout->addLayout(categoryLayout);
+    containerLayout->addLayout(priorityLayout);
     containerLayout->addLayout(descLayout);
     containerLayout->addLayout(buttonLayout);
     containerLayout->addStretch();
