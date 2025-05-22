@@ -3,7 +3,7 @@
 TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                QString categoryName, QColor categoryColor, QIcon categoryIcon,
                QWidget* parent)
-    : QWidget(parent), counter(0), categoryIcon(categoryIcon), priority(priority)
+    : QWidget(parent), counter(0), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor)
 {
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
@@ -83,12 +83,12 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
     // categoryLayout->addStretch();
 
     // Иконка
-    QPushButton* categoryBtn = new QPushButton(frame);
-    categoryBtn->setIcon(QIcon(categoryIcon));
-    categoryBtn->setIconSize(QSize(14,14));
-    categoryBtn->setLayoutDirection(Qt::LeftToRight);
-    categoryBtn->setText(categoryName);
-    categoryBtn->setStyleSheet("min-width: 87px; min-height: 29px; margin-bottom: 4px; border-radius: 5px; font-size: 14px; color: #fff; background-color: " + categoryColor.name());
+    this->categoryBtn = new QPushButton(frame);
+    this->categoryBtn->setIcon(QIcon(categoryIcon));
+    this->categoryBtn->setIconSize(QSize(14,14));
+    this->categoryBtn->setLayoutDirection(Qt::LeftToRight);
+    this->categoryBtn->setText(categoryName);
+    this->categoryBtn->setStyleSheet("min-width: 87px; min-height: 29px; margin-bottom: 4px; border-radius: 5px; font-size: 14px; color: #fff; background-color: " + categoryColor.name());
     // Добавляем в layout
 
     // Кнопка для показа описания
@@ -120,8 +120,23 @@ void TaskUI::setDesc(QString& newDesc) {
     this->description->setText(newDesc);
 }
 
+void TaskUI::setCategory(QString name, QColor color, QIcon icon, int width, int height) {
+    this->categoryBtn->setIcon(icon);
+    this->categoryBtn->setIconSize(QSize(width, height));
+    this->categoryBtn->setText(name);
+    this->categoryBtn->setStyleSheet("min-width: 87px; min-height: 29px; margin-bottom: 4px; border-radius: 5px; font-size: 14px; color: #fff; background-color: " + color.name());
+}
+
+void TaskUI::setPriority(QString priority) const {
+    this->showDescription->setText(priority);
+}
+
 QString TaskUI::getCategoryName() const {
     return this->categoryLabel->text();
+}
+
+QColor TaskUI::getCategoryColor() const {
+    return this->categoryColor;
 }
 
 QIcon TaskUI::getCategoryIcon() const {

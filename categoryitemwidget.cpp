@@ -38,3 +38,9 @@ QColor CategoryItemWidget::getColor() const {
 QIcon CategoryItemWidget::getIcon() const {
     return this->icon;
 }
+
+void CategoryItemWidget::mousePressEvent(QMouseEvent *event) {
+    emit itemClicked();
+
+    QWidget::mousePressEvent(event);
+}

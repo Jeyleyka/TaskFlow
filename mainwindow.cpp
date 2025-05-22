@@ -41,6 +41,8 @@ MainWindow::MainWindow(QWidget *parent)
                 qDebug() << "Got data:" << title << desc;
 
                 taskUI->setTitle(title);
+                taskUI->setCategory(taskInfo->getCategoryName(), taskInfo->getCategoryColor(), taskInfo->getCategoryIcon(), 14,14);
+                taskUI->setPriority(taskInfo->getPriority());
                 // taskUI->setDesc(desc);
             });
         });
@@ -244,6 +246,7 @@ void MainWindow::showTaskDialog() {
                     qDebug() << "Got data:" << title << desc;
 
                     taskUI->setTitle(title);
+                    taskUI->setCategory(taskInfo->getCategoryName(), taskInfo->getCategoryColor(), taskInfo->getCategoryIcon(), 14,14);
                     // taskUI->setDesc(desc);
                 });
             });

@@ -22,9 +22,13 @@ public:
 
     void setTitle(QString& newTitle);
     void setDesc(QString& newDesc);
+    void setCategory(QString name, QColor color, QIcon icon, int width, int height);
+    void setPriority(QString priority) const;
 
     QString getCategoryName() const;
+    QColor getCategoryColor() const;
     QIcon getCategoryIcon() const;
+
     int getPriority() const;
 
 signals:
@@ -41,9 +45,11 @@ private:
 
     QIcon categoryIcon;
 
+    QColor categoryColor;
 
     QPushButton* showDescription;
     QPushButton* circle;
+    QPushButton* categoryBtn;
 
     int counter;
     int priority;

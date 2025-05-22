@@ -85,11 +85,12 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     categoryBtn->setText("   Task Category : ");
     categoryBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
 
-    QPushButton* category = new QPushButton(this);
-    category->setIcon(taskUI->getCategoryIcon());
-    category->setIconSize(QSize(24,24));
-    category->setText(this->taskUI->getCategoryName());
-    category->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 40px; min-width: 118px; max-width: 118px");
+    this->category = new QPushButton(this);
+    this->category->setIcon(taskUI->getCategoryIcon());
+    this->category->setIconSize(QSize(24,24));
+    this->category->setText(this->taskUI->getCategoryName());
+    this->category->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; height: 40px; min-width: 118px; max-width: 118px; "
+                                  "background-color: " + this->taskUI->getCategoryColor().name());
 
     QHBoxLayout* categoryLayout = new QHBoxLayout();
     categoryLayout->setContentsMargins(0,15,0,0);
@@ -102,9 +103,9 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     priorityBtn->setText("   Task Category : ");
     priorityBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
 
-    QPushButton* priority = new QPushButton(this);
-    priority->setText(QString::number(this->taskUI->getPriority()));
-    priority->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 37px; min-width: 70px; max-width: 70px");
+    this->priority = new QPushButton(this);
+    this->priority->setText(QString::number(this->taskUI->getPriority()));
+    this->priority->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 37px; min-width: 70px; max-width: 70px");
 
     QHBoxLayout* priorityLayout = new QHBoxLayout();
     priorityLayout->setContentsMargins(0,15,0,0);
@@ -146,7 +147,8 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     this->editTask->setStyleSheet("background-color: #8687E7; font-size: 13px; color: #F8F8FE; height: 48px; margin-top: 60px");
 
     connect(this->editTask, &QPushButton::clicked, this, [this] {
-        this->editTaskWnd = new EditTask(this->title->text(), this->description->text(), this);
+        this->editTaskWnd = new EditTask(this->title->text(), this->description->text(), this->taskUI->getCategoryName(), this->taskUI->getCategoryColor(),
+                                         this->taskUI->getCategoryIcon(), this->taskUI->getPriority(), this);
         editTaskWnd->show();
 
         connect(this->editTaskWnd, &EditTask::updateEdit, this, &TaskInfo::onUpdateData);
@@ -177,6 +179,22 @@ QString TaskInfo::getDesc() {
     return this->description->text();
 }
 
+QString TaskInfo::getCategoryName() {
+    return this->category->text();
+}
+
+QColor TaskInfo::getCategoryColor() {
+    return this->editTaskWnd->getCategoryColor();
+}
+
+QIcon TaskInfo::getCategoryIcon() {
+    return this->editTaskWnd->getCategoryIcon();
+}
+
+QString TaskInfo::getPriority() {
+    return this->priority->text();
+}
+
 void TaskInfo::onDeleteTaskClicked() {
     QSqlQuery query;
     query.prepare("DELETE FROM tasks WHERE id = :id");
@@ -199,13 +217,30 @@ void TaskInfo::onDeleteTaskClicked() {
 void TaskInfo::onUpdateData() {
     this->title->setText(this->editTaskWnd->text());
     this->description->setText(this->editTaskWnd->getDescription());
+    this->category->setIcon(this->editTaskWnd->getCategoryIcon());
+    this->category->setIconSize(QSize(24,24));
+    this->category->setText(this->editTaskWnd->getCategoryName());
+    this->category->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; height: 40px; min-width: 118px; max-width: 118px; "
+                                  "background-color: " + this->editTaskWnd->getCategoryColor().name());
+    this->priority->setText(this->editTaskWnd->getPriority());
 
     QSqlQuery query;
 
-    query.prepare("UPDATE tasks SET title = :title, description = :description WHERE id = :id");
+    query.prepare("UPDATE tasks SET title = :title, description = :description, priority = :priority, category_name = :category_name, category_color = :category_color, category_icon = :category_icon WHERE id = :id");
 
     query.bindValue(":title", this->title->text());
     query.bindValue(":description", this->description->text());
+    query.bindValue(":priority", this->priority->text());
+    query.bindValue(":category_name", this->editTaskWnd->getCategoryName());
+    query.bindValue(":category_color", this->editTaskWnd->getCategoryColor());
+
+    QByteArray iconBytes;
+    QPixmap pixmap = this->editTaskWnd->getCategoryIcon().pixmap(64, 64);
+    QBuffer buffer(&iconBytes);
+    buffer.open(QIODevice::WriteOnly);
+    pixmap.save(&buffer, "PNG");
+
+    query.bindValue(":category_icon", iconBytes);
     query.bindValue(":id", this->Taskid);
 
     if (!query.exec()) {

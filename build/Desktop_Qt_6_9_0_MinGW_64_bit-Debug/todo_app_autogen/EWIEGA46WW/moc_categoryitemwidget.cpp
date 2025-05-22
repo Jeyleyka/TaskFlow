@@ -39,10 +39,14 @@ template <> constexpr inline auto CategoryItemWidget::qt_create_metaobjectdata<q
 {
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
-        "CategoryItemWidget"
+        "CategoryItemWidget",
+        "itemClicked",
+        ""
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Signal 'itemClicked'
+        QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -64,10 +68,16 @@ Q_CONSTINIT const QMetaObject CategoryItemWidget::staticMetaObject = { {
 void CategoryItemWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     auto *_t = static_cast<CategoryItemWidget *>(_o);
-    (void)_t;
-    (void)_c;
-    (void)_id;
-    (void)_a;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: _t->itemClicked(); break;
+        default: ;
+        }
+    }
+    if (_c == QMetaObject::IndexOfMethod) {
+        if (QtMocHelpers::indexOfMethod<void (CategoryItemWidget::*)()>(_a, &CategoryItemWidget::itemClicked, 0))
+            return;
+    }
 }
 
 const QMetaObject *CategoryItemWidget::metaObject() const
@@ -86,6 +96,24 @@ void *CategoryItemWidget::qt_metacast(const char *_clname)
 int CategoryItemWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        if (_id < 1)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 1;
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        if (_id < 1)
+            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+        _id -= 1;
+    }
     return _id;
+}
+
+// SIGNAL 0
+void CategoryItemWidget::itemClicked()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP

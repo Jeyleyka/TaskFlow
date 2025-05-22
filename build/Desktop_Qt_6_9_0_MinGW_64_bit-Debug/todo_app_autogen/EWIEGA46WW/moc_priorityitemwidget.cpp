@@ -42,7 +42,8 @@ template <> constexpr inline auto PriorityItemWidget::qt_create_metaobjectdata<q
         "PriorityItemWidget",
         "clickedWithId",
         "",
-        "priority"
+        "priority",
+        "openPriorityWnd"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -50,6 +51,8 @@ template <> constexpr inline auto PriorityItemWidget::qt_create_metaobjectdata<q
         QtMocHelpers::SignalData<void(int)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 3 },
         }}),
+        // Signal 'openPriorityWnd'
+        QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -74,11 +77,14 @@ void PriorityItemWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->clickedWithId((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 1: _t->openPriorityWnd(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (PriorityItemWidget::*)(int )>(_a, &PriorityItemWidget::clickedWithId, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PriorityItemWidget::*)()>(_a, &PriorityItemWidget::openPriorityWnd, 1))
             return;
     }
 }
@@ -102,14 +108,14 @@ int PriorityItemWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }
@@ -118,5 +124,11 @@ int PriorityItemWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void PriorityItemWidget::clickedWithId(int _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+}
+
+// SIGNAL 1
+void PriorityItemWidget::openPriorityWnd()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 QT_WARNING_POP

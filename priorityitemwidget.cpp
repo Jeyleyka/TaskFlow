@@ -23,6 +23,7 @@ PriorityItemWidget::PriorityItemWidget(const int priori, QWidget* parent)
 
     connect(this->iconBtn, &QToolButton::clicked, this, [this] {
         emit clickedWithId(this->priorityInt);
+        emit openPriorityWnd();
     });
 }
 

@@ -23,6 +23,9 @@ public:
     QString getTitle();
     QString getDesc();
     QString getPriority();
+    QString getCategoryName();
+    QColor getCategoryColor();
+    QIcon getCategoryIcon();
 
     void onUpdateData();
 
@@ -39,6 +42,8 @@ private:
     QPushButton* deleteTask;
     QPushButton* editTask;
     QPushButton* editDesc;
+    QPushButton* priority;
+    QPushButton* category;
 
     QLabel* title;
     QLabel* description;

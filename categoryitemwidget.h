@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QIcon>
+#include <QMouseEvent>
 
 class CategoryItemWidget : public QWidget
 {
@@ -16,6 +17,13 @@ public:
     QString getName() const;
     QColor getColor() const;
     QIcon getIcon() const;
+
+signals:
+    void itemClicked();
+
+protected:
+    void mousePressEvent(QMouseEvent *event) override;
+
 private:
     QLabel* name;
 

@@ -3,6 +3,7 @@
 
 #include "Task.h"
 
+
 #include <QString>
 #include <QtSql/QSqlDatabase>
 #include <QBuffer>

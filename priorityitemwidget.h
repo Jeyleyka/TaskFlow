@@ -5,7 +5,6 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QToolButton>
-#include <QMouseEvent>
 
 class PriorityItemWidget : public QWidget
 {
@@ -17,6 +16,7 @@ public:
 
 signals:
     void clickedWithId(int priority);
+    void openPriorityWnd();
 
 private:
     QVBoxLayout* mainLayout;
