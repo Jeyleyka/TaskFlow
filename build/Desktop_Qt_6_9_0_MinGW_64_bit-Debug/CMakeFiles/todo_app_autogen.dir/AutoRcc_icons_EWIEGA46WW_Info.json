@@ -9,12 +9,15 @@
 	"INCLUDE_DIR" : "D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/include",
 	"INPUTS" : 
 	[
+		"D:/Work/todo_app/icons/down-arrow.png",
+		"D:/Work/todo_app/icons/profile-picture.png",
 		"D:/Work/todo_app/icons/red-flag.png",
 		"D:/Work/todo_app/icons/delete.png",
 		"D:/Work/todo_app/icons/human.png",
 		"D:/Work/todo_app/icons/music.png",
 		"D:/Work/todo_app/icons/healthcare.png",
 		"D:/Work/todo_app/icons/plus.png",
+		"D:/Work/todo_app/icons/search.png",
 		"D:/Work/todo_app/icons/graduation-cap.png",
 		"D:/Work/todo_app/icons/calendar.png",
 		"D:/Work/todo_app/icons/clock.png",

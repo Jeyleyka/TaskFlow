@@ -20,6 +20,8 @@
 #include <QPropertyAnimation>
 #include <QPoint>
 #include <QFont>
+#include <QComboBox>
+#include <QVector>
 
 class MainWindow : public QMainWindow
 {
@@ -33,6 +35,8 @@ public:
     void initTable();
     void initModel();
     void initDatabase();
+    void initSearch();
+    void initSortTags();
     void initNavigationBar();
 
     void onDeleteTask(const int row);
@@ -48,16 +52,24 @@ private:
 
     DatabaseManager* dataBase;
 
+    QVector<TaskUI*> tasks;
+
+    QComboBox* sortTags;
+
+    QLineEdit* search;
+
     QLabel* indexLabel;
     QLabel* calendarLabel;
     QLabel* focusLabel;
     QLabel* profileLabel;
+    QLabel* indexTitle;
 
     QPushButton* addTaskButton;
     QPushButton* indexBtn;
     QPushButton* calendarBtn;
     QPushButton* focusBtn;
     QPushButton* profileBtn;
+    QPushButton* profileImageBtn;
 
     QVBoxLayout* layout;
     QVBoxLayout* tasksLayout;
@@ -65,5 +77,7 @@ private:
     QWidget* navigationBar;
 
     void showTaskDialog();
+    void filterTasks(const QString& filter);
+    void searchTaskFilter(const QString& title);
 };
 #endif // MAINWINDOW_H

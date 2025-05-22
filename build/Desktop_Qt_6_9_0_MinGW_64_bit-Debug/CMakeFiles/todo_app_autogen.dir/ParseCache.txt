@@ -1892,6 +1892,7 @@ D:/Work/todo_app/mainwindow.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSizeF
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QString
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QVariant
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QVector
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/q20functional.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/q20iterator.h
@@ -2038,6 +2039,7 @@ D:/Work/todo_app/mainwindow.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qvariant.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qvariantanimation.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qvarlengtharray.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qvector.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qversiontagging.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h
@@ -2902,6 +2904,7 @@ D:/Work/todo_app/taskui.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qmargins.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qmath.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qmetacontainer.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qmetaobject.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qmetatype.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qminmax.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qnamespace.h
@@ -3012,6 +3015,14 @@ D:/Work/todo_app/taskui.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/qvectornd.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/qwindowdefs.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtGui/qwindowdefs_win.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/QSqlError
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/QSqlQuery
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/qsqldatabase.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/qsqlerror.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/qsqlquery.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/qtsql-config.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlexports.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlglobal.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFrame
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QHBoxLayout
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QLabel

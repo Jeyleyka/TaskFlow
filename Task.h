@@ -13,6 +13,7 @@ struct Task {
     QString description;
     QDateTime dueDate;
     int priority;
+    int completed = 0;
     QString categoryName;
     QColor categoryColor;
     QIcon categoryIcon;

@@ -76,6 +76,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/qmargins.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qmath.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qmetacontainer.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qmetaobject.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qmetatype.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qminmax.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qnamespace.h \
@@ -186,6 +187,14 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/QSqlError \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/QSqlQuery \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/qsqldatabase.h \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/qsqlerror.h \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/qsqlquery.h \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/qtsql-config.h \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlexports.h \
+  C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlglobal.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFrame \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QHBoxLayout \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QLabel \

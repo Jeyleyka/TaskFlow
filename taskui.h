@@ -9,6 +9,8 @@
 #include <QFrame>
 #include <QMouseEvent>
 #include <QBuffer>
+#include <QSqlQuery>
+#include <QSqlError>
 
 #include "categoryitemwidget.h"
 
@@ -17,7 +19,7 @@ class TaskUI : public QWidget {
 
 public:
     TaskUI(QString titleStr, QString desc, QString createData, int priority,
-           QString categoryName, QColor categoryColor, QIcon categoryIcon,
+           QString categoryName, QColor categoryColor, QIcon categoryIcon, int id, int completed,
            QWidget* parent = nullptr);
 
     void setTitle(QString& newTitle);
@@ -25,11 +27,13 @@ public:
     void setCategory(QString name, QColor color, QIcon icon, int width, int height);
     void setPriority(QString priority) const;
 
+    QString getTitle() const;
     QString getCategoryName() const;
     QColor getCategoryColor() const;
     QIcon getCategoryIcon() const;
-
+    QString getCategoryDate() const;
     int getPriority() const;
+    bool getCompleted() const;
 
 signals:
     void taskClicked();
@@ -45,6 +49,8 @@ private:
 
     QIcon categoryIcon;
 
+    QString categoryDate;
+
     QColor categoryColor;
 
     QPushButton* showDescription;
@@ -53,6 +59,10 @@ private:
 
     int counter;
     int priority;
+    int taskID;
+    int completed;
+
+    void updateData();
 };
 
 #endif // TASKUI_H

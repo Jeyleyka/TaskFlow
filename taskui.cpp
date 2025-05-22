@@ -1,9 +1,9 @@
 #include "taskui.h"
 
 TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
-               QString categoryName, QColor categoryColor, QIcon categoryIcon,
-               QWidget* parent)
-    : QWidget(parent), counter(0), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor)
+               QString categoryName, QColor categoryColor, QIcon categoryIcon, int id,
+               int completed, QWidget* parent)
+    : QWidget(parent), categoryDate(createData), counter(completed), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(0), taskID(id)
 {
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
@@ -12,28 +12,47 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                          "border-radius: 5px;"
                          "background-color: #363636;"
                          "padding: 10px;"
-                         "min-width: 180px;"
-                         "height: 72px;"
+                         "min-width: 900px;"
+                         "max-width: 900px;"
+                         "height: 50px;"
                          "}");
 
     auto* mainLayout = new QHBoxLayout(frame);
     QVBoxLayout* textLayout = new QVBoxLayout();
+
+    qDebug() << "COUNTER: " << this->counter;
 
     this->circle = new QPushButton(frame);
     this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
     this->circle->setIconSize(QSize(24,24));
     this->circle->setStyleSheet("border: none;");
 
+    if (this->counter == 1) {
+        this->circle->setIcon(QIcon(":/icons/blue-circle.png"));
+        this->circle->setIconSize(QSize(24,24));
+        this->counter--;
+        this->completed = 0;
+    } else {
+        this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
+        this->circle->setIconSize(QSize(24,24));
+        this->counter++;
+        this->completed = 1;
+    }
+
     connect(circle, &QPushButton::clicked, this, [this]{
-        if (this->counter == 0) {
+        if (this->counter == 1) {
             this->circle->setIcon(QIcon(":/icons/blue-circle.png"));
             this->circle->setIconSize(QSize(24,24));
-            this->counter++;
+            this->counter--;
+            this->completed = 0;
         } else {
             this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
             this->circle->setIconSize(QSize(24,24));
-            this->counter--;
+            this->counter++;
+            this->completed = 1;
         }
+
+        this->updateData();
     });
 
     this->categoryLabel = new QLabel(categoryName);
@@ -131,6 +150,10 @@ void TaskUI::setPriority(QString priority) const {
     this->showDescription->setText(priority);
 }
 
+QString TaskUI::getTitle() const {
+    return this->title->text();
+}
+
 QString TaskUI::getCategoryName() const {
     return this->categoryLabel->text();
 }
@@ -143,12 +166,32 @@ QIcon TaskUI::getCategoryIcon() const {
     return this->categoryIcon;
 }
 
+QString TaskUI::getCategoryDate() const {
+    return this->categoryDate;
+}
+
 int TaskUI::getPriority() const {
     return this->priority;
+}
+
+bool TaskUI::getCompleted() const {
+    return !this->counter;
 }
 
 void TaskUI::mousePressEvent(QMouseEvent *event) {
     qDebug() << "Mouse clicked";
     emit this->taskClicked();
     QWidget::mousePressEvent(event);
+}
+
+void TaskUI::updateData() {
+    QSqlQuery query;
+    query.prepare("UPDATE tasks SET completed = :completed WHERE id = :id");
+
+    query.bindValue(":completed", !this->counter);
+    query.bindValue(":id", this->taskID);
+
+    if (!query.exec()) {
+        qDebug() << "Ошибка при обновлении задачи:" << query.lastError().text();
+    }
 }

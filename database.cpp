@@ -25,6 +25,7 @@ bool DatabaseManager::initializeDatabase() {
         "description TEXT, "
         "due_date TEXT, "
         "priority INTEGER, "
+        "completed INTEGER DEFAULT 0,"
         "category_name TEXT,"
         "category_color TEXT,"
         "category_icon BLOB)";
@@ -51,8 +52,8 @@ bool DatabaseManager::initializeDatabase() {
 bool DatabaseManager::insertTaskToDatabase(Task &task) {
     QSqlQuery query;
     query.prepare(R"(
-        INSERT INTO tasks (title, description, due_date, priority, category_name, category_color, category_icon)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO tasks (title, description, due_date, priority, completed, category_name, category_color, category_icon)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     )");
 
     // Преобразуем иконку в QByteArray
@@ -68,6 +69,7 @@ bool DatabaseManager::insertTaskToDatabase(Task &task) {
     QString formattedDate = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
     query.addBindValue(formattedDate);
     query.addBindValue(task.priority);
+    query.addBindValue(task.completed);
     query.addBindValue(task.categoryName);
     query.addBindValue(task.categoryColor.name());  // Цвет в формате "#RRGGBB"
     query.addBindValue(iconBytes);
@@ -86,8 +88,6 @@ bool DatabaseManager::insertTaskToDatabase(Task &task) {
     return true;
 }
 
-
-
 bool DatabaseManager::deleteTaskFromDatabase(int id)
 {
     qDebug() << "Попытка удалить задачу с ID:" << id;  // Выводим ID задачи перед удалением
@@ -104,10 +104,9 @@ bool DatabaseManager::deleteTaskFromDatabase(int id)
     return true;
 }
 
-
 QList<Task> DatabaseManager::loadTasksFromDatabase() {
     QList<Task> tasks;
-    QSqlQuery query("SELECT id, title, description, due_date, priority, category_name, category_color, category_icon FROM tasks");
+    QSqlQuery query("SELECT id, title, description, due_date, priority, completed, category_name, category_color, category_icon FROM tasks");
 
     while (query.next()) {
         Task task;
@@ -124,14 +123,15 @@ QList<Task> DatabaseManager::loadTasksFromDatabase() {
         }
 
         task.priority = query.value(4).toInt();
-        task.categoryName = query.value(5).toString();
+        task.completed = query.value(5).toInt();
+        task.categoryName = query.value(6).toString();
 
         // Цвет
-        QString colorStr = query.value(6).toString();
+        QString colorStr = query.value(7).toString();
         task.categoryColor = QColor(colorStr);
 
         // Иконка
-        QByteArray iconData = query.value(7).toByteArray();
+        QByteArray iconData = query.value(8).toByteArray();
         QPixmap pixmap;
         if (pixmap.loadFromData(iconData)) {
             task.categoryIcon = QIcon(pixmap);

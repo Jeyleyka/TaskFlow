@@ -10,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->initDatabase();
     // this->initModel();
     // this->initTable();
+    this->initSearch();
+    this->initSortTags();
     this->initNavigationBar();
 
     // layout->addWidget(this->table);
@@ -17,13 +19,18 @@ MainWindow::MainWindow(QWidget *parent)
     this->tasksLayout = new QVBoxLayout;
     // this->tasksLayout->addStretch(0);
     this->tasksLayout->setSpacing(15);
-    this->tasksLayout->setContentsMargins(20,30,0,0);
+    this->tasksLayout->setContentsMargins(0,30,0,0);
 
     for (const Task& task: tasks) {
 
-        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), task.priority, task.categoryName, task.categoryColor, task.categoryIcon, this);
-        taskUI->setFixedSize(700,100);
-        this->tasksLayout->addWidget(taskUI);
+        qDebug() << "COMPLETED: " << task.completed;
+        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate), task.priority, task.categoryName, task.categoryColor, task.categoryIcon, task.id, task.completed, this);
+        taskUI->setFixedSize(920, 98);
+        this->tasks.append(taskUI);
+        this->tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
+
+        qDebug() << "current date: " << QDate::currentDate();
+        qDebug() << "task date: " << taskUI->getCategoryDate();
 
         connect(taskUI, &TaskUI::taskClicked, this, [=] {
             TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);
@@ -48,13 +55,45 @@ MainWindow::MainWindow(QWidget *parent)
         });
     }
 
+    this->indexTitle = new QLabel("Index", this);
+    this->indexTitle->setStyleSheet("font-size: 19px; color: #fff;");
+
+    this->profileImageBtn = new QPushButton(this);
+    this->profileImageBtn->setIcon(QIcon(":/icons/profile-picture.png"));
+    this->profileImageBtn->setIconSize(QSize(42,42));
+    this->profileImageBtn->setStyleSheet("width: 42px; height: 42px; border: none");
+
+    auto* titleLayout = new QHBoxLayout;
+    titleLayout->setContentsMargins(0, 0, 20, 20);
+    titleLayout->setSpacing(10); // небольшой отступ между элементами
+
+    // Прокладка слева
+    titleLayout->addStretch();
+
+    // Заголовок по центру
+    titleLayout->addWidget(this->indexTitle, 0, Qt::AlignCenter);
+
+    // Прокладка между заголовком и иконкой
+    titleLayout->addStretch();
+
+    // Иконка справа
+    titleLayout->addWidget(this->profileImageBtn, 0, Qt::AlignRight);
+
+    auto* searchLayout = new QVBoxLayout;
+    searchLayout->addWidget(this->search, 0, Qt::AlignHCenter);
+    searchLayout->setContentsMargins(0,0,0,20);
+
+    layout->addLayout(titleLayout);
+    layout->addLayout(searchLayout);
+    layout->addWidget(this->sortTags, 0, Qt::AlignHCenter);
+    layout->setAlignment(Qt::AlignHCenter);
     layout->addLayout(tasksLayout);
     layout->addStretch();
 
     auto* navigationLayout = new QVBoxLayout;
 
     navigationLayout->addWidget(this->navigationBar);
-    layout->setContentsMargins(0, 0, 0, 0);  // Убирает отступы со всех сторон
+    layout->setContentsMargins(0, 20, 0, 0);  // Убирает отступы со всех сторон
     layout->setSpacing(0);
 
     layout->addLayout(navigationLayout);
@@ -85,11 +124,85 @@ void MainWindow::initDatabase() {
     this->dataBase->initializeDatabase();
 }
 
+void MainWindow::initSearch() {
+    this->search = new QLineEdit(this);
+    QIcon icon(":/icons/search.png");
+    this->search->addAction(icon, QLineEdit::LeadingPosition);
+    this->search->setPlaceholderText("Search for your task...");
+    this->search->setStyleSheet("width: 700px; height: 48px; background-color: #292929;");
+
+    connect(this->search, &QLineEdit::textChanged, this, &MainWindow::searchTaskFilter);
+}
+
+void MainWindow::initSortTags() {
+    this->sortTags = new QComboBox(this);
+    this->sortTags->addItem("All");
+    this->sortTags->addItem("Today");
+    this->sortTags->addItem("Completed");
+
+    connect(this->sortTags, &QComboBox::currentTextChanged, this, &MainWindow::filterTasks);
+
+    this->sortTags->setStyleSheet(R"(
+    QComboBox {
+        background-color: #363636;
+        color: white;
+        padding: 5px;
+        border-radius: 5px;
+        max-width: 100px;
+        max-height: 31px;
+    }
+
+    QComboBox::drop-down {
+        subcontrol-origin: padding;
+        subcontrol-position: top right;
+        width: 30px; /* ширина области со стрелкой */
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        background-color: #363636; /* тот же цвет, что и у основного поля */
+    }
+
+    QComboBox::down-arrow {
+        image: url(:/icons/down-arrow.png);
+        padding-top: 5px;
+        width: 18px;
+        height: 18px;
+    }
+
+    QComboBox QAbstractItemView {
+        background-color: #3a3a3a;
+        selection-background-color: #8687E7;
+    }
+
+    QScrollBar:vertical {
+        border: none;
+        background: #3a3a3a;
+        width: 6px;             /* ШИРИНА скроллбара */
+        margin: 0px 0px 0px 0px;
+    }
+
+    QScrollBar::handle:vertical {
+        background: #8687E7;     /* Цвет "ползунка" */
+        min-height: 20px;
+        border-radius: 3px;
+    }
+
+    QScrollBar::add-line:vertical,
+    QScrollBar::sub-line:vertical {
+        height: 0px;
+    }
+
+    QScrollBar::add-page:vertical,
+    QScrollBar::sub-page:vertical {
+        background: none;
+    }
+)");
+}
+
 void MainWindow::initNavigationBar() {
     this->navigationBar = new QWidget(this);
     this->navigationBar->setStyleSheet("background-color: #363636;");
     this->navigationBar->setMinimumWidth(0);
-    this->navigationBar->setFixedHeight(100);
+    this->navigationBar->setFixedHeight(90);
     this->navigationBar->setMaximumWidth(QWIDGETSIZE_MAX);
     this->navigationBar->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
@@ -225,10 +338,10 @@ void MainWindow::showTaskDialog() {
         if (this->dataBase->insertTaskToDatabase(task)) {
             QString formattedDate = task.formatDateTime(task.dueDate);
 
-
-            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.priority, task.categoryName, task.categoryColor, task.categoryIcon, this);
-            taskUI->setFixedSize(700, 300);
-            this->tasksLayout->addWidget(taskUI);
+            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.priority, task.categoryName, task.categoryColor, task.categoryIcon, task.id, task.completed, this);
+            taskUI->setFixedSize(920, 100);
+            this->tasks.append(taskUI);
+            this->tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
 
             connect(taskUI, &TaskUI::taskClicked, this, [=] {
                 TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);
@@ -263,4 +376,37 @@ void MainWindow::showTaskDialog() {
         this->dialog->deleteLater();
         this->dialog = nullptr;
     });
+}
+
+void MainWindow::filterTasks(const QString& filter) {
+    for (TaskUI* task : this->tasks) {
+        if (filter == "All") {
+            task->show();
+        }
+        else if (filter == "Today") {
+            if (task->getCategoryDate().contains("Today"))
+            {
+                task->show();
+            } else
+                task->hide();
+        }
+        else if (filter == "Completed") {
+            if (task->getCompleted())
+                task->show();
+            else
+                task->hide();
+        }
+
+    }
+}
+
+void MainWindow::searchTaskFilter(const QString &title) {
+    QString search = title.trimmed().toLower();
+
+    for (TaskUI* task : this->tasks) {
+        QString name = task->getTitle().toLower();
+
+        bool match = name.contains(search);
+        task->setVisible(match);
+    }
 }
