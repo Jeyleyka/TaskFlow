@@ -31,12 +31,14 @@ public:
     QString getCategoryName() const;
     QColor getCategoryColor() const;
     QIcon getCategoryIcon() const;
-    QString getCategoryDate() const;
+    QString getDate() const;
     int getPriority() const;
     bool getCompleted() const;
 
 signals:
     void taskClicked();
+    void onUpdateTaskToComplete();
+    void onUpdateTaskToNotComplete();
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
@@ -49,7 +51,7 @@ private:
 
     QIcon categoryIcon;
 
-    QString categoryDate;
+    QString createDate;
 
     QColor categoryColor;
 

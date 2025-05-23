@@ -245,6 +245,7 @@ todo_app_autogen/timestamp: \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QMainWindow \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QMessageBox \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QPushButton \
+	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStackedWidget \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyle \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyleOptionViewItem \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QStyledItemDelegate \
@@ -281,6 +282,7 @@ todo_app_autogen/timestamp: \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qrubberband.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qsizepolicy.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qslider.h \
+	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qstackedwidget.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qstyle.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qstyleditemdelegate.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qstyleoption.h \
@@ -755,6 +757,8 @@ todo_app_autogen/timestamp: \
 	D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeRCCompiler.cmake \
 	D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/3.30.5/CMakeSystem.cmake \
 	D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/moc_predefs.h \
+	D:/Work/todo_app/calendarwndwidget.cpp \
+	D:/Work/todo_app/calendarwndwidget.h \
 	D:/Work/todo_app/categoryeditor.cpp \
 	D:/Work/todo_app/categoryeditor.h \
 	D:/Work/todo_app/categoryitemwidget.cpp \
@@ -772,9 +776,13 @@ todo_app_autogen/timestamp: \
 	D:/Work/todo_app/flowlayout.cpp \
 	D:/Work/todo_app/flowlayout.h \
 	D:/Work/todo_app/icons.qrc \
+	D:/Work/todo_app/indexwndwidget.cpp \
+	D:/Work/todo_app/indexwndwidget.h \
 	D:/Work/todo_app/main.cpp \
 	D:/Work/todo_app/mainwindow.cpp \
 	D:/Work/todo_app/mainwindow.h \
+	D:/Work/todo_app/navigationbar.cpp \
+	D:/Work/todo_app/navigationbar.h \
 	D:/Work/todo_app/priorityitemwidget.cpp \
 	D:/Work/todo_app/priorityitemwidget.h \
 	D:/Work/todo_app/taskdialog.cpp \

@@ -424,6 +424,12 @@
 	[
 		[ "D:/Work/todo_app/Task.h", "MU", "EWIEGA46WW/moc_Task.cpp", null ],
 		[
+			"D:/Work/todo_app/calendarwndwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_calendarwndwidget.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/categoryeditor.h",
 			"MU",
 			"EWIEGA46WW/moc_categoryeditor.cpp",
@@ -472,9 +478,21 @@
 			null
 		],
 		[
+			"D:/Work/todo_app/indexwndwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_indexwndwidget.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/navigationbar.h",
+			"MU",
+			"EWIEGA46WW/moc_navigationbar.cpp",
 			null
 		],
 		[
@@ -576,6 +594,7 @@
 	"SETTINGS_FILE" : "D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/todo_app_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "D:/Work/todo_app/calendarwndwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/categoryeditor.cpp", "MU", null ],
 		[ "D:/Work/todo_app/categoryitemwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/choosecategory.cpp", "MU", null ],
@@ -584,8 +603,10 @@
 		[ "D:/Work/todo_app/deletebuttondelegate.cpp", "MU", null ],
 		[ "D:/Work/todo_app/edittask.cpp", "MU", null ],
 		[ "D:/Work/todo_app/flowlayout.cpp", "MU", null ],
+		[ "D:/Work/todo_app/indexwndwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/main.cpp", "MU", null ],
 		[ "D:/Work/todo_app/mainwindow.cpp", "MU", null ],
+		[ "D:/Work/todo_app/navigationbar.cpp", "MU", null ],
 		[ "D:/Work/todo_app/priorityitemwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskdialog.cpp", "MU", null ],
 		[ "D:/Work/todo_app/taskinfo.cpp", "MU", null ],

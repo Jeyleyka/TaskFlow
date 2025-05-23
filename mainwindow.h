@@ -1,13 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "taskmodel.h"
-#include "taskdialog.h"
-#include "database.h"
 #include "deletebuttondelegate.h"
-#include "taskui.h"
-#include "taskinfo.h"
-#include "choosecategory.h"
+#include "calendarwndwidget.h"
+#include "indexwndwidget.h"
 
 #include <QMainWindow>
 #include <QTableView>
@@ -22,6 +18,7 @@
 #include <QFont>
 #include <QComboBox>
 #include <QVector>
+#include <QStackedWidget>
 
 class MainWindow : public QMainWindow
 {
@@ -37,18 +34,24 @@ public:
     void initDatabase();
     void initSearch();
     void initSortTags();
-    void initNavigationBar();
+    // void initNavigationBar();
 
     void onDeleteTask(const int row);
 
 private:
     ChooseCategory* chooseCategory;
 
+    CalendarWndWidget* calendarWndWidget;
+
+    IndexWndWidget* indexWndWidget;
+
     TaskDialog* dialog = nullptr;
 
     QTableView* table;
 
     TaskModel* model;
+
+    QStackedWidget* stackedWidget;
 
     DatabaseManager* dataBase;
 
@@ -58,26 +61,13 @@ private:
 
     QLineEdit* search;
 
-    QLabel* indexLabel;
-    QLabel* calendarLabel;
-    QLabel* focusLabel;
-    QLabel* profileLabel;
     QLabel* indexTitle;
 
-    QPushButton* addTaskButton;
-    QPushButton* indexBtn;
-    QPushButton* calendarBtn;
-    QPushButton* focusBtn;
-    QPushButton* profileBtn;
     QPushButton* profileImageBtn;
 
     QVBoxLayout* layout;
     QVBoxLayout* tasksLayout;
 
-    QWidget* navigationBar;
-
-    void showTaskDialog();
-    void filterTasks(const QString& filter);
-    void searchTaskFilter(const QString& title);
+    // QWidget* navigationBar;
 };
 #endif // MAINWINDOW_H

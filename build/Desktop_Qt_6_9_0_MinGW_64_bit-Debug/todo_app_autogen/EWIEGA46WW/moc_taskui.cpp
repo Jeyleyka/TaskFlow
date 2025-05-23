@@ -41,12 +41,18 @@ template <> constexpr inline auto TaskUI::qt_create_metaobjectdata<qt_meta_tag_Z
     QtMocHelpers::StringRefStorage qt_stringData {
         "TaskUI",
         "taskClicked",
-        ""
+        "",
+        "onUpdateTaskToComplete",
+        "onUpdateTaskToNotComplete"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'taskClicked'
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'onUpdateTaskToComplete'
+        QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'onUpdateTaskToNotComplete'
+        QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -71,11 +77,17 @@ void TaskUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->taskClicked(); break;
+        case 1: _t->onUpdateTaskToComplete(); break;
+        case 2: _t->onUpdateTaskToNotComplete(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (TaskUI::*)()>(_a, &TaskUI::taskClicked, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (TaskUI::*)()>(_a, &TaskUI::onUpdateTaskToComplete, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (TaskUI::*)()>(_a, &TaskUI::onUpdateTaskToNotComplete, 2))
             return;
     }
 }
@@ -99,14 +111,14 @@ int TaskUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 3;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 3;
     }
     return _id;
 }
@@ -115,5 +127,17 @@ int TaskUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void TaskUI::taskClicked()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+}
+
+// SIGNAL 1
+void TaskUI::onUpdateTaskToComplete()
+{
+    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void TaskUI::onUpdateTaskToNotComplete()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 QT_WARNING_POP

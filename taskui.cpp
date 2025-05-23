@@ -3,7 +3,7 @@
 TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                QString categoryName, QColor categoryColor, QIcon categoryIcon, int id,
                int completed, QWidget* parent)
-    : QWidget(parent), categoryDate(createData), counter(completed), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(0), taskID(id)
+    : QWidget(parent), createDate(createData), counter(completed), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(0), taskID(id)
 {
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
@@ -45,11 +45,13 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
             this->circle->setIconSize(QSize(24,24));
             this->counter--;
             this->completed = 0;
+            emit onUpdateTaskToComplete();
         } else {
             this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
             this->circle->setIconSize(QSize(24,24));
             this->counter++;
             this->completed = 1;
+            emit onUpdateTaskToNotComplete();
         }
 
         this->updateData();
@@ -73,33 +75,6 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
     textLayout->addWidget(this->creationDate);
     textLayout->addStretch();
     textLayout->setSpacing(0);
-
-    // Виджет категории (иконка + текст)
-
-    // QFrame* categoryFrame = new QFrame(frame);
-    // categoryFrame->setFrameShape(QFrame::StyledPanel);
-    // categoryFrame->setFrameShadow(QFrame::Raised);
-    // categoryFrame->setStyleSheet("border-radius: 5px; padding: 10px; background-color: " + categoryColor.name());
-
-    // QHBoxLayout* categoryLayout = new QHBoxLayout(categoryFrame);
-    // categoryLayout->setContentsMargins(8, 0, 8, 0);
-    // categoryLayout->setSpacing(6);
-    // categoryLayout->setAlignment(Qt::AlignVCenter);
-
-    // QPushButton* iconBtn = new QPushButton(categoryFrame);
-    // // QPixmap iconPixmap = categoryIcon.pixmap(14, 14);
-    // iconBtn->setIcon(categoryIcon);
-    // iconBtn->setIconSize(QSize(14,14));
-    // iconBtn->setFixedSize(14, 14);
-    // // iconBtn->setScaledContents(true);
-
-    // QLabel* textLabel = new QLabel(categoryName, categoryFrame);
-    // textLabel->setStyleSheet("color: white; font-size: 13px;");
-    // textLabel->setAlignment(Qt::AlignVCenter | Qt::AlignLeft);
-
-    // categoryLayout->addWidget(iconBtn);
-    // categoryLayout->addWidget(textLabel);
-    // categoryLayout->addStretch();
 
     // Иконка
     this->categoryBtn = new QPushButton(frame);
@@ -166,8 +141,8 @@ QIcon TaskUI::getCategoryIcon() const {
     return this->categoryIcon;
 }
 
-QString TaskUI::getCategoryDate() const {
-    return this->categoryDate;
+QString TaskUI::getDate() const {
+    return this->createDate;
 }
 
 int TaskUI::getPriority() const {
