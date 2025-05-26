@@ -67,6 +67,11 @@ NavigationBar::NavigationBar(QWidget* parent)
     this->focusBtn->setIconSize(QSize(35,35));
     this->focusBtn->setStyleSheet("width: 30px; height: 50px; border: none; background-color: transparent");
 
+    connect(this->focusBtn, &QPushButton::clicked, this, [this] {
+        emit this->switchToFocus();
+    });
+
+
     this->focusLabel = new QLabel("Focuse", this);
     this->focusLabel->setStyleSheet("font-size: 14px;");
 

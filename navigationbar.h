@@ -18,6 +18,7 @@ signals:
     void onShowTaskDialog();
     void switchToIndex();
     void switchToCalendar();
+    void switchToFocus();
 
 private:
     QWidget* container;

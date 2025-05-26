@@ -349,6 +349,9 @@ Qt6WidgetsTools_DIR:PATH=C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6WidgetsTools
 //The directory containing a CMake configuration file for Qt6Widgets.
 Qt6Widgets_DIR:PATH=C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Widgets
 
+//The directory containing a CMake configuration file for Qt6WinExtras.
+Qt6WinExtras_DIR:PATH=Qt6WinExtras_DIR-NOTFOUND
+
 //The directory containing a CMake configuration file for Qt6ZlibPrivate.
 Qt6ZlibPrivate_DIR:PATH=C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6ZlibPrivate
 

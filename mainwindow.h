@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include "deletebuttondelegate.h"
-#include "calendarwndwidget.h"
-#include "indexwndwidget.h"
+#include "calendarwnd.h"
+#include "indexwnd.h"
+#include "focusmodewnd.h"
 
 #include <QMainWindow>
 #include <QTableView>
@@ -19,6 +20,8 @@
 #include <QComboBox>
 #include <QVector>
 #include <QStackedWidget>
+#include <QSystemTrayIcon>
+#include <QMenu>
 
 class MainWindow : public QMainWindow
 {
@@ -38,12 +41,17 @@ public:
 
     void onDeleteTask(const int row);
 
+protected:
+    void closeEvent(QCloseEvent* event) override;
+
 private:
     ChooseCategory* chooseCategory;
 
-    CalendarWndWidget* calendarWndWidget;
+    CalendarWnd* calendarWndWidget;
 
-    IndexWndWidget* indexWndWidget;
+    IndexWnd* indexWndWidget;
+
+    FocusModeWnd* focusWndWidget;
 
     TaskDialog* dialog = nullptr;
 
@@ -54,6 +62,8 @@ private:
     QStackedWidget* stackedWidget;
 
     DatabaseManager* dataBase;
+
+    QSystemTrayIcon* trayIcon;
 
     QVector<TaskUI*> tasks;
 
@@ -67,6 +77,9 @@ private:
 
     QVBoxLayout* layout;
     QVBoxLayout* tasksLayout;
+
+private slots:
+    void onTrayIconActivated(QSystemTrayIcon::ActivationReason reason);
 
     // QWidget* navigationBar;
 };

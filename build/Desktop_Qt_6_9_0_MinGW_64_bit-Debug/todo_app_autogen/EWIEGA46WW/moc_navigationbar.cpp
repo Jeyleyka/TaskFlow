@@ -43,7 +43,8 @@ template <> constexpr inline auto NavigationBar::qt_create_metaobjectdata<qt_met
         "onShowTaskDialog",
         "",
         "switchToIndex",
-        "switchToCalendar"
+        "switchToCalendar",
+        "switchToFocus"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -53,6 +54,8 @@ template <> constexpr inline auto NavigationBar::qt_create_metaobjectdata<qt_met
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'switchToCalendar'
         QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'switchToFocus'
+        QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -79,6 +82,7 @@ void NavigationBar::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 0: _t->onShowTaskDialog(); break;
         case 1: _t->switchToIndex(); break;
         case 2: _t->switchToCalendar(); break;
+        case 3: _t->switchToFocus(); break;
         default: ;
         }
     }
@@ -88,6 +92,8 @@ void NavigationBar::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         if (QtMocHelpers::indexOfMethod<void (NavigationBar::*)()>(_a, &NavigationBar::switchToIndex, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (NavigationBar::*)()>(_a, &NavigationBar::switchToCalendar, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (NavigationBar::*)()>(_a, &NavigationBar::switchToFocus, 3))
             return;
     }
 }
@@ -111,14 +117,14 @@ int NavigationBar::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }
@@ -139,5 +145,11 @@ void NavigationBar::switchToIndex()
 void NavigationBar::switchToCalendar()
 {
     QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void NavigationBar::switchToFocus()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
 }
 QT_WARNING_POP

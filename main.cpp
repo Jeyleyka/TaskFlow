@@ -1,11 +1,19 @@
 #include "mainwindow.h"
 
-#include <QApplication>
+#include <QSettings>
+#include <QCoreApplication>
+#include <QDir>
+
+void addToAutoStart() {
+    QSettings settings("HKEY_CURRENT_USER\\Software\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    QString appPath = QDir::toNativeSeparators(QCoreApplication::applicationFilePath());
+    settings.setValue("MyApp", appPath);
+}
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-
+    addToAutoStart();
     MainWindow w;
     w.show();
     return a.exec();

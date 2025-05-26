@@ -323,7 +323,6 @@
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake",
-		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6Config.cmake",
@@ -414,6 +413,49 @@
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlVersionlessAliasTargets.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/GNUInstallDirs.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersion.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6ConfigVersionImpl.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6Config.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6ConfigExtras.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtInstallPaths.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6Targets.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6VersionlessAliasTargets.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtFeature.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CheckCXXCompilerFlag.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtFeatureCommon.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicAndroidHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicAppleHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicCMakeHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicCMakeVersionHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicExternalProjectHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicFinalizerHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicFindPackageHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicGitHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicPluginHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicPluginHelpers_v2.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomAttributionHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomCpeHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomDepHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomFileHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomGenerationHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomLicenseHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomOpsHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomPurlHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomPythonHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomQtEntityHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicSbomSystemDepHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicTargetHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicTestHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicToolHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicWalkLibsHelpers.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/QtPublicWindowsHelpers.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6/Qt6Dependencies.cmake",
 		"D:/Work/todo_app/icons.qrc"
 	],
 	"CMAKE_SOURCE_DIR" : "D:/Work/todo_app",
@@ -424,9 +466,27 @@
 	[
 		[ "D:/Work/todo_app/Task.h", "MU", "EWIEGA46WW/moc_Task.cpp", null ],
 		[
-			"D:/Work/todo_app/calendarwndwidget.h",
+			"D:/Work/todo_app/appusageitem.h",
 			"MU",
-			"EWIEGA46WW/moc_calendarwndwidget.cpp",
+			"EWIEGA46WW/moc_appusageitem.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/appusagetracker.h",
+			"MU",
+			"EWIEGA46WW/moc_appusagetracker.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/calendarwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_calendarwidget.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/calendarwnd.h",
+			"MU",
+			"EWIEGA46WW/moc_calendarwnd.cpp",
 			null
 		],
 		[
@@ -454,6 +514,12 @@
 			null
 		],
 		[
+			"D:/Work/todo_app/circulartimerwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_circulartimerwidget.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/database.h",
 			"MU",
 			"EWIEGA46WW/moc_database.cpp",
@@ -478,9 +544,15 @@
 			null
 		],
 		[
-			"D:/Work/todo_app/indexwndwidget.h",
+			"D:/Work/todo_app/focusmodewnd.h",
 			"MU",
-			"EWIEGA46WW/moc_indexwndwidget.cpp",
+			"EWIEGA46WW/moc_focusmodewnd.cpp",
+			null
+		],
+		[
+			"D:/Work/todo_app/indexwnd.h",
+			"MU",
+			"EWIEGA46WW/moc_indexwnd.cpp",
 			null
 		],
 		[
@@ -594,16 +666,21 @@
 	"SETTINGS_FILE" : "D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/CMakeFiles/todo_app_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "D:/Work/todo_app/calendarwndwidget.cpp", "MU", null ],
+		[ "D:/Work/todo_app/appusageitem.cpp", "MU", null ],
+		[ "D:/Work/todo_app/appusagetracker.cpp", "MU", null ],
+		[ "D:/Work/todo_app/calendarwidget.cpp", "MU", null ],
+		[ "D:/Work/todo_app/calendarwnd.cpp", "MU", null ],
 		[ "D:/Work/todo_app/categoryeditor.cpp", "MU", null ],
 		[ "D:/Work/todo_app/categoryitemwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/choosecategory.cpp", "MU", null ],
 		[ "D:/Work/todo_app/choosepriority.cpp", "MU", null ],
+		[ "D:/Work/todo_app/circulartimerwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/database.cpp", "MU", null ],
 		[ "D:/Work/todo_app/deletebuttondelegate.cpp", "MU", null ],
 		[ "D:/Work/todo_app/edittask.cpp", "MU", null ],
 		[ "D:/Work/todo_app/flowlayout.cpp", "MU", null ],
-		[ "D:/Work/todo_app/indexwndwidget.cpp", "MU", null ],
+		[ "D:/Work/todo_app/focusmodewnd.cpp", "MU", null ],
+		[ "D:/Work/todo_app/indexwnd.cpp", "MU", null ],
 		[ "D:/Work/todo_app/main.cpp", "MU", null ],
 		[ "D:/Work/todo_app/mainwindow.cpp", "MU", null ],
 		[ "D:/Work/todo_app/navigationbar.cpp", "MU", null ],

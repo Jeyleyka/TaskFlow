@@ -37,9 +37,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         choosepriority.h choosepriority.cpp
         priorityitemwidget.h priorityitemwidget.cpp
         flowlayout.h flowlayout.cpp
-        indexwndwidget.h indexwndwidget.cpp
-        calendarwndwidget.h calendarwndwidget.cpp
+        indexwnd.h indexwnd.cpp
+        calendarwnd.h calendarwnd.cpp
         navigationbar.h navigationbar.cpp
+        calendarwidget.h calendarwidget.cpp
+        appusagetracker.h appusagetracker.cpp
+        focusmodewnd.h focusmodewnd.cpp
+        circulartimerwidget.h circulartimerwidget.cpp
+        appusageitem.h appusageitem.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET todo_app APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -58,6 +63,17 @@ else()
         )
     endif()
 endif()
+
+find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Sql)
+
+target_link_libraries(todo_app
+    PRIVATE
+    Qt6::Widgets
+    Qt6::Gui
+    Qt6::Sql
+    shell32
+    psapi
+)
 
 target_link_libraries(todo_app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
