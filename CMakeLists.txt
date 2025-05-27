@@ -45,6 +45,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         focusmodewnd.h focusmodewnd.cpp
         circulartimerwidget.h circulartimerwidget.cpp
         appusageitem.h appusageitem.cpp
+        login.h login.cpp
+        intro.h intro.cpp
+        createaccount.h createaccount.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET todo_app APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

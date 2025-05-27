@@ -35,6 +35,11 @@ bool DatabaseManager::initializeDatabase() {
         return false;
     }
 
+    query.exec("CREATE TABLE IF NOT EXISTS user ("
+               "name TEXT UNIQUE NOT NULL, "
+               "password TEXT NOT NULL, "
+               "icon BLOB)");
+
     query.exec("CREATE TABLE IF NOT EXISTS categories ("
                "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                "name TEXT UNIQUE NOT NULL, "

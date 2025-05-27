@@ -1061,6 +1061,8 @@ todo_app_autogen/timestamp: \
 	D:/Work/todo_app/choosepriority.h \
 	D:/Work/todo_app/circulartimerwidget.cpp \
 	D:/Work/todo_app/circulartimerwidget.h \
+	D:/Work/todo_app/createaccount.cpp \
+	D:/Work/todo_app/createaccount.h \
 	D:/Work/todo_app/database.cpp \
 	D:/Work/todo_app/database.h \
 	D:/Work/todo_app/deletebuttondelegate.cpp \
@@ -1074,6 +1076,10 @@ todo_app_autogen/timestamp: \
 	D:/Work/todo_app/icons.qrc \
 	D:/Work/todo_app/indexwnd.cpp \
 	D:/Work/todo_app/indexwnd.h \
+	D:/Work/todo_app/intro.cpp \
+	D:/Work/todo_app/intro.h \
+	D:/Work/todo_app/login.cpp \
+	D:/Work/todo_app/login.h \
 	D:/Work/todo_app/main.cpp \
 	D:/Work/todo_app/mainwindow.cpp \
 	D:/Work/todo_app/mainwindow.h \
