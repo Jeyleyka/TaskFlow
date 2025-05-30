@@ -69,6 +69,8 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdatetime.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdeadlinetimer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdebug.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qdir.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qdirlisting.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qeasingcurve.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qendian.h \
@@ -247,6 +249,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDateEdit \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialog \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialogButtonBox \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFileDialog \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFormLayout \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFrame \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QHBoxLayout \
@@ -283,6 +286,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdatetimeedit.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qfiledialog.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qformlayout.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qgridlayout.h \
@@ -794,12 +798,17 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wtypes.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wtypesbase.h \
   D:/Work/todo_app/Task.h \
+  D:/Work/todo_app/UserSession.h \
+  D:/Work/todo_app/appsettings.h \
   D:/Work/todo_app/appusageitem.h \
   D:/Work/todo_app/appusagetracker.h \
   D:/Work/todo_app/calendarwidget.h \
   D:/Work/todo_app/calendarwnd.h \
   D:/Work/todo_app/categoryeditor.h \
   D:/Work/todo_app/categoryitemwidget.h \
+  D:/Work/todo_app/changeaccountnamewnd.h \
+  D:/Work/todo_app/changeimgwnd.h \
+  D:/Work/todo_app/changepasswnd.h \
   D:/Work/todo_app/choosecategory.h \
   D:/Work/todo_app/choosepriority.h \
   D:/Work/todo_app/circulartimerwidget.h \
@@ -811,6 +820,8 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   D:/Work/todo_app/indexwnd.h \
   D:/Work/todo_app/navigationbar.h \
   D:/Work/todo_app/priorityitemwidget.h \
+  D:/Work/todo_app/profilesettingswidget.h \
+  D:/Work/todo_app/profilewnd.h \
   D:/Work/todo_app/task.h \
   D:/Work/todo_app/taskdialog.h \
   D:/Work/todo_app/taskinfo.h \

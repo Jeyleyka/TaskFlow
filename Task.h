@@ -9,6 +9,7 @@
 
 struct Task {
     int id = -1;
+    int user_id;
     QString title;
     QString description;
     QDateTime dueDate;

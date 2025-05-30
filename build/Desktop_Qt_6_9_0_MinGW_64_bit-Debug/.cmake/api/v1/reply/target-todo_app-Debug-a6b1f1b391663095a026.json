@@ -74,13 +74,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 98,
+				"line" : 96,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 72,
+				"line" : 64,
 				"parent" : 0
 			},
 			{
@@ -375,7 +375,14 @@
 				49,
 				51,
 				53,
-				55
+				55,
+				57,
+				59,
+				61,
+				63,
+				65,
+				67,
+				69
 			]
 		}
 	],
@@ -538,7 +545,14 @@
 				49,
 				51,
 				53,
-				55
+				55,
+				57,
+				59,
+				61,
+				63,
+				65,
+				67,
+				69
 			]
 		},
 		{
@@ -570,7 +584,14 @@
 				46,
 				48,
 				50,
-				52
+				52,
+				54,
+				56,
+				58,
+				60,
+				62,
+				64,
+				66
 			]
 		},
 		{
@@ -584,15 +605,15 @@
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				54
+				68
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				56,
-				57
+				70,
+				71
 			]
 		}
 	],
@@ -894,6 +915,83 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"path" : "createaccount.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "profilewnd.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "profilewnd.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "profilesettingswidget.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "profilesettingswidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "changeaccountnamewnd.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "changeaccountnamewnd.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "changepasswnd.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "changepasswnd.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "changeimgwnd.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "changeimgwnd.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "appsettings.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "appsettings.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "UserSession.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "UserSession.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

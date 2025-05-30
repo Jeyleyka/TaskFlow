@@ -37,6 +37,10 @@ MainWindow::MainWindow(QWidget *parent)
         this->stackedWidget->setCurrentIndex(2);
     });
 
+    connect(this->calendarWndWidget, &CalendarWnd::switchToProfile, this, [this] {
+        this->stackedWidget->setCurrentIndex(3);
+    });
+
     this->indexWndWidget = new IndexWnd(this);
     this->indexWndWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
@@ -46,6 +50,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(this->indexWndWidget, &IndexWnd::switchToFocus, this, [this] {
         this->stackedWidget->setCurrentIndex(2);
+    });
+
+    connect(this->indexWndWidget, &IndexWnd::switchToProfile, this, [this] {
+        this->stackedWidget->setCurrentIndex(3);
     });
 
     this->focusWndWidget = new FocusModeWnd(this);
@@ -59,10 +67,33 @@ MainWindow::MainWindow(QWidget *parent)
         this->stackedWidget->setCurrentIndex(1);
     });
 
+    connect(this->focusWndWidget, &FocusModeWnd::switchToProfile, this, [this] {
+        this->stackedWidget->setCurrentIndex(3);
+    });
+
+    this->profileWndWidget = new ProfileWnd(this);
+    this->profileWndWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+
+    connect(this->profileWndWidget, &ProfileWnd::switchToIndex, this, [this] {
+        this->stackedWidget->setCurrentIndex(0);
+    });
+
+    connect(this->profileWndWidget, &ProfileWnd::switchToCalendar, this, [this] {
+        this->stackedWidget->setCurrentIndex(1);
+    });
+
+    connect(this->profileWndWidget, &ProfileWnd::switchToFocus, this, [this] {
+        this->stackedWidget->setCurrentIndex(2);
+    });
+
+    QObject::connect(this->profileWndWidget, &ProfileWnd::onChangeImg, this->indexWndWidget, &IndexWnd::updateProfileIcon);
+    QObject::connect(this->indexWndWidget, &IndexWnd::updateTasks, this->profileWndWidget, &ProfileWnd::updateTasksData);
+
     // ---------- Добавление страниц ----------
     this->stackedWidget->addWidget(this->indexWndWidget);
     this->stackedWidget->addWidget(this->calendarWndWidget);
     this->stackedWidget->addWidget(this->focusWndWidget);
+    this->stackedWidget->addWidget(this->profileWndWidget);
     this->stackedWidget->setCurrentIndex(0);
 
     QVBoxLayout* mainLayout = new QVBoxLayout;

@@ -46,6 +46,7 @@ Intro::Intro(QWidget* parent)
         this->close();
     });
 
+
     this->mainLayout = new QVBoxLayout(this->container);
     this->mainLayout->addLayout(this->btnsLayout);
     this->mainLayout->addWidget(this->wndTitle);

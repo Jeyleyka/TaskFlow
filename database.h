@@ -2,7 +2,7 @@
 #define DATABASE_H
 
 #include "Task.h"
-
+#include "UserSession.h"
 
 #include <QString>
 #include <QtSql/QSqlDatabase>

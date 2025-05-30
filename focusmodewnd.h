@@ -36,6 +36,7 @@ public:
 signals:
     void switchToIndex();
     void switchToCalendar();
+    void switchToProfile();
 
 private:
     AppUsageTracker* tracker;

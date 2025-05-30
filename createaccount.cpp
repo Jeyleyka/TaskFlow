@@ -5,6 +5,8 @@ CreateAccount::CreateAccount(QWidget* parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
 
+    this->initDatabase();
+
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("tasks.db");
 
@@ -93,7 +95,9 @@ CreateAccount::CreateAccount(QWidget* parent)
             return;
         }
 
-        if (this->createAccToDB(this->usernameEdit->text(), this->passwordEdit->text())) {
+        int userId;
+        if (this->createAccToDB(this->usernameEdit->text(), this->passwordEdit->text(), userId)) {
+            UserSession::setUserId(userId);
             MainWindow* mainWnd = new MainWindow();
             mainWnd->show();
             this->close();
@@ -126,34 +130,48 @@ CreateAccount::CreateAccount(QWidget* parent)
 
 CreateAccount::~CreateAccount() {}
 
-bool CreateAccount::createAccToDB(const QString& name, const QString& password) {
+void CreateAccount::initDatabase() {
+    this->dataBase = new DatabaseManager;
+    this->dataBase->initializeDatabase();
+}
+
+bool CreateAccount::createAccToDB(const QString& name, const QString& password, int &newUserId) {
     QSqlDatabase db = QSqlDatabase::database();
 
     if (!db.isOpen()) {
-        qDebug() << "База данных не открыта!";
+        qDebug() << "❌ База данных не открыта!";
         return false;
     }
 
     QSqlQuery query;
-    query.prepare("INSERT INTO user (name, password, icon) VALUES (?,?,?)");
+    query.prepare("INSERT INTO users (name, password, icon) VALUES (?, ?, ?)");
 
+    // Преобразование иконки в байты
     QByteArray iconBytes;
     QPixmap pixmap = QIcon(":/icons/profile-picture.png").pixmap(64, 64);
     QBuffer buffer(&iconBytes);
     buffer.open(QIODevice::WriteOnly);
     pixmap.save(&buffer, "PNG");
 
+    // Привязка значений
     query.addBindValue(name);
     query.addBindValue(password);
     query.addBindValue(iconBytes);
 
+    // Выполнение запроса
     if (!query.exec()) {
-        qDebug() << "Ошибка при вставке:" << query.lastError().text();
+        qDebug() << "❌ Ошибка при вставке:" << query.lastError().text();
         return false;
-    } else {
-        qDebug() << "Пользователь добавлен успешно!";
-        return true;
     }
 
-    return false;
+    // Получение ID нового пользователя
+    QVariant idVar = query.lastInsertId();
+    if (idVar.isValid()) {
+        newUserId = idVar.toInt();
+        qDebug() << "✅ Пользователь добавлен. Новый ID:" << newUserId;
+        return true;
+    } else {
+        qDebug() << "⚠️ Пользователь добавлен, но ID не получен.";
+        return false;
+    }
 }

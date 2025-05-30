@@ -48,23 +48,15 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         login.h login.cpp
         intro.h intro.cpp
         createaccount.h createaccount.cpp
+        profilewnd.h profilewnd.cpp
+        profilesettingswidget.h profilesettingswidget.cpp
+        changeaccountnamewnd.h changeaccountnamewnd.cpp
+        changepasswnd.h changepasswnd.cpp
+        changeimgwnd.h changeimgwnd.cpp
+        appsettings.h appsettings.cpp
+        UserSession.h
+        UserSession.cpp
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET todo_app APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
-else()
-    if(ANDROID)
-        add_library(todo_app SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(todo_app
-            ${PROJECT_SOURCES}
-        )
-    endif()
 endif()
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets Gui Sql)
@@ -77,6 +69,12 @@ target_link_libraries(todo_app
     shell32
     psapi
 )
+
+# Укажи Qt модули
+find_package(Qt6 REQUIRED COMPONENTS LinguistTools Widgets)
+
+# Создаём .qm файлы из .ts
+qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
 target_link_libraries(todo_app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 

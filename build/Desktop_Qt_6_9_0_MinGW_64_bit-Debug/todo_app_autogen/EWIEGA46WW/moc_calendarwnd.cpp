@@ -42,7 +42,8 @@ template <> constexpr inline auto CalendarWnd::qt_create_metaobjectdata<qt_meta_
         "CalendarWnd",
         "switchToIndex",
         "",
-        "switchToFocus"
+        "switchToFocus",
+        "switchToProfile"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -50,6 +51,8 @@ template <> constexpr inline auto CalendarWnd::qt_create_metaobjectdata<qt_meta_
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'switchToFocus'
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'switchToProfile'
+        QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -75,6 +78,7 @@ void CalendarWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         switch (_id) {
         case 0: _t->switchToIndex(); break;
         case 1: _t->switchToFocus(); break;
+        case 2: _t->switchToProfile(); break;
         default: ;
         }
     }
@@ -82,6 +86,8 @@ void CalendarWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         if (QtMocHelpers::indexOfMethod<void (CalendarWnd::*)()>(_a, &CalendarWnd::switchToIndex, 0))
             return;
         if (QtMocHelpers::indexOfMethod<void (CalendarWnd::*)()>(_a, &CalendarWnd::switchToFocus, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (CalendarWnd::*)()>(_a, &CalendarWnd::switchToProfile, 2))
             return;
     }
 }
@@ -105,14 +111,14 @@ int CalendarWnd::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
@@ -127,5 +133,11 @@ void CalendarWnd::switchToIndex()
 void CalendarWnd::switchToFocus()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void CalendarWnd::switchToProfile()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
 }
 QT_WARNING_POP

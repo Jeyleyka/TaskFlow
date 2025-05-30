@@ -29,6 +29,7 @@ public:
 signals:
     void switchToIndex();
     void switchToFocus();
+    void switchToProfile();
 
 private:
     CalendarWidget* calendarWidget;

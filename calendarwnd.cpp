@@ -20,7 +20,7 @@ CalendarWnd::CalendarWnd(QWidget* parent)
     layout->addLayout(titleLayout);
 
     // Инициализация поиска, сортировки и БД
-    this->initDatabase();
+    // this->initDatabase();
     this->initCalendarWidget();
 
     layout->addWidget(this->calendarWidget, 0, Qt::AlignHCenter);
@@ -78,6 +78,7 @@ CalendarWnd::CalendarWnd(QWidget* parent)
 
     connect(this->navBar, &NavigationBar::switchToIndex, this, &CalendarWnd::switchToIndex);
     connect(this->navBar, &NavigationBar::switchToFocus, this, &CalendarWnd::switchToFocus);
+    connect(this->navBar, &NavigationBar::switchToProfile, this, &CalendarWnd::switchToProfile);
 
     layout->addLayout(tasksLayout);
     layout->addStretch();

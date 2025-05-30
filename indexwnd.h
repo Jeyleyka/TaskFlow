@@ -8,6 +8,8 @@
 #include "taskui.h"
 #include "taskinfo.h"
 #include "navigationbar.h"
+#include "profilewnd.h"
+#include "UserSession.h"
 
 #include <QWidget>
 
@@ -28,9 +30,14 @@ public:
 
     void showTaskDialog();
 
+public slots:
+    void updateProfileIcon(const QPixmap& pixmap);
+
 signals:
     void switchToCalendar();
     void switchToFocus();
+    void switchToProfile();
+    void updateTasks();
 
 private:
     ChooseCategory* chooseCategory;
@@ -40,6 +47,8 @@ private:
     TaskDialog* dialog = nullptr;
 
     TaskModel* model;
+
+    ProfileWnd* profile;
 
     DatabaseManager* dataBase;
 
@@ -55,6 +64,7 @@ private:
     QLabel* profileLabel;
     QLabel* indexTitle;
 
+    QPushButton* iconBtn;
     QPushButton* addTaskButton;
     QPushButton* indexBtn;
     QPushButton* calendarBtn;

@@ -24,6 +24,8 @@ public:
     ~CreateAccount();
 
 private:
+    DatabaseManager* dataBase;
+
     QLabel* wndTitle;
     QLabel* usernameLabel;
     QLabel* passwordLabel;
@@ -46,7 +48,8 @@ private:
     QVBoxLayout* mainLayout;
 
 private slots:
-    bool createAccToDB(const QString &name, const QString &password);
+    void initDatabase();
+    bool createAccToDB(const QString &name, const QString &password, int &newUserId);
 };
 
 #endif // CREATEACCOUNT_H

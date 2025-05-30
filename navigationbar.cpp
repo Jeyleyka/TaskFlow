@@ -71,7 +71,6 @@ NavigationBar::NavigationBar(QWidget* parent)
         emit this->switchToFocus();
     });
 
-
     this->focusLabel = new QLabel("Focuse", this);
     this->focusLabel->setStyleSheet("font-size: 14px;");
 
@@ -85,6 +84,10 @@ NavigationBar::NavigationBar(QWidget* parent)
     this->profileBtn->setIcon(QIcon(":/icons/human.png"));
     this->profileBtn->setIconSize(QSize(32,32));
     this->profileBtn->setStyleSheet("width: 30px; height: 50px; border: none; background-color: transparent");
+
+    connect(this->profileBtn, &QPushButton::clicked, this, [this] {
+        emit this->switchToProfile();
+    });
 
     this->profileLabel = new QLabel("Profile", this);
     this->profileLabel->setStyleSheet("font-size: 14px;");

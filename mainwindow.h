@@ -5,6 +5,7 @@
 #include "calendarwnd.h"
 #include "indexwnd.h"
 #include "focusmodewnd.h"
+#include "profilewnd.h"
 
 #include <QMainWindow>
 #include <QTableView>
@@ -52,6 +53,8 @@ private:
     IndexWnd* indexWndWidget;
 
     FocusModeWnd* focusWndWidget;
+
+    ProfileWnd* profileWndWidget;
 
     TaskDialog* dialog = nullptr;
 

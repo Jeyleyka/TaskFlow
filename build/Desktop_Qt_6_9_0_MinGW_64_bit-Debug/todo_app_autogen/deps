@@ -68,6 +68,8 @@ todo_app_autogen/timestamp: \
 	C:/Qt/6.9.0/mingw_64/include/QtCore/qdatetime.h \
 	C:/Qt/6.9.0/mingw_64/include/QtCore/qdeadlinetimer.h \
 	C:/Qt/6.9.0/mingw_64/include/QtCore/qdebug.h \
+	C:/Qt/6.9.0/mingw_64/include/QtCore/qdir.h \
+	C:/Qt/6.9.0/mingw_64/include/QtCore/qdirlisting.h \
 	C:/Qt/6.9.0/mingw_64/include/QtCore/qeasingcurve.h \
 	C:/Qt/6.9.0/mingw_64/include/QtCore/qelapsedtimer.h \
 	C:/Qt/6.9.0/mingw_64/include/QtCore/qendian.h \
@@ -246,6 +248,7 @@ todo_app_autogen/timestamp: \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDateEdit \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialog \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialogButtonBox \
+	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFileDialog \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFormLayout \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFrame \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/QHBoxLayout \
@@ -282,6 +285,7 @@ todo_app_autogen/timestamp: \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdatetimeedit.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdialog.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qfiledialog.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qformlayout.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qframe.h \
 	C:/Qt/6.9.0/mingw_64/include/QtWidgets/qgridlayout.h \
@@ -451,6 +455,15 @@ todo_app_autogen/timestamp: \
 	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets-relwithdebinfo.cmake \
 	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsTargets.cmake \
 	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6GuiTools/Qt6GuiToolsVersionlessTargets.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsAdditionalTargetInfo.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsConfig.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsConfigVersion.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsConfigVersionImpl.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsDependencies.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsTargets-relwithdebinfo.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsTargets.cmake \
+	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsVersionlessTargets.cmake \
 	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginAdditionalTargetInfo.cmake \
 	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginConfig.cmake \
 	C:/Qt/6.9.0/mingw_64/lib/cmake/Qt6Sql/Qt6QIBaseDriverPluginTargets-relwithdebinfo.cmake \
@@ -533,6 +546,7 @@ todo_app_autogen/timestamp: \
 	C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeGenericSystem.cmake \
 	C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake \
 	C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake \
+	C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeParseArguments.cmake \
 	C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeRCInformation.cmake \
 	C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake \
 	C:/Qt/Tools/CMake_64/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake \
@@ -1038,6 +1052,10 @@ todo_app_autogen/timestamp: \
 	C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wtypesbase.h \
 	D:/Work/todo_app/CMakeLists.txt \
 	D:/Work/todo_app/Task.h \
+	D:/Work/todo_app/UserSession.cpp \
+	D:/Work/todo_app/UserSession.h \
+	D:/Work/todo_app/appsettings.cpp \
+	D:/Work/todo_app/appsettings.h \
 	D:/Work/todo_app/appusageitem.cpp \
 	D:/Work/todo_app/appusageitem.h \
 	D:/Work/todo_app/appusagetracker.cpp \
@@ -1055,6 +1073,12 @@ todo_app_autogen/timestamp: \
 	D:/Work/todo_app/categoryeditor.h \
 	D:/Work/todo_app/categoryitemwidget.cpp \
 	D:/Work/todo_app/categoryitemwidget.h \
+	D:/Work/todo_app/changeaccountnamewnd.cpp \
+	D:/Work/todo_app/changeaccountnamewnd.h \
+	D:/Work/todo_app/changeimgwnd.cpp \
+	D:/Work/todo_app/changeimgwnd.h \
+	D:/Work/todo_app/changepasswnd.cpp \
+	D:/Work/todo_app/changepasswnd.h \
 	D:/Work/todo_app/choosecategory.cpp \
 	D:/Work/todo_app/choosecategory.h \
 	D:/Work/todo_app/choosepriority.cpp \
@@ -1087,6 +1111,10 @@ todo_app_autogen/timestamp: \
 	D:/Work/todo_app/navigationbar.h \
 	D:/Work/todo_app/priorityitemwidget.cpp \
 	D:/Work/todo_app/priorityitemwidget.h \
+	D:/Work/todo_app/profilesettingswidget.cpp \
+	D:/Work/todo_app/profilesettingswidget.h \
+	D:/Work/todo_app/profilewnd.cpp \
+	D:/Work/todo_app/profilewnd.h \
 	D:/Work/todo_app/taskdialog.cpp \
 	D:/Work/todo_app/taskdialog.h \
 	D:/Work/todo_app/taskinfo.cpp \

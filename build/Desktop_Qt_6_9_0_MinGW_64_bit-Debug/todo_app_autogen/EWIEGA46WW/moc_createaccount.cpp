@@ -40,16 +40,21 @@ template <> constexpr inline auto CreateAccount::qt_create_metaobjectdata<qt_met
     namespace QMC = QtMocConstants;
     QtMocHelpers::StringRefStorage qt_stringData {
         "CreateAccount",
-        "createAccToDB",
+        "initDatabase",
         "",
+        "createAccToDB",
         "name",
-        "password"
+        "password",
+        "int&",
+        "newUserId"
     };
 
     QtMocHelpers::UintData qt_methods {
+        // Slot 'initDatabase'
+        QtMocHelpers::SlotData<void()>(1, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'createAccToDB'
-        QtMocHelpers::SlotData<bool(const QString &, const QString &)>(1, 2, QMC::AccessPrivate, QMetaType::Bool, {{
-            { QMetaType::QString, 3 }, { QMetaType::QString, 4 },
+        QtMocHelpers::SlotData<bool(const QString &, const QString &, int &)>(3, 2, QMC::AccessPrivate, QMetaType::Bool, {{
+            { QMetaType::QString, 4 }, { QMetaType::QString, 5 }, { 0x80000000 | 6, 7 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -74,7 +79,8 @@ void CreateAccount::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     auto *_t = static_cast<CreateAccount *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: { bool _r = _t->createAccToDB((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])));
+        case 0: _t->initDatabase(); break;
+        case 1: { bool _r = _t->createAccToDB((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<int&>>(_a[3])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -100,14 +106,14 @@ int CreateAccount::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }

@@ -90,7 +90,8 @@ FocusModeWnd::FocusModeWnd(QWidget* parent)
     });
 
     connect(this->navBar, &NavigationBar::switchToIndex, this, &FocusModeWnd::switchToIndex);
-    connect(this->navBar, &NavigationBar::switchToCalendar, this, &FocusModeWnd::switchToIndex);
+    connect(this->navBar, &NavigationBar::switchToCalendar, this, &FocusModeWnd::switchToCalendar);
+    connect(this->navBar, &NavigationBar::switchToProfile, this, &FocusModeWnd::switchToProfile);
 
     this->mainLayout = new QVBoxLayout(this);
     this->mainLayout->setContentsMargins(0,0,0,0);

@@ -19,6 +19,7 @@ signals:
     void switchToIndex();
     void switchToCalendar();
     void switchToFocus();
+    void switchToProfile();
 
 private:
     QWidget* container;

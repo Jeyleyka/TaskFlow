@@ -45,16 +45,16 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
             this->circle->setIconSize(QSize(24,24));
             this->counter--;
             this->completed = 0;
+            this->updateData();
             emit onUpdateTaskToComplete();
         } else {
             this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
             this->circle->setIconSize(QSize(24,24));
             this->counter++;
             this->completed = 1;
+            this->updateData();
             emit onUpdateTaskToNotComplete();
         }
-
-        this->updateData();
     });
 
     this->categoryLabel = new QLabel(categoryName);
@@ -101,6 +101,8 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
     mainLayout->setSpacing(10);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 }
+
+TaskUI::TaskUI() {}
 
 void TaskUI::setTitle(QString& newTitle) {
     this->title->setText(newTitle);
@@ -168,5 +170,12 @@ void TaskUI::updateData() {
 
     if (!query.exec()) {
         qDebug() << "Ошибка при обновлении задачи:" << query.lastError().text();
+    }
+
+    query.prepare("SELECT COUNT(*) FROM tasks WHERE user_id = :user_id AND completed = 1");
+    query.bindValue(":user_id", UserSession::getUserId());
+    if (query.exec() && query.next()) {
+        int completedCount = query.value(0).toInt();
+        qDebug() << "Completed tasks:" << completedCount;
     }
 }

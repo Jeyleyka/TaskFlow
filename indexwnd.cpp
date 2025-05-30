@@ -3,31 +3,54 @@
 IndexWnd::IndexWnd(QWidget* parent)
     : QWidget(parent)
 {
-    // Основной layout
+    // this->initDatabase();
+    QSqlDatabase db = QSqlDatabase::database();
+
+    if (!db.open()) {
+        qDebug() << "db is not open in indewnd";
+    }
+
     QVBoxLayout* layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 20, 0, 0);
     layout->setSpacing(0);
+
+    this->titleLayout = new QHBoxLayout();
 
     // Заголовок страницы
     QLabel* indexTitle = new QLabel("Index", this);
     indexTitle->setStyleSheet("font-size: 19px; color: #fff; margin-left: 510px;");
 
-    QPushButton* profileImageBtn = new QPushButton(this);
-    profileImageBtn->setIcon(QIcon(":/icons/profile-picture.png"));
-    profileImageBtn->setIconSize(QSize(54, 54));
-    profileImageBtn->setStyleSheet("width: 54px; height: 54px; margin-right: 480px; border: none");
+    QSqlQuery query;
+    query.prepare("SELECT icon FROM users WHERE id = :id");  // Сначала подготовить запрос с параметром
+    query.bindValue(":id", UserSession::getUserId());       // Привязать значение параметра
 
-    QHBoxLayout* titleLayout = new QHBoxLayout();
-    titleLayout->addStretch();
-    titleLayout->addWidget(indexTitle, 0, Qt::AlignHCenter);
-    titleLayout->addStretch(0);
-    titleLayout->addWidget(profileImageBtn, 0, Qt::AlignHCenter);
-    titleLayout->setContentsMargins(0,20,0,20);
+    if (query.exec()) {                                      // Выполнить запрос без аргументов
+        qDebug() << "getting id: " << UserSession::getUserId();
+
+        if (query.next()) {
+            QByteArray imageData = query.value("icon").toByteArray();
+            QPixmap pixmap;
+            pixmap.loadFromData(imageData);
+
+            this->iconBtn = new QPushButton(this);
+            this->iconBtn->setIcon(pixmap.scaled(54, 54, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            this->iconBtn->setIconSize(QSize(54,54));
+            this->iconBtn->setStyleSheet("width: 54px; height: 54px; margin-right: 480px; border: none");
+
+            this->titleLayout->addStretch();
+            this->titleLayout->addWidget(indexTitle, 0, Qt::AlignHCenter);
+            this->titleLayout->addStretch(0);
+            this->titleLayout->addWidget(this->iconBtn, 0, Qt::AlignHCenter);
+            this->titleLayout->setContentsMargins(0,20,0,20);
+        }
+    } else {
+        qDebug() << "Ошибка запроса:" << query.lastError().text();
+    }
+
 
     layout->addLayout(titleLayout);
 
     // Инициализация поиска, сортировки и БД
-    this->initDatabase();
     this->initSearch();
 
     QVBoxLayout* searchLayout = new QVBoxLayout;
@@ -45,11 +68,16 @@ IndexWnd::IndexWnd(QWidget* parent)
 
     tasksLayout->addWidget(this->todayTasksBtn, 0, Qt::AlignHCenter);
 
+    this->profile = new ProfileWnd;
+
     QList<Task> tasks = this->dataBase->loadTasksFromDatabase();
+
     for (const Task& task : tasks) {
         TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate),
                                     task.priority, task.categoryName, task.categoryColor, task.categoryIcon,
                                     task.id, task.completed, this);
+
+        // connect(taskUI, &TaskUI::onUpdateTaskToComplete, profile, &ProfileWnd::updateTasksData);
 
         if (taskUI->getDate().contains("Today"))
         {
@@ -62,6 +90,7 @@ IndexWnd::IndexWnd(QWidget* parent)
                 this->completedTasks.append(taskUI);
                 tasksLayout->removeWidget(taskUI);
                 this->completeTaskslayout->addWidget(taskUI, 1, Qt::AlignHCenter);
+                emit updateTasks();
             });
 
             connect(taskUI, &TaskUI::onUpdateTaskToNotComplete, this, [this, taskUI, layout] {
@@ -69,6 +98,8 @@ IndexWnd::IndexWnd(QWidget* parent)
                 this->tasks.append(taskUI);
                 this->completeTaskslayout->removeWidget(taskUI);
                 tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
+                emit updateTasks();
+                // profile->updateTasksData();
             });
 
             connect(taskUI, &TaskUI::taskClicked, this, [=] {
@@ -105,6 +136,7 @@ IndexWnd::IndexWnd(QWidget* parent)
 
     connect(this->navBar, &NavigationBar::switchToCalendar, this, &IndexWnd::switchToCalendar);
     connect(this->navBar, &NavigationBar::switchToFocus, this, &IndexWnd::switchToFocus);
+    connect(this->navBar, &NavigationBar::switchToProfile, this, &IndexWnd::switchToProfile);
 
     this->initSortTags();
 
@@ -258,6 +290,11 @@ void IndexWnd::showTaskDialog() {
         this->dialog->deleteLater();
         this->dialog = nullptr;
     });
+}
+
+void IndexWnd::updateProfileIcon(const QPixmap& pixmap) {
+    this->iconBtn->setIcon(pixmap.scaled(54, 54, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    this->iconBtn->setIconSize(QSize(54,54));
 }
 
 void IndexWnd::searchTaskFilter(const QString &title) {

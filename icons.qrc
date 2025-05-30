@@ -27,5 +27,15 @@
         <file>icons/search.png</file>
         <file>icons/profile-picture.png</file>
         <file>icons/logo.png</file>
+        <file>icons/camera.png</file>
+        <file>icons/setting.png</file>
+        <file>icons/social.png</file>
+        <file>icons/key.png</file>
+        <file>icons/user.png</file>
+        <file>icons/lightning-bolt.png</file>
+        <file>icons/log-out.png</file>
+        <file>icons/brush.png</file>
+        <file>icons/language.png</file>
+        <file>icons/t.png</file>
     </qresource>
 </RCC>

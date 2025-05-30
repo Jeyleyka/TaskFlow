@@ -13,6 +13,7 @@
 #include <QSqlError>
 
 #include "categoryitemwidget.h"
+#include "UserSession.h"
 
 class TaskUI : public QWidget {
     Q_OBJECT
@@ -21,6 +22,8 @@ public:
     TaskUI(QString titleStr, QString desc, QString createData, int priority,
            QString categoryName, QColor categoryColor, QIcon categoryIcon, int id, int completed,
            QWidget* parent = nullptr);
+
+    TaskUI();
 
     void setTitle(QString& newTitle);
     void setDesc(QString& newDesc);

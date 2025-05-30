@@ -1,0 +1,88 @@
+#include "changeaccountnamewnd.h"
+
+ChangeAccountNameWnd::ChangeAccountNameWnd(QWidget* parent)
+    : QDialog(parent)
+{
+    this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+    this->setFixedSize(327, 187);
+
+    // this->container = new QWidget(parent);
+
+    this->wndTitle = new QLabel("Change account name", this);
+    this->wndTitle->setStyleSheet("font-size: 16px; margin-bottom: 6px;");
+    this->wndTitle->setAlignment(Qt::AlignHCenter);
+
+    this->line = new QFrame(this);
+    this->line->setFrameShape(QFrame::HLine);
+    this->line->setFrameShadow(QFrame::Sunken);
+    this->line->setStyleSheet("height: 1px; width: 312px; background-color: #5A5A5A;");
+
+    this->newUsername = new QLineEdit(this);
+    this->newUsername->setPlaceholderText("Enter new name");
+    this->newUsername->setStyleSheet("background-color: transparent; border: 1px solid #727272; font-size: 15px; width: 287px; height: 43px; margin-top: 10px;");
+
+    this->cancel = new QPushButton("Cancel", this);
+    this->cancel->setStyleSheet("width: 153px; height: 48px; background-color: transparent; border: none; color: #7C7DD1");
+
+    connect(this->cancel, &QPushButton::clicked, this, &ChangeAccountNameWnd::close);
+
+    this->edit = new QPushButton("Edit", this);
+    this->edit->setStyleSheet("width: 153px; height: 48px; background-color: #8687E7; color: #fff");
+
+    connect(this->edit, &QPushButton::clicked, this, [this] {
+        if (this->newUsername->text().isEmpty()) {
+            QMessageBox::warning(this, "Error", "New username must not be empty!");
+            return;
+        }
+
+        this->changeNameInDB();
+    });
+
+    this->btnsLayout = new QHBoxLayout();
+    this->btnsLayout->addWidget(this->cancel);
+    this->btnsLayout->addWidget(this->edit);
+
+    this->mainLayout = new QVBoxLayout(this);
+    this->mainLayout->addWidget(this->wndTitle);
+    this->mainLayout->addWidget(this->line);
+    this->mainLayout->addWidget(this->newUsername);
+    this->mainLayout->addStretch();
+    this->mainLayout->addLayout(this->btnsLayout);
+
+    this->setLayout(this->mainLayout);
+}
+
+ChangeAccountNameWnd::~ChangeAccountNameWnd() {}
+
+void ChangeAccountNameWnd::changeNameInDB() {
+    QSqlQuery query;
+
+    if (query.exec("SELECT name FROM user LIMIT 1")) {
+        if (query.next()) {
+            this->oldName = query.value("name").toString();
+
+            qDebug() << "old name:" << query.value("name").toString();
+            qDebug() << "new name: " << this->newUsername->text().trimmed();
+        }
+    }
+
+    if (this->newUsername->text().trimmed() != this->oldName.trimmed())
+    {
+        query.prepare("UPDATE user SET name = :name");
+
+        query.bindValue(":name", this->newUsername->text());
+
+        if (!query.exec()) {
+            qDebug() << "Ошибка при обновлении задачи:" << query.lastError().text();
+        }
+    } else
+    {
+        QMessageBox::warning(this, "Error", "New name matches current name, change name");
+        return;
+    }
+
+    QMessageBox::warning(this, "Success", "New name is saved");
+
+    emit this->onUpdateName();
+    this->close();
+}

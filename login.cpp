@@ -114,19 +114,24 @@ bool Login::CheckDataToCorrectly(const QString &name, const QString &password) {
     }
 
     QSqlQuery query;
-    if (query.exec("SELECT name, password FROM user")) {
+    query.prepare("SELECT id, name, password FROM users");
+
+    if (query.exec()) {
         while (query.next()) {
-            QString nameD = query.value(0).toString();
-            QString passwordD = query.value(1).toString();
+            int userId = query.value(0).toInt();
+            QString nameD = query.value(1).toString();
+            QString passwordD = query.value(2).toString();
 
             if (name == nameD && password == passwordD)
-                return true;
-            else
             {
-                QMessageBox::warning(this, "Error", "username or password is incorrect!");
-                return false;
+                UserSession::setUserId(userId);
+                qDebug() << "✅ Успешный вход! id:" << userId;
+                return true;
             }
         }
+
+        QMessageBox::warning(this, "Error", "username or password is incorrect!");
+        return false;
     } else {
         qDebug() << "Ошибка запроса:" << query.lastError().text();
     }

@@ -42,7 +42,11 @@ template <> constexpr inline auto IndexWnd::qt_create_metaobjectdata<qt_meta_tag
         "IndexWnd",
         "switchToCalendar",
         "",
-        "switchToFocus"
+        "switchToFocus",
+        "switchToProfile",
+        "updateTasks",
+        "updateProfileIcon",
+        "pixmap"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -50,6 +54,14 @@ template <> constexpr inline auto IndexWnd::qt_create_metaobjectdata<qt_meta_tag
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'switchToFocus'
         QtMocHelpers::SignalData<void()>(3, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'switchToProfile'
+        QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'updateTasks'
+        QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'updateProfileIcon'
+        QtMocHelpers::SlotData<void(const QPixmap &)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QPixmap, 7 },
+        }}),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -75,6 +87,9 @@ void IndexWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         switch (_id) {
         case 0: _t->switchToCalendar(); break;
         case 1: _t->switchToFocus(); break;
+        case 2: _t->switchToProfile(); break;
+        case 3: _t->updateTasks(); break;
+        case 4: _t->updateProfileIcon((*reinterpret_cast< std::add_pointer_t<QPixmap>>(_a[1]))); break;
         default: ;
         }
     }
@@ -82,6 +97,10 @@ void IndexWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         if (QtMocHelpers::indexOfMethod<void (IndexWnd::*)()>(_a, &IndexWnd::switchToCalendar, 0))
             return;
         if (QtMocHelpers::indexOfMethod<void (IndexWnd::*)()>(_a, &IndexWnd::switchToFocus, 1))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (IndexWnd::*)()>(_a, &IndexWnd::switchToProfile, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (IndexWnd::*)()>(_a, &IndexWnd::updateTasks, 3))
             return;
     }
 }
@@ -105,14 +124,14 @@ int IndexWnd::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 5;
     }
     return _id;
 }
@@ -127,5 +146,17 @@ void IndexWnd::switchToCalendar()
 void IndexWnd::switchToFocus()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
+}
+
+// SIGNAL 2
+void IndexWnd::switchToProfile()
+{
+    QMetaObject::activate(this, &staticMetaObject, 2, nullptr);
+}
+
+// SIGNAL 3
+void IndexWnd::updateTasks()
+{
+    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
 }
 QT_WARNING_POP
