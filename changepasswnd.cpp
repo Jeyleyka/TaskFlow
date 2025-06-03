@@ -8,7 +8,7 @@ ChangePass::ChangePass(QWidget* parent)
 
     // this->container = new QWidget(parent);
 
-    this->wndTitle = new QLabel("Change account Password", this);
+    this->wndTitle = new QLabel(tr("Change account Password"), this);
     this->wndTitle->setStyleSheet("font-size: 16px; margin-bottom: 6px;");
     this->wndTitle->setAlignment(Qt::AlignHCenter);
 
@@ -17,28 +17,28 @@ ChangePass::ChangePass(QWidget* parent)
     this->line->setFrameShadow(QFrame::Sunken);
     this->line->setStyleSheet("height: 1px; width: 312px; background-color: #5A5A5A;");
 
-    this->oldPassword = new QLabel("Enter old password", this);
+    this->oldPassword = new QLabel(tr("Enter old password"), this);
     this->oldPassword->setStyleSheet("font-size: 14px; color: #fff");
 
     this->oldPasswordEdit = new QLineEdit(this);
-    this->oldPasswordEdit->setPlaceholderText("Enter old password");
+    this->oldPasswordEdit->setPlaceholderText(tr("Enter old password"));
     this->oldPasswordEdit->setEchoMode(QLineEdit::Password);
     this->oldPasswordEdit->setStyleSheet("background-color: transparent; border: 1px solid #727272; font-size: 15px; width: 287px; height: 43px; margin-top: 10px;");
 
-    this->newPassword = new QLabel("Enter new password", this);
+    this->newPassword = new QLabel(tr("Enter new password"), this);
     this->newPassword->setStyleSheet("font-size: 14px; color: #fff");
 
     this->newPasswordEdit = new QLineEdit(this);
-    this->newPasswordEdit->setPlaceholderText("Enter new password");
+    this->newPasswordEdit->setPlaceholderText(tr("Enter new password"));
     this->newPasswordEdit->setEchoMode(QLineEdit::Password);
     this->newPasswordEdit->setStyleSheet("background-color: transparent; border: 1px solid #727272; font-size: 15px; width: 287px; height: 43px; margin-top: 10px;");
 
-    this->cancel = new QPushButton("Cancel", this);
+    this->cancel = new QPushButton(tr("Cancel"), this);
     this->cancel->setStyleSheet("width: 153px; height: 48px; background-color: transparent; border: none; color: #7C7DD1");
 
     connect(this->cancel, &QPushButton::clicked, this, &ChangePass::close);
 
-    this->edit = new QPushButton("Edit", this);
+    this->edit = new QPushButton(tr("Edit"), this);
     this->edit->setStyleSheet("width: 153px; height: 48px; background-color: #8687E7; color: #fff");
 
     connect(this->edit, &QPushButton::clicked, this, [this] {

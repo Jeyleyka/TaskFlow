@@ -56,6 +56,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         appsettings.h appsettings.cpp
         UserSession.h
         UserSession.cpp
+        appicon.rc
+        changelanguagewnd.h changelanguagewnd.cpp
     )
 endif()
 
@@ -69,6 +71,7 @@ target_link_libraries(todo_app
     shell32
     psapi
 )
+
 
 # Укажи Qt модули
 find_package(Qt6 REQUIRED COMPONENTS LinguistTools Widgets)

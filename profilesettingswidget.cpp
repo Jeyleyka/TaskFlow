@@ -4,6 +4,7 @@ ProfileSettingsWidget::ProfileSettingsWidget(const QIcon& icon, const QString& s
     : QWidget(parent)
 {
     this->setFixedSize(327, 48);
+    this->setAutoFillBackground(true);
 
     this->container = new QWidget(this);
     this->container->setStyleSheet("background-color: #363636; border-radius: 5px;");

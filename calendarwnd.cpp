@@ -9,7 +9,7 @@ CalendarWnd::CalendarWnd(QWidget* parent)
     layout->setSpacing(0);
 
     // Заголовок страницы
-    QLabel* indexTitle = new QLabel("Calendar", this);
+    QLabel* indexTitle = new QLabel(tr("Calendar"), this);
     indexTitle->setStyleSheet("font-size: 19px; color: #fff;");
 
     QHBoxLayout* titleLayout = new QHBoxLayout();
@@ -39,7 +39,7 @@ CalendarWnd::CalendarWnd(QWidget* parent)
                                     task.priority, task.categoryName, task.categoryColor, task.categoryIcon,
                                     task.id, task.completed, this);
 
-        if (taskUI->getDate().contains("Today"))
+        if (taskUI->getDate().contains(tr("Today")))
         {
             taskUI->setFixedSize(920, 98);
             this->tasks.append(taskUI);
@@ -106,7 +106,7 @@ void CalendarWnd::initSortTags() {
     this->btnsLayout = new QHBoxLayout(this->btnsContainer);
     this->btnsLayout->setContentsMargins(0,20,0,0);
 
-    this->todayTasksBtn = new QPushButton("Today", this);
+    this->todayTasksBtn = new QPushButton(tr("Today"), this);
     this->todayTasksBtn->setStyleSheet("width: 250px; height: 49px; background-color: #8687E7; margin: 20px;");
 
     connect(this->todayTasksBtn, &QPushButton::clicked, this, [this] {
@@ -114,14 +114,14 @@ void CalendarWnd::initSortTags() {
         this->todayTasksBtn->setStyleSheet("width: 250px; height: 49px; background-color: #8687E7; margin: 20px;");
 
         for (TaskUI* task : this->tasks) {
-            if (task->getDate().contains("Today"))
+            if (task->getDate().contains(tr("Today")))
                 task->show();
             else
                 task->hide();
         }
     });
 
-    this->completedTasksBtn = new QPushButton("Completed", this);
+    this->completedTasksBtn = new QPushButton(tr("Completed"), this);
     this->completedTasksBtn->setStyleSheet("width: 250px; height: 49px; border: 1px solid #848484; background-color: transparent; margin: 20px;");
 
     connect(this->completedTasksBtn, &QPushButton::clicked, this, [this] {

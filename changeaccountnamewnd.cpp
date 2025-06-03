@@ -8,7 +8,7 @@ ChangeAccountNameWnd::ChangeAccountNameWnd(QWidget* parent)
 
     // this->container = new QWidget(parent);
 
-    this->wndTitle = new QLabel("Change account name", this);
+    this->wndTitle = new QLabel(tr("Change account name"), this);
     this->wndTitle->setStyleSheet("font-size: 16px; margin-bottom: 6px;");
     this->wndTitle->setAlignment(Qt::AlignHCenter);
 
@@ -18,15 +18,15 @@ ChangeAccountNameWnd::ChangeAccountNameWnd(QWidget* parent)
     this->line->setStyleSheet("height: 1px; width: 312px; background-color: #5A5A5A;");
 
     this->newUsername = new QLineEdit(this);
-    this->newUsername->setPlaceholderText("Enter new name");
+    this->newUsername->setPlaceholderText(tr("Enter new name"));
     this->newUsername->setStyleSheet("background-color: transparent; border: 1px solid #727272; font-size: 15px; width: 287px; height: 43px; margin-top: 10px;");
 
-    this->cancel = new QPushButton("Cancel", this);
+    this->cancel = new QPushButton(tr("Cancel"), this);
     this->cancel->setStyleSheet("width: 153px; height: 48px; background-color: transparent; border: none; color: #7C7DD1");
 
     connect(this->cancel, &QPushButton::clicked, this, &ChangeAccountNameWnd::close);
 
-    this->edit = new QPushButton("Edit", this);
+    this->edit = new QPushButton(tr("Edit"), this);
     this->edit->setStyleSheet("width: 153px; height: 48px; background-color: #8687E7; color: #fff");
 
     connect(this->edit, &QPushButton::clicked, this, [this] {

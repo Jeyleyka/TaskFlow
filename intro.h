@@ -33,7 +33,6 @@ private:
 
     QLabel* wndTitle;
     QLabel* subtitle;
-
 };
 
 #endif // INTRO_H

@@ -69,7 +69,7 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
 
     timeLayout->addWidget(timeLabel);
 
-    QLabel* time = new QLabel("Task Time : ", this);
+    QLabel* time = new QLabel(tr("Task Time : "), this);
     time->setStyleSheet("font-size: 17px; color: white;");
 
     timeLayout->addWidget(time);
@@ -82,7 +82,7 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     QPushButton* categoryBtn = new QPushButton(this);
     categoryBtn->setIcon(QIcon(":/icons/category.png"));
     categoryBtn->setIconSize(QSize(32,32));
-    categoryBtn->setText("   Task Category : ");
+    categoryBtn->setText(tr("   Task Category : "));
     categoryBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
 
     this->category = new QPushButton(this);
@@ -100,7 +100,7 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     QPushButton* priorityBtn = new QPushButton(this);
     priorityBtn->setIcon(QIcon(":/icons/red-flag.png"));
     priorityBtn->setIconSize(QSize(32,32));
-    priorityBtn->setText("   Task Category : ");
+    priorityBtn->setText(tr("   Task Category : "));
     priorityBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
 
     this->priority = new QPushButton(this);
@@ -118,12 +118,12 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     QPushButton* descBtn = new QPushButton(this);
     descBtn->setIcon(QIcon(":/icons/subtitle.png"));
     descBtn->setIconSize(QSize(32,32));
-    descBtn->setText("   Description : ");
+    descBtn->setText(tr("   Description : "));
     descBtn->setStyleSheet("font-size: 17px; color: #fff; border: none;");
 
     descLayout->addWidget(descBtn, 0, Qt::AlignLeft);
 
-    this->editDesc = new QPushButton("Add Description", this);
+    this->editDesc = new QPushButton(tr("Add Description"), this);
     this->editDesc->setStyleSheet("font-size: 13px; color: #fff; text-align: center; border-radius: 5px; background-color: #444444; height: 37px; padding-left: 10px; padding-right: 10px");
 
     descLayout->addWidget(editDesc, 0, Qt::AlignRight);
@@ -132,7 +132,7 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     QHBoxLayout* buttonLayout = new QHBoxLayout();
     buttonLayout->setContentsMargins(0,15,0,0);
 
-    this->deleteTask = new QPushButton("   Delete Task", this);
+    this->deleteTask = new QPushButton(tr("   Delete Task"), this);
     this->deleteTask->setIcon(QIcon(":/icons/delete.png"));
     this->deleteTask->setIconSize(QSize(32,32));
     this->deleteTask->setStyleSheet("font-size: 17px; color: #E14242; border: none; ");
@@ -143,7 +143,7 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
 
     buttonLayout->addWidget(this->deleteTask, 0, Qt::AlignLeft);
 
-    this->editTask = new QPushButton("Edit Task", this);
+    this->editTask = new QPushButton(tr("Edit Task"), this);
     this->editTask->setStyleSheet("background-color: #8687E7; font-size: 13px; color: #F8F8FE; height: 48px; margin-top: 60px");
 
     connect(this->editTask, &QPushButton::clicked, this, [this] {

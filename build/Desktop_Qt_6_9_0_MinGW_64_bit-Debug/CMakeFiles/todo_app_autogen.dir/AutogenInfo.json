@@ -579,6 +579,12 @@
 			null
 		],
 		[
+			"D:/Work/todo_app/changelanguagewnd.h",
+			"MU",
+			"EWIEGA46WW/moc_changelanguagewnd.cpp",
+			null
+		],
+		[
 			"D:/Work/todo_app/changepasswnd.h",
 			"MU",
 			"EWIEGA46WW/moc_changepasswnd.cpp",
@@ -779,6 +785,7 @@
 		[ "D:/Work/todo_app/categoryitemwidget.cpp", "MU", null ],
 		[ "D:/Work/todo_app/changeaccountnamewnd.cpp", "MU", null ],
 		[ "D:/Work/todo_app/changeimgwnd.cpp", "MU", null ],
+		[ "D:/Work/todo_app/changelanguagewnd.cpp", "MU", null ],
 		[ "D:/Work/todo_app/changepasswnd.cpp", "MU", null ],
 		[ "D:/Work/todo_app/choosecategory.cpp", "MU", null ],
 		[ "D:/Work/todo_app/choosepriority.cpp", "MU", null ],

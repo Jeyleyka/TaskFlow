@@ -17,7 +17,7 @@ IndexWnd::IndexWnd(QWidget* parent)
     this->titleLayout = new QHBoxLayout();
 
     // Заголовок страницы
-    QLabel* indexTitle = new QLabel("Index", this);
+    QLabel* indexTitle = new QLabel(tr("Index"), this);
     indexTitle->setStyleSheet("font-size: 19px; color: #fff; margin-left: 510px;");
 
     QSqlQuery query;
@@ -63,7 +63,7 @@ IndexWnd::IndexWnd(QWidget* parent)
     this->tasksLayout->setSpacing(15);
     this->tasksLayout->setContentsMargins(0, 30, 0, 0);
 
-    this->todayTasksBtn = new QPushButton("Today: ", this);
+    this->todayTasksBtn = new QPushButton(tr("Today: "), this);
     this->todayTasksBtn->setStyleSheet("width: 100px; height: 31px; border-radius: 5px; background-color: #292929;");
 
     tasksLayout->addWidget(this->todayTasksBtn, 0, Qt::AlignHCenter);
@@ -79,7 +79,7 @@ IndexWnd::IndexWnd(QWidget* parent)
 
         // connect(taskUI, &TaskUI::onUpdateTaskToComplete, profile, &ProfileWnd::updateTasksData);
 
-        if (taskUI->getDate().contains("Today"))
+        if (taskUI->getDate().contains(tr("Today")))
         {
             taskUI->setFixedSize(920, 98);
             this->tasks.append(taskUI);
@@ -168,14 +168,14 @@ void IndexWnd::initSearch() {
     this->search = new QLineEdit(this);
     QIcon icon(":/icons/search.png");
     this->search->addAction(icon, QLineEdit::LeadingPosition);
-    this->search->setPlaceholderText("Search for your task...");
+    this->search->setPlaceholderText(tr("Search for your task..."));
     this->search->setStyleSheet("width: 700px; height: 48px; background-color: #292929;");
 
     connect(this->search, &QLineEdit::textChanged, this, &IndexWnd::searchTaskFilter);
 }
 
 void IndexWnd::initSortTags() {
-    this->completedTasksBtn = new QPushButton("Completed: ", this);
+    this->completedTasksBtn = new QPushButton(tr("Completed: "), this);
     this->completedTasksBtn->setStyleSheet("width: 100px; height: 31px; border-radius: 5px; background-color: #292929; margin-top: 10px; margin-bottom: 20px;");
 
     for (TaskUI* task : this->tasks) {

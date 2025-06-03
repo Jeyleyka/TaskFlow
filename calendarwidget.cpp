@@ -81,9 +81,11 @@ void CalendarWidget::updateCalendar() {
     QDate today = QDate::currentDate();
     QDate startDate = currentDate.addDays(-3); // 3 дня до currentDate
 
+    QLocale locale = QLocale::system();
+
     // Заголовки месяца и года на основе currentDate
-    this->monthLabel->setText(currentDate.toString("MMMM").toUpper());
-    this->yearLabel->setText(currentDate.toString("yyyy").toUpper());
+    this->monthLabel->setText(locale.toString(currentDate, "MMMM").toUpper());
+    this->yearLabel->setText(locale.toString(currentDate, "yyyy").toUpper());
 
     // Очистка
     QLayoutItem* child;
@@ -97,7 +99,7 @@ void CalendarWidget::updateCalendar() {
 
     for (int i = 0; i < 7; ++i) {
         QDate date = startDate.addDays(i);
-        QString weekday = date.toString("ddd").toUpper();
+        QString weekday = locale.toString(date, "ddd").toUpper();
         QString dayNumber = QString::number(date.day());
 
         QPushButton* dayButton = new QPushButton(QString("%1\n%2").arg(weekday, dayNumber), this);

@@ -16,11 +16,13 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPoint \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSize \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QString \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QTime \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QTimer \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QTranslator \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QVector \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h \
@@ -125,6 +127,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qset.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qsettings.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata_impl.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qsharedpointer.h \
@@ -163,6 +166,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtmetamacros.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtnoop.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtpreprocessorsupport.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qtranslator.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtresource.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qttranslation.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qttypetraits.h \
@@ -808,6 +812,7 @@ D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/EWIE
   D:/Work/todo_app/categoryitemwidget.h \
   D:/Work/todo_app/changeaccountnamewnd.h \
   D:/Work/todo_app/changeimgwnd.h \
+  D:/Work/todo_app/changelanguagewnd.h \
   D:/Work/todo_app/changepasswnd.h \
   D:/Work/todo_app/choosecategory.h \
   D:/Work/todo_app/choosepriority.h \

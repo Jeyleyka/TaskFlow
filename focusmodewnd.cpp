@@ -51,13 +51,13 @@ QPixmap hiconToPixmap(HICON hIcon, int size) {
 FocusModeWnd::FocusModeWnd(QWidget* parent)
     : QWidget(parent), focusRunning(false)
 {
-    this->wndTitle = new QLabel("Focus Mode", this);
+    this->wndTitle = new QLabel(tr("Focus Mode"), this);
     this->wndTitle->setStyleSheet("font-size: 19px; color #fff; margin-bottom: 20px;");
 
     this->timerWidget = new CircularTimerWidget(this);
     this->timerWidget->setMinimumSize(280, 280);
 
-    this->startStopFocusBtn = new QPushButton("Start Focusing", this);
+    this->startStopFocusBtn = new QPushButton(tr("Start Focusing"), this);
     this->startStopFocusBtn->setStyleSheet("width: 200px; height: 40px; background-color: #8687E7; margin-top: 20px;");
 
     connect(this->startStopFocusBtn, &QPushButton::clicked, this, &FocusModeWnd::startStopFocus);
@@ -80,7 +80,7 @@ FocusModeWnd::FocusModeWnd(QWidget* parent)
     connect(uiUpdateTimer, &QTimer::timeout, this, &FocusModeWnd::updateAppUsageList);
     uiUpdateTimer->start(5000); // обновлять каждые 5 сек
 
-    this->applications = new QLabel("Applications", this);
+    this->applications = new QLabel(tr("Applications"), this);
     this->applications->setStyleSheet("font-size: 17px; color #fff; margin-top: 10px;");
 
     this->navBar = new NavigationBar(this);
@@ -195,11 +195,11 @@ void FocusModeWnd::showTaskDialog() {
 void FocusModeWnd::startStopFocus() {
     if (this->focusRunning) {
         this->timerWidget->stop();
-        this->startStopFocusBtn->setText("Start Focus");
+        this->startStopFocusBtn->setText(tr("Start Focus"));
     } else
     {
         this->timerWidget->start();
-        this->startStopFocusBtn->setText("Stop Focus");
+        this->startStopFocusBtn->setText(tr("Stop Focus"));
     }
 
     this->focusRunning = !this->focusRunning;

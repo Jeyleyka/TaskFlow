@@ -7,8 +7,11 @@
 #include <QDialog>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QColorDialog>
+#include <QApplication>
 
 #include "profilesettingswidget.h"
+#include "changelanguagewnd.h"
 
 class AppSettings : public QDialog
 {

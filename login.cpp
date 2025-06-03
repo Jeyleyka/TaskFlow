@@ -29,18 +29,18 @@ Login::Login(QWidget* parent)
     this->btnsLayout->addStretch(1);
     this->btnsLayout->addWidget(this->closeWndBtn);
 
-    this->wndTitle = new QLabel("Login", this);
+    this->wndTitle = new QLabel(tr("Login"), this);
     this->wndTitle->setStyleSheet("font-size: 20px; font-weight: 600; color: #fff; margin-top: 20px;");
 
     QVBoxLayout* titleLayout = new QVBoxLayout;
     titleLayout->setContentsMargins(0, 20, 0, 20);  // Верхний и нижний отступ
     titleLayout->addWidget(this->wndTitle);
 
-    this->usernameLabel = new QLabel("Username", this);
+    this->usernameLabel = new QLabel(tr("Username"), this);
     this->usernameLabel->setStyleSheet("font-size: 15px; color: #fff");
 
     this->usernameEdit = new QLineEdit(this);
-    this->usernameEdit->setPlaceholderText("Enter your Username");
+    this->usernameEdit->setPlaceholderText(tr("Enter your Username"));
     this->usernameEdit->setStyleSheet("width: 350px; height: 50px; background-color: #363636; border-radius: 5px;");
 
     this->usernameLayout = new QVBoxLayout;
@@ -49,11 +49,11 @@ Login::Login(QWidget* parent)
     this->usernameLayout->addWidget(this->usernameLabel);
     this->usernameLayout->addWidget(this->usernameEdit);
 
-    this->passwordLabel = new QLabel("Password", this);
+    this->passwordLabel = new QLabel(tr("Password"), this);
     this->passwordLabel->setStyleSheet("font-size: 15px; color: #fff");
 
     this->passwordEdit = new QLineEdit(this);
-    this->passwordEdit->setPlaceholderText("Enter your Password");
+    this->passwordEdit->setPlaceholderText(tr("Enter your Password"));
     this->passwordEdit->setEchoMode(QLineEdit::Password);
     this->passwordEdit->setStyleSheet("width: 350px; height: 50px; background-color: #363636; border-radius: 5px;");
 
@@ -63,7 +63,7 @@ Login::Login(QWidget* parent)
     this->passwordLayout->addWidget(this->passwordLabel);
     this->passwordLayout->addWidget(this->passwordEdit);
 
-    this->loginBtn = new QPushButton("Login", this);
+    this->loginBtn = new QPushButton(tr("Login"), this);
     this->loginBtn->setStyleSheet("width: 350px; height: 50px; background-color: #8687E7; border-radius: 5px; margin-top: 20px;");
 
     connect(this->loginBtn, &QPushButton::clicked, this, [this] {
@@ -80,7 +80,7 @@ Login::Login(QWidget* parent)
         }
     });
 
-    this->haventAccount = new QPushButton("Don't have an account? Register", this);
+    this->haventAccount = new QPushButton(tr("Don't have an account? Register"), this);
     this->haventAccount->setStyleSheet("background-color: transparent; border: none; font-size: 15px; margin-top: 20px;");
 
     connect(this->haventAccount, &QPushButton::clicked, this, [this] {
@@ -134,6 +134,9 @@ bool Login::CheckDataToCorrectly(const QString &name, const QString &password) {
         return false;
     } else {
         qDebug() << "Ошибка запроса:" << query.lastError().text();
+        qDebug() << "Драйвер:" << db.driverName();
+        qDebug() << "БД открыта:" << db.isOpen();
+        qDebug() << "Путь к БД:" << QCoreApplication::applicationDirPath();
     }
 
     return false;

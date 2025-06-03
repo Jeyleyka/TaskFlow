@@ -16,7 +16,7 @@ ChoosePriority::ChoosePriority(QWidget* parent) :
 
     this->containerLayout = new QVBoxLayout(container);
 
-    this->titleWnd = new QLabel("Task Priority", this);
+    this->titleWnd = new QLabel(tr("Task Priority"), this);
     this->titleWnd->setStyleSheet("font-size: 15px; color: #fff;");
     this->titleWnd->setAlignment(Qt::AlignHCenter);
 
@@ -48,7 +48,7 @@ ChoosePriority::ChoosePriority(QWidget* parent) :
 
     this->containerLayout->addLayout(this->widgetsLayout);
 
-    this->cancel = new QPushButton("Cancel", this);
+    this->cancel = new QPushButton(tr("Cancel"), this);
     this->cancel->setStyleSheet("width: 153px; height: 48px; color: #7C7DD1; background-color: transparent; font-size: 13px; border: none;");
 
     connect(this->cancel, &QPushButton::clicked, this, &ChoosePriority::close);
@@ -57,7 +57,7 @@ ChoosePriority::ChoosePriority(QWidget* parent) :
 
     this->btnsLayout->addWidget(this->cancel);
 
-    this->save = new QPushButton("Save", this);
+    this->save = new QPushButton(tr("Save"), this);
     this->save->setStyleSheet("width: 153px; height: 48px; color: #fff; background-color: #8687E7; font-size: 13px;");
 
     connect(this->save, &QPushButton::clicked, this, [this] {

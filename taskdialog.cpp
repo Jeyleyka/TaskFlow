@@ -14,8 +14,8 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
 
     connect(this->buttonBox, &QDialogButtonBox::rejected, this, &TaskDialog::hideWithAnim);
 
-    this->chooseCategory = new QPushButton("Choose category", this);
-    this->chooseCategory->setStyleSheet("max-width: 100px; height: 25px; background-color: #2d2d2d");
+    this->chooseCategory = new QPushButton(tr("Choose category"), this);
+    this->chooseCategory->setStyleSheet("max-width: 120px; height: 25px; background-color: #2d2d2d");
 
     this->chooseCategoryWnd = new ChooseCategory(this);
 
@@ -23,8 +23,8 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
         this->chooseCategoryWnd->show();
     });
 
-    this->choosePriority = new QPushButton("Choose priority", this);
-    this->choosePriority->setStyleSheet("max-width: 100px; height: 25px; background-color: #2d2d2d");
+    this->choosePriority = new QPushButton(tr("Choose priority"), this);
+    this->choosePriority->setStyleSheet("max-width: 120px; height: 25px; background-color: #2d2d2d");
 
     this->choosePriorityWnd = new ChoosePriority(this);
 
@@ -33,18 +33,18 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
     });
 
     this->formLayout = new QFormLayout;
-    this->formLayout->addRow("Title:", this->titleLineEdit);
-    this->formLayout->addRow("Description:", this->descriptionTextEdit);
-    this->formLayout->addRow("Due Date:", this->dueDateEdit);
-    this->formLayout->addRow("Priority: ", this->choosePriority);
-    this->formLayout->addRow("Category: ", this->chooseCategory);
+    this->formLayout->addRow(tr("Title:"), this->titleLineEdit);
+    this->formLayout->addRow(tr("Description:"), this->descriptionTextEdit);
+    this->formLayout->addRow(tr("Due Date:"), this->dueDateEdit);
+    this->formLayout->addRow(tr("Priority: "), this->choosePriority);
+    this->formLayout->addRow(tr("Category: "), this->chooseCategory);
 
     connect(this->choosePriorityWnd, &ChoosePriority::prioritySelected, this, [this](int priority) {
         this->priorityWidget = new PriorityItemWidget(priority, this);
         this->priorityWidget->setFixedSize(64,64);
 
         this->formLayout->removeRow(3);
-        this->formLayout->addRow("Priority: ", priorityWidget);
+        this->formLayout->addRow(tr("Priority: "), priorityWidget);
     });
 
 
@@ -57,7 +57,7 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
         this->itemWidget->setFixedSize(64,64);
 
         this->formLayout->removeRow(3);
-        this->formLayout->addRow("Category: ", this->itemWidget);
+        this->formLayout->addRow(tr("Category: "), this->itemWidget);
     });
 
     connect(this->buttonBox, &QDialogButtonBox::accepted, this, [this] {

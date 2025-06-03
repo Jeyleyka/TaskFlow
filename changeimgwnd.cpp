@@ -8,7 +8,7 @@ ChangeImgWnd::ChangeImgWnd(QWidget* parent)
 
     this->mainLayout = new QVBoxLayout(this);
 
-    this->wndTitle = new QLabel("Change account icon", this);
+    this->wndTitle = new QLabel(tr("Change account icon"), this);
     this->wndTitle->setStyleSheet("font-size: 16px; margin-bottom: 6px;");
     this->wndTitle->setAlignment(Qt::AlignHCenter);
 
@@ -20,7 +20,7 @@ ChangeImgWnd::ChangeImgWnd(QWidget* parent)
     this->mainLayout->addWidget(this->wndTitle);
     this->mainLayout->addWidget(this->line);
 
-    this->importBtn = new QPushButton("Import from gallery", this);
+    this->importBtn = new QPushButton(tr("Import from gallery"), this);
     this->importBtn->setStyleSheet("background-color: transparent; border: none;");
 
     connect(this->importBtn, &QPushButton::clicked, this, [this] {

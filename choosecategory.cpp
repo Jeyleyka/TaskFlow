@@ -16,7 +16,7 @@ ChooseCategory::ChooseCategory(QWidget* parent)
 
     QVBoxLayout* containerLayout = new QVBoxLayout(container);
 
-    this->wndTitle = new QLabel("Choose Category", this);
+    this->wndTitle = new QLabel(tr("Choose Category"), this);
     this->wndTitle->setStyleSheet("font-size: 15px; color: #fff;");
     this->wndTitle->setAlignment(Qt::AlignHCenter);
 
@@ -42,7 +42,7 @@ ChooseCategory::ChooseCategory(QWidget* parent)
 
     containerLayout->addWidget(this->listWidget);
 
-    this->addCategoryBtn = new QPushButton("Add Category", this);
+    this->addCategoryBtn = new QPushButton(tr("Add Category"), this);
     this->addCategoryBtn->setStyleSheet("width: 315px; height: 48px; color: #fff; background-color: #8687E7; font-size: 13px;");
     this->addCategoryBtn->setCheckable(true);
 

@@ -8,7 +8,7 @@ ProfileWnd::ProfileWnd(QWidget* parent)
     this->mainLayout->setContentsMargins(0, 20, 0, 0);
     this->mainLayout->setSpacing(0);
 
-    this->wndTitle = new QLabel("Profile", this);
+    this->wndTitle = new QLabel(tr("Profile"), this);
     this->wndTitle->setStyleSheet("font-size: 19px; color: #fff; margin-bottom: 10px;");
     this->wndTitle->setAlignment(Qt::AlignHCenter);
 
@@ -44,26 +44,26 @@ ProfileWnd::ProfileWnd(QWidget* parent)
 
     this->initTasksStatus();
 
-    this->settings = new QLabel("Settings", this);
+    this->settings = new QLabel(tr("Settings"), this);
     this->settings->setStyleSheet("font-size: 14px; color: #888888; margin-top: 10px;");
     this->settings->setAlignment(Qt::AlignHCenter);
 
-    this->account = new QLabel("Account", this);
+    this->account = new QLabel(tr("Account"), this);
     this->account->setStyleSheet("font-size: 14px; color: #888888; margin-top: 10px;");
     this->account->setAlignment(Qt::AlignHCenter);
 
-    this->taskFlow = new QLabel("TaskFlow", this);
+    this->taskFlow = new QLabel(tr("TaskFlow"), this);
     this->taskFlow->setStyleSheet("font-size: 14px; color: #888888; margin-top: 10px;");
     this->taskFlow->setAlignment(Qt::AlignHCenter);
 
-    this->appSettingsBtn = new ProfileSettingsWidget(QIcon(":/icons/setting.png"), "App settings", this);
+    this->appSettingsBtn = new ProfileSettingsWidget(QIcon(":/icons/setting.png"), tr("App settings"), this);
 
     connect(this->appSettingsBtn, &ProfileSettingsWidget::onClicked, this, [this] {
         AppSettings* appSettings = new AppSettings(this);
         appSettings->show();
     });
 
-    this->changeAccNameBtn = new ProfileSettingsWidget(QIcon(":/icons/user.png"), "Change account name", this);
+    this->changeAccNameBtn = new ProfileSettingsWidget(QIcon(":/icons/user.png"), tr("Change account name"), this);
 
     connect(this->changeAccNameBtn, &ProfileSettingsWidget::onClicked, this, [this] {
         ChangeAccountNameWnd* changeWnd = new ChangeAccountNameWnd(this);
@@ -82,14 +82,14 @@ ProfileWnd::ProfileWnd(QWidget* parent)
         });
     });
 
-    this->changePasswBtn = new ProfileSettingsWidget(QIcon(":/icons/key.png"), "Change account password", this);
+    this->changePasswBtn = new ProfileSettingsWidget(QIcon(":/icons/key.png"), tr("Change account password"), this);
 
     connect(this->changePasswBtn, &ProfileSettingsWidget::onClicked, this, [this] {
         ChangePass* changePassWnd = new ChangePass(this);
         changePassWnd->show();
     });
 
-    this->changeAccImg = new ProfileSettingsWidget(QIcon(":/icons/camera.png"), "Change account Imgage", this);
+    this->changeAccImg = new ProfileSettingsWidget(QIcon(":/icons/camera.png"), tr("Change account Imgage"), this);
 
     connect(this->changeAccImg, &ProfileSettingsWidget::onClicked, this, [this] {
         this->changeImgWnd = new ChangeImgWnd(this);
@@ -118,9 +118,9 @@ ProfileWnd::ProfileWnd(QWidget* parent)
         });
     });
 
-    this->aboutUsBtn = new ProfileSettingsWidget(QIcon(":/icons/category.png"), "About US", this);
-    this->helpAndFeedBtn = new ProfileSettingsWidget(QIcon(":/icons/lightning-bolt.png"), "Help & Feedback", this);
-    this->supportBtn = new ProfileSettingsWidget(QIcon(":/icons/social.png"), "Support US", this);
+    this->aboutUsBtn = new ProfileSettingsWidget(QIcon(":/icons/category.png"), tr("About US"), this);
+    this->helpAndFeedBtn = new ProfileSettingsWidget(QIcon(":/icons/lightning-bolt.png"), tr("Help & Feedback"), this);
+    this->supportBtn = new ProfileSettingsWidget(QIcon(":/icons/social.png"), tr("Support US"), this);
 
     QVBoxLayout* contentLayout = new QVBoxLayout;
     contentLayout->setSpacing(10);
@@ -146,7 +146,7 @@ ProfileWnd::ProfileWnd(QWidget* parent)
     this->logOutBtn = new QPushButton(this);
     this->logOutBtn->setIcon(QIcon(":/icons/log-out.png"));
     this->logOutBtn->setIconSize(QSize(24,24));
-    this->logOutBtn->setText("Log out");
+    this->logOutBtn->setText(tr("Log out"));
     this->logOutBtn->setStyleSheet("background-color: transparent; border: none; color: #FF3838");
 
     this->mainLayout->addLayout(centerLayout);
@@ -189,11 +189,11 @@ void ProfileWnd::initTasksStatus() {
         totalCount = query.value(0).toInt();
     }
 
-    this->tasksDone = new QLabel(QString::number(completedCount) + " Task done", this);
+    this->tasksDone = new QLabel(QString::number(completedCount) + tr(" Task done"), this);
     this->tasksDone->setStyleSheet("min-width: 160px; min-height: 50px; background-color: #363636; border-radius: 5px;");
     this->tasksDone->setAlignment(Qt::AlignCenter);
 
-    this->tasksLeft = new QLabel(QString::number(totalCount - completedCount) + " Task left", this);
+    this->tasksLeft = new QLabel(QString::number(totalCount - completedCount) + tr(" Task left"), this);
     this->tasksLeft->setStyleSheet("min-width: 160px; min-height: 50px; background-color: #363636; border-radius: 5px;");
     this->tasksLeft->setAlignment(Qt::AlignCenter);
 
@@ -229,8 +229,8 @@ void ProfileWnd::updateTasksData() {
         totalCount = query.value(0).toInt();
     }
 
-    this->tasksDone->setText(QString::number(completedCount) + " Task done");
-    this->tasksLeft->setText(QString::number(totalCount - completedCount) + " Task left");
+    this->tasksDone->setText(QString::number(completedCount) + tr(" Task done"));
+    this->tasksLeft->setText(QString::number(totalCount - completedCount) + tr(" Task left"));
 }
 
 // void ProfileWnd::showTaskDialog() {

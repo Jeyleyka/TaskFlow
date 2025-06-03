@@ -18,7 +18,7 @@ EditTask::EditTask(QString titleStr, QString descStr, QString category_name, QCo
 
     QVBoxLayout* containerLayout = new QVBoxLayout(container);
 
-    this->wndTitle = new QLabel("Edit Task", this);
+    this->wndTitle = new QLabel(tr("Edit Task"), this);
     this->wndTitle->setStyleSheet("line-height: 20px; font-size: 14px; color: #fff; margin-bottom: 5px;");
     this->wndTitle->setAlignment(Qt::AlignHCenter);
 
@@ -140,14 +140,14 @@ EditTask::EditTask(QString titleStr, QString descStr, QString category_name, QCo
 
     this->btnsLayout = new QHBoxLayout(container);
 
-    this->cancel = new QPushButton("Cancel", this);
+    this->cancel = new QPushButton(tr("Cancel"), this);
     this->cancel->setStyleSheet("width: 153px; height: 48px; color: #7C7DD1; background-color: transparent; font-size: 13px; border: none;");
 
     connect(this->cancel, &QPushButton::clicked, this, &EditTask::close);
 
     this->btnsLayout->addWidget(this->cancel);
 
-    this->edit = new QPushButton("Edit", this);
+    this->edit = new QPushButton(tr("Edit"), this);
     this->edit->setStyleSheet("width: 153px; height: 48px; color: #fff; background-color: #8687E7; font-size: 13px;");
 
     connect(this->edit, &QPushButton::clicked, this, &EditTask::onUpdateData);

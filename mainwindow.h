@@ -66,8 +66,6 @@ private:
 
     DatabaseManager* dataBase;
 
-    QSystemTrayIcon* trayIcon;
-
     QVector<TaskUI*> tasks;
 
     QComboBox* sortTags;
@@ -75,6 +73,8 @@ private:
     QLineEdit* search;
 
     QLabel* indexTitle;
+
+    QSystemTrayIcon* trayIcon;
 
     QPushButton* profileImageBtn;
 

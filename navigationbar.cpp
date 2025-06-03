@@ -20,7 +20,7 @@ NavigationBar::NavigationBar(QWidget* parent)
         emit this->switchToIndex();
     });
 
-    this->indexLabel = new QLabel("Index", this);
+    this->indexLabel = new QLabel(tr("Index"), this);
     this->indexLabel->setStyleSheet("font-size: 14px;");
 
     auto* indexLayout = new QVBoxLayout();
@@ -38,7 +38,7 @@ NavigationBar::NavigationBar(QWidget* parent)
         emit this->switchToCalendar();
     });
 
-    this->calendarLabel = new QLabel("Calendar", this);
+    this->calendarLabel = new QLabel(tr("Calendar"), this);
     this->calendarLabel->setStyleSheet("font-size: 14px;");
 
     auto* calendarLayout = new QVBoxLayout();
@@ -71,7 +71,7 @@ NavigationBar::NavigationBar(QWidget* parent)
         emit this->switchToFocus();
     });
 
-    this->focusLabel = new QLabel("Focuse", this);
+    this->focusLabel = new QLabel(tr("Focuse"), this);
     this->focusLabel->setStyleSheet("font-size: 14px;");
 
     auto* focusLayout = new QVBoxLayout();
@@ -89,7 +89,7 @@ NavigationBar::NavigationBar(QWidget* parent)
         emit this->switchToProfile();
     });
 
-    this->profileLabel = new QLabel("Profile", this);
+    this->profileLabel = new QLabel(tr("Profile"), this);
     this->profileLabel->setStyleSheet("font-size: 14px;");
 
     auto* profileLayout = new QVBoxLayout();

@@ -21,8 +21,9 @@ struct Task {
 
     QString formatDateTime(const QDateTime& dt) const {
         QDate today = QDate::currentDate();
+        QString date = QObject::tr("Today at ");
         if (dt.date() == today) {
-            return "Today at " + dt.time().toString("HH:mm");
+            return date + dt.time().toString("HH:mm");
         } else {
             return dt.toString("dd.MM.yyyy 'at' HH:mm");
         }
