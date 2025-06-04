@@ -30,6 +30,7 @@ ChooseCategory::ChooseCategory(QWidget* parent)
     containerLayout->addWidget(this->line);
 
     this->editor = new CategoryEditor(this);
+    // this->editor->show();
     connect(this->editor, &CategoryEditor::categoryCreated,
             this, &ChooseCategory::addCategory);
 
@@ -83,7 +84,11 @@ ChooseCategory::ChooseCategory(QWidget* parent)
 
     // 🔽 Перенеси это в конец
     QSqlQuery query;
-    if (!query.exec("SELECT name, color, icon FROM categories")) {
+    query.prepare("SELECT name, color, icon FROM categories WHERE user_id = :user_id OR user_id = 0");
+
+    query.bindValue(":user_id", UserSession::getUserId());
+
+    if (!query.exec()) {
         qDebug() << "Ошибка загрузки категорий:" << query.lastError().text();
         return;
     }
@@ -104,8 +109,9 @@ ChooseCategory::ChooseCategory(QWidget* parent)
 void ChooseCategory::addCategory(const QString &name, const QColor &color, const QIcon &icon) {
     // Проверка: есть ли уже категория с таким именем
     QSqlQuery checkQuery;
-    checkQuery.prepare("SELECT COUNT(*) FROM categories WHERE name = :name");
+    checkQuery.prepare("SELECT COUNT(*) FROM categories WHERE name = :name AND user_id = :user_id");
     checkQuery.bindValue(":name", name);
+    checkQuery.bindValue(":user_id", UserSession::getUserId());
 
     if (!checkQuery.exec()) {
         qDebug() << "Ошибка проверки на дубликат:" << checkQuery.lastError();
@@ -122,7 +128,7 @@ void ChooseCategory::addCategory(const QString &name, const QColor &color, const
 
     // Сохраняем в базу
     QSqlQuery query;
-    query.prepare("INSERT INTO categories (name, icon, color) VALUES (:name, :icon, :color)");
+    query.prepare("INSERT INTO categories (user_id, name, color, icon) VALUES (:user_id, :name, :color, :icon)");
 
     QPixmap pixmap = icon.pixmap(64, 64);
     QByteArray bytes;
@@ -130,9 +136,13 @@ void ChooseCategory::addCategory(const QString &name, const QColor &color, const
     buffer.open(QIODevice::WriteOnly);
     pixmap.save(&buffer, "PNG");
 
+    query.bindValue(":user_id", UserSession::getUserId());
     query.bindValue(":name", name);
     query.bindValue(":icon", bytes);
     query.bindValue(":color", color.name());
+
+    if (name == "Create new")
+        query.bindValue(":user_id", 0);
 
     if (!query.exec()) {
         qDebug() << "Ошибка добавления категории:" << query.lastError();

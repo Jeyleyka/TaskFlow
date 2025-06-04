@@ -74,3 +74,7 @@ ChoosePriority::ChoosePriority(QWidget* parent) :
     this->mainLayout->addWidget(container);
     this->mainLayout->setContentsMargins(0,0,0,0);
 }
+
+const int& ChoosePriority::getPrority() {
+    return this->prior;
+}

@@ -10,6 +10,7 @@
 #include "navigationbar.h"
 #include "profilewnd.h"
 #include "UserSession.h"
+#include "categoryeditor.h"
 
 #include <QWidget>
 

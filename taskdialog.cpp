@@ -39,31 +39,40 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
     this->formLayout->addRow(tr("Priority: "), this->choosePriority);
     this->formLayout->addRow(tr("Category: "), this->chooseCategory);
 
+    this->priorityWidget = new PriorityItemWidget(0, this);
+    this->priorityWidget->hide();
+
     connect(this->choosePriorityWnd, &ChoosePriority::prioritySelected, this, [this](int priority) {
         this->priorityWidget = new PriorityItemWidget(priority, this);
         this->priorityWidget->setFixedSize(64,64);
+        this->priorityWidget->show();
 
         this->formLayout->removeRow(3);
         this->formLayout->addRow(tr("Priority: "), priorityWidget);
     });
 
+    qDebug() << "priority: " << this->priorityWidget->getPriority();
+
+    this->itemWidget = new CategoryItemWidget("", QColor(), QIcon(""), this);
+    this->itemWidget->hide();
 
     connect(this->chooseCategoryWnd, &ChooseCategory::categorySelected, this, [this](const QString& name, const QColor& color, const QIcon& icon) {
         if (name == "Create new")
             return;
 
-
         this->itemWidget = new CategoryItemWidget(name, color, icon, this);
         this->itemWidget->setFixedSize(64,64);
+        this->itemWidget->show();
 
         this->formLayout->removeRow(3);
         this->formLayout->addRow(tr("Category: "), this->itemWidget);
     });
 
     connect(this->buttonBox, &QDialogButtonBox::accepted, this, [this] {
-        if (this->titleLineEdit->text().isEmpty() || this->descriptionTextEdit->toPlainText().isEmpty())
+        if (this->titleLineEdit->text().isEmpty() || this->descriptionTextEdit->toPlainText().isEmpty()
+            || this->priorityWidget->getPriority() == 0 || this->itemWidget->getName() == "")
         {
-            QMessageBox::warning(this, "Error", "the area must not be empty");
+            QMessageBox::warning(this, "Error", "Not all fields are recorded");
             return;
         }
 

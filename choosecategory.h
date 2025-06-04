@@ -16,6 +16,7 @@
 
 #include "categoryeditor.h"
 #include "categoryitemwidget.h"
+#include "UserSession.h"
 
 class ChooseCategory : public QDialog
 {

@@ -43,15 +43,16 @@ bool DatabaseManager::initializeDatabase() {
                "password TEXT NOT NULL, "
                "icon BLOB)");
 
-    query.exec("CREATE TABLE IF NOT EXISTS categories ("
-               "id INTEGER PRIMARY KEY AUTOINCREMENT, "
-               "name TEXT UNIQUE NOT NULL, "
-               "color TEXT NOT NULL, "
-               "icon BLOB)");
+    query.prepare("CREATE TABLE IF NOT EXISTS categories ("
+                  "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                  "user_id INTEGER, "
+                  "name TEXT UNIQUE NOT NULL, "
+                  "color TEXT NOT NULL, "
+                  "icon BLOB, "
+                  "FOREIGN KEY (user_id) REFERENCES user(id) )");
 
-    if (!query.exec()) {
+    if (!query.exec())
         qDebug() << "Failed to create table:" << query.lastError().text();
-    }
 
     return true;
 }

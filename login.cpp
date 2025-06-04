@@ -5,8 +5,8 @@ Login::Login(QWidget* parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
 
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("tasks.db");
+    this->dataBase = new DatabaseManager;
+    this->dataBase->initializeDatabase();
 
     QWidget* container = new QWidget(this);
 

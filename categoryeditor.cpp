@@ -44,6 +44,53 @@ CategoryEditor::CategoryEditor(QWidget* parent)
     containerLayout->addWidget(this->categoryIcon);
 
     this->iconCombo = new QComboBox(this);
+    this->iconCombo->setStyleSheet(R"(
+        QComboBox {
+            margin-top: 15px;
+            border: 1px solid #8687E7;
+            border-radius: 8px;
+            padding: 6px 12px;
+            background-color: #363636;
+            color: white;
+            font-size: 14px;
+        }
+
+        QComboBox:hover {
+            border: 1px solid #5A5ADC;
+        }
+
+        QComboBox::drop-down {
+            subcontrol-origin: padding;
+            subcontrol-position: top right;
+            width: 25px;
+            border-left: 1px solid #8687E7;
+        }
+
+        QComboBox::down-arrow {
+            image: url(:/icons/down-arrow.png); /* или убери, если не используешь */
+            width: 14px;
+            height: 14px;
+        }
+
+        QComboBox QAbstractItemView {
+            background-color: #363636;
+            border: 1px solid #8687E7;
+            selection-background-color: #36362D;
+            selection-color: white;
+            padding: 4px;
+            font-size: 14px;
+            outline: 0;
+        }
+
+        QComboBox QAbstractItemView::item {
+            padding: 6px 12px;
+        }
+
+        QComboBox QAbstractItemView::item:hover {
+            background-color: #C9C9C9;
+        }
+    )");
+
     this->iconCombo->addItem(QIcon(":/icons/briefcase.png"), "");
     this->iconCombo->addItem(QIcon(":/icons/dumbbell.png"), "");
     this->iconCombo->addItem(QIcon(":/icons/healthcare.png"), "");

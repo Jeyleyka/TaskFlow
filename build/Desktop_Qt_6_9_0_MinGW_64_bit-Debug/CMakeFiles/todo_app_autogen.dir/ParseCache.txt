@@ -972,6 +972,7 @@ D:/Work/todo_app/taskdialog.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+ mdp:D:/Work/todo_app/UserSession.h
  mdp:D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/moc_predefs.h
  mdp:D:/Work/todo_app/categoryeditor.h
  mdp:D:/Work/todo_app/categoryitemwidget.h
@@ -1402,8 +1403,10 @@ D:/Work/todo_app/UserSession.h
 D:/Work/todo_app/calendarwidget.cpp
 D:/Work/todo_app/appsettings.h
  mmc:Q_OBJECT
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QCoreApplication
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QList
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QObject
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSize
@@ -1491,6 +1494,7 @@ D:/Work/todo_app/appsettings.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrefcount.h
@@ -1596,6 +1600,7 @@ D:/Work/todo_app/appsettings.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QColorDialog
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QComboBox
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialog
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFrame
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QHBoxLayout
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QLabel
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QPushButton
@@ -5678,6 +5683,7 @@ D:/Work/todo_app/choosecategory.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+ mdp:D:/Work/todo_app/UserSession.h
  mdp:D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/moc_predefs.h
  mdp:D:/Work/todo_app/categoryeditor.h
  mdp:D:/Work/todo_app/categoryitemwidget.h
@@ -6512,6 +6518,7 @@ D:/Work/todo_app/createaccount.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPoint
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
@@ -6617,6 +6624,7 @@ D:/Work/todo_app/createaccount.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
@@ -7808,6 +7816,7 @@ D:/Work/todo_app/edittask.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h
  mdp:C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+ mdp:D:/Work/todo_app/UserSession.h
  mdp:D:/Work/todo_app/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/todo_app_autogen/moc_predefs.h
  mdp:D:/Work/todo_app/categoryeditor.h
  mdp:D:/Work/todo_app/categoryitemwidget.h
@@ -7832,6 +7841,7 @@ D:/Work/todo_app/mainwindow.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPoint
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
@@ -7937,6 +7947,7 @@ D:/Work/todo_app/mainwindow.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
@@ -9827,12 +9838,14 @@ D:/Work/todo_app/indexwnd.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QAbstractTableModel
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QBuffer
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QByteArray
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QCoreApplication
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QDate
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QDateTime
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QEvent
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QList
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QObject
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
@@ -9935,6 +9948,7 @@ D:/Work/todo_app/indexwnd.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
@@ -10399,6 +10413,7 @@ D:/Work/todo_app/intro.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPoint
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
@@ -10504,6 +10519,7 @@ D:/Work/todo_app/intro.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
@@ -11239,6 +11255,7 @@ D:/Work/todo_app/login.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QObject
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPoint
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
@@ -11344,6 +11361,7 @@ D:/Work/todo_app/login.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
@@ -13257,11 +13275,13 @@ D:/Work/todo_app/profilewnd.h
  mmc:Q_OBJECT
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QBuffer
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QByteArray
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QCoreApplication
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QDate
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QDateTime
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QEvent
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QList
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QObject
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QRect
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
@@ -13363,6 +13383,7 @@ D:/Work/todo_app/profilewnd.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
@@ -14262,6 +14283,8 @@ D:/Work/todo_app/taskmodel.cpp
 D:/Work/todo_app/taskui.cpp
 D:/Work/todo_app/changelanguagewnd.h
  mmc:Q_OBJECT
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QCoreApplication
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/QTranslator
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h
@@ -14346,6 +14369,7 @@ D:/Work/todo_app/changelanguagewnd.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtCore/qrefcount.h
@@ -14440,6 +14464,7 @@ D:/Work/todo_app/changelanguagewnd.h
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QApplication
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QComboBox
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialog
+ mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFrame
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QHBoxLayout
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QLabel
  mdp:C:/Qt/6.9.0/mingw_64/include/QtWidgets/QPushButton

@@ -19,6 +19,8 @@ class ChoosePriority : public QDialog
 public:
     explicit ChoosePriority(QWidget* parent = nullptr);
 
+    const int& getPrority();
+
 signals:
     void prioritySelected(const int priority);
 

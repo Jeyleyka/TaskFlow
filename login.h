@@ -39,6 +39,8 @@ private:
     QVBoxLayout* passwordLayout;
     QVBoxLayout* mainLayout;
 
+    DatabaseManager* dataBase;
+
 private slots:
     bool CheckDataToCorrectly(const QString& name, const QString& password);
 };
