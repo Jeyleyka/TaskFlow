@@ -78,6 +78,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->profileWndWidget = new ProfileWnd(this);
     this->profileWndWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
+    connect(this->profileWndWidget, &ProfileWnd::onLogOut, this, &MainWindow::handleLogOut);
+
     connect(this->profileWndWidget, &ProfileWnd::switchToIndex, this, [this] {
         this->stackedWidget->setCurrentIndex(0);
     });
@@ -114,6 +116,18 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() {}
+
+void MainWindow::handleLogOut() {
+    trayIcon->hide();
+    delete trayIcon;
+    this->close();
+
+    Login* login = new Login();
+    login->show(); // Показываем LoginWindow
+
+    // Чтобы не было утечек
+    connect(login, &Login::destroyed, login, &QObject::deleteLater);
+}
 
 void MainWindow::closeEvent(QCloseEvent* event) {
     event->ignore();

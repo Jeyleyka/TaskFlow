@@ -8,12 +8,22 @@
 QSqlDatabase DatabaseManager::db;
 
 bool DatabaseManager::initializeDatabase() {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("tasks.db");
-
-    if (!db.open()) {
-        qDebug() << "Ошибка открытия БД:" << db.lastError().text();
-        return false;
+    if (!QSqlDatabase::contains("qt_sql_default_connection")) {
+        QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
+        db.setDatabaseName("tasks.db");
+        if (!db.open()) {
+            qDebug() << "Не удалось открыть базу данных:" << db.lastError().text();
+        } else {
+            qDebug() << "База данных успешно открыта";
+        }
+    } else {
+        // Соединение уже существует, можно просто убедиться, что оно открыто
+        QSqlDatabase db = QSqlDatabase::database("qt_sql_default_connection");
+        if (!db.isOpen()) {
+            if (!db.open()) {
+                qDebug() << "Не удалось повторно открыть базу данных:" << db.lastError().text();
+            }
+        }
     }
 
     QSqlQuery query;

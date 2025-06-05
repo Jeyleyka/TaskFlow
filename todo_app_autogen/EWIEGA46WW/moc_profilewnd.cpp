@@ -46,6 +46,7 @@ template <> constexpr inline auto ProfileWnd::qt_create_metaobjectdata<qt_meta_t
         "switchToFocus",
         "onChangeImg",
         "pixmap",
+        "onLogOut",
         "initTasksStatus",
         "updateTasksData"
     };
@@ -61,10 +62,12 @@ template <> constexpr inline auto ProfileWnd::qt_create_metaobjectdata<qt_meta_t
         QtMocHelpers::SignalData<void(QPixmap)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QPixmap, 6 },
         }}),
+        // Signal 'onLogOut'
+        QtMocHelpers::SignalData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
         // Slot 'initTasksStatus'
-        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPublic, QMetaType::Void),
-        // Slot 'updateTasksData'
         QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPublic, QMetaType::Void),
+        // Slot 'updateTasksData'
+        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPublic, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -92,8 +95,9 @@ void ProfileWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 1: _t->switchToCalendar(); break;
         case 2: _t->switchToFocus(); break;
         case 3: _t->onChangeImg((*reinterpret_cast< std::add_pointer_t<QPixmap>>(_a[1]))); break;
-        case 4: _t->initTasksStatus(); break;
-        case 5: _t->updateTasksData(); break;
+        case 4: _t->onLogOut(); break;
+        case 5: _t->initTasksStatus(); break;
+        case 6: _t->updateTasksData(); break;
         default: ;
         }
     }
@@ -105,6 +109,8 @@ void ProfileWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         if (QtMocHelpers::indexOfMethod<void (ProfileWnd::*)()>(_a, &ProfileWnd::switchToFocus, 2))
             return;
         if (QtMocHelpers::indexOfMethod<void (ProfileWnd::*)(QPixmap )>(_a, &ProfileWnd::onChangeImg, 3))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (ProfileWnd::*)()>(_a, &ProfileWnd::onLogOut, 4))
             return;
     }
 }
@@ -128,14 +134,14 @@ int ProfileWnd::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 7)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 7;
     }
     return _id;
 }
@@ -162,5 +168,11 @@ void ProfileWnd::switchToFocus()
 void ProfileWnd::onChangeImg(QPixmap _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
+}
+
+// SIGNAL 4
+void ProfileWnd::onLogOut()
+{
+    QMetaObject::activate(this, &staticMetaObject, 4, nullptr);
 }
 QT_WARNING_POP

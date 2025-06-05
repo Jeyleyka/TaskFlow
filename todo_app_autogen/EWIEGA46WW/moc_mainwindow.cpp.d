@@ -821,12 +821,16 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_mainwindow.cpp: D:/Work/todo_ap
   D:/Work/todo_app/choosecategory.h \
   D:/Work/todo_app/choosepriority.h \
   D:/Work/todo_app/circulartimerwidget.h \
+  D:/Work/todo_app/createaccount.h \
   D:/Work/todo_app/database.h \
   D:/Work/todo_app/deletebuttondelegate.h \
   D:/Work/todo_app/edittask.h \
   D:/Work/todo_app/flowlayout.h \
   D:/Work/todo_app/focusmodewnd.h \
   D:/Work/todo_app/indexwnd.h \
+  D:/Work/todo_app/intro.h \
+  D:/Work/todo_app/login.h \
+  D:/Work/todo_app/mainwindow.h \
   D:/Work/todo_app/navigationbar.h \
   D:/Work/todo_app/priorityitemwidget.h \
   D:/Work/todo_app/profilesettingswidget.h \

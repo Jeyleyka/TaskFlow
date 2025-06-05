@@ -9594,12 +9594,15 @@ D:/Work/todo_app/mainwindow.h
  mdp:D:/Work/todo_app/choosecategory.h
  mdp:D:/Work/todo_app/choosepriority.h
  mdp:D:/Work/todo_app/circulartimerwidget.h
+ mdp:D:/Work/todo_app/createaccount.h
  mdp:D:/Work/todo_app/database.h
  mdp:D:/Work/todo_app/deletebuttondelegate.h
  mdp:D:/Work/todo_app/edittask.h
  mdp:D:/Work/todo_app/flowlayout.h
  mdp:D:/Work/todo_app/focusmodewnd.h
  mdp:D:/Work/todo_app/indexwnd.h
+ mdp:D:/Work/todo_app/intro.h
+ mdp:D:/Work/todo_app/login.h
  mdp:D:/Work/todo_app/mainwindow.h
  mdp:D:/Work/todo_app/navigationbar.h
  mdp:D:/Work/todo_app/priorityitemwidget.h

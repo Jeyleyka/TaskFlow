@@ -37,6 +37,7 @@ signals:
     void switchToCalendar();
     void switchToFocus();
     void onChangeImg(QPixmap pixmap);
+    void onLogOut();
 
 private:
     NavigationBar* navBar;

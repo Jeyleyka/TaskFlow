@@ -149,6 +149,10 @@ ProfileWnd::ProfileWnd(QWidget* parent)
     this->logOutBtn->setText(tr("Log out"));
     this->logOutBtn->setStyleSheet("background-color: transparent; border: none; color: #FF3838");
 
+    connect(this->logOutBtn, &QPushButton::clicked, this, [this] {
+        emit this->onLogOut();
+    });
+
     this->mainLayout->addLayout(centerLayout);
     this->mainLayout->addWidget(this->logOutBtn);
 

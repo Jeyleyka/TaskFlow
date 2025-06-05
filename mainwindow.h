@@ -6,6 +6,7 @@
 #include "indexwnd.h"
 #include "focusmodewnd.h"
 #include "profilewnd.h"
+#include "login.h"
 
 #include <QMainWindow>
 #include <QTableView>
@@ -41,6 +42,9 @@ public:
     // void initNavigationBar();
 
     void onDeleteTask(const int row);
+
+public slots:
+    void handleLogOut();
 
 protected:
     void closeEvent(QCloseEvent* event) override;
