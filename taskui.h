@@ -29,7 +29,9 @@ public:
     void setDesc(QString& newDesc);
     void setCategory(QString name, QColor color, QIcon icon, int width, int height);
     void setPriority(QString priority) const;
+    void setCompleted(bool completed);
 
+    int getId() const;
     QString getTitle() const;
     QString getCategoryName() const;
     QColor getCategoryColor() const;
@@ -40,8 +42,11 @@ public:
 
 signals:
     void taskClicked();
-    void onUpdateTaskToComplete();
-    void onUpdateTaskToNotComplete();
+    void onUpdateTaskToComplete(const int taskId, bool completed);
+    void taskCreatedInIndex(const QString name, const QString desc, const QString dueDate, const int priority, const QString catName, QColor catColor,
+                            QIcon catIco, const int id, const int completed);
+    void taskCreatedInCalendar(const QString name, const QString desc, const QString dueDate, const int priority, const QString catName, QColor catColor,
+                               QIcon catIco, const int id, const int completed);
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
@@ -65,7 +70,8 @@ private:
     int counter;
     int priority;
     int taskID;
-    int completed;
+
+    bool completed;
 
     void updateData();
 };

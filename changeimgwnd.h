@@ -36,6 +36,7 @@ private:
     QFrame* line;
 
     QPushButton* importBtn;
+    QPushButton* closeBtn;
 
     QVBoxLayout* mainLayout;
 

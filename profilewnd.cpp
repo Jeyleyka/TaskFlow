@@ -305,8 +305,6 @@ void ProfileWnd::updateTasksData() {
 //                 });
 //             });
 //             // this->model->addTask(task);
-//         } else {
-//             QMessageBox::warning(this, "Error", "Failed to save task to database....");
 //         }
 
 //         this->dialog->deleteLater();

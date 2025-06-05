@@ -11,6 +11,7 @@
 #include "profilewnd.h"
 #include "UserSession.h"
 #include "categoryeditor.h"
+#include "taskmanager.h"
 
 #include <QWidget>
 
@@ -19,7 +20,7 @@ class IndexWnd : public QWidget
 {
     Q_OBJECT
 public:
-    IndexWnd(QWidget* parent = nullptr);
+    explicit IndexWnd(TaskManager* taskManager, QWidget* parent = nullptr);
     ~IndexWnd();
 
     // Initialization
@@ -48,6 +49,8 @@ private:
     TaskDialog* dialog = nullptr;
 
     TaskModel* model;
+
+    TaskManager* taskManager;
 
     ProfileWnd* profile;
 
@@ -83,6 +86,11 @@ private:
     QHBoxLayout* titleLayout;
 
     void searchTaskFilter(const QString& title);
+
+private slots:
+    void onTaskCreated(const Task& task);
+    void onTaskUpdated(const Task& task);
+    void onTaskDeleted(const int taskId);
 };
 
 #endif // INDEXWND_H

@@ -3,7 +3,7 @@
 TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                QString categoryName, QColor categoryColor, QIcon categoryIcon, int id,
                int completed, QWidget* parent)
-    : QWidget(parent), createDate(createData), counter(completed), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(0), taskID(id)
+    : QWidget(parent), createDate(createData), counter(completed), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(false), taskID(id)
 {
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
@@ -44,17 +44,16 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
             this->circle->setIcon(QIcon(":/icons/blue-circle.png"));
             this->circle->setIconSize(QSize(24,24));
             this->counter--;
-            this->completed = 0;
-            this->updateData();
-            emit onUpdateTaskToComplete();
+            this->completed = false;
         } else {
             this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
             this->circle->setIconSize(QSize(24,24));
             this->counter++;
-            this->completed = 1;
-            this->updateData();
-            emit onUpdateTaskToNotComplete();
+            this->completed = true;
         }
+
+        this->updateData();
+        emit onUpdateTaskToComplete(this->taskID, !this->completed);
     });
 
     this->categoryLabel = new QLabel(categoryName);
@@ -125,6 +124,24 @@ void TaskUI::setCategory(QString name, QColor color, QIcon icon, int width, int 
 
 void TaskUI::setPriority(QString priority) const {
     this->showDescription->setText(priority);
+}
+
+void TaskUI::setCompleted(bool completed) {
+    this->completed = completed;
+
+    if (this->completed)
+    {
+        this->circle->setIcon(QIcon(":/icons/blue-circle.png"));
+        this->circle->setIconSize(QSize(24,24));
+    } else
+    {
+        this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
+        this->circle->setIconSize(QSize(24,24));
+    }
+}
+
+int TaskUI::getId() const {
+    return this->taskID;
 }
 
 QString TaskUI::getTitle() const {

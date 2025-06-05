@@ -31,7 +31,7 @@ ChangeAccountNameWnd::ChangeAccountNameWnd(QWidget* parent)
 
     connect(this->edit, &QPushButton::clicked, this, [this] {
         if (this->newUsername->text().isEmpty()) {
-            QMessageBox::warning(this, "Error", "New username must not be empty!");
+            QMessageBox::warning(this, tr("Error"), tr("New username must not be empty!"));
             return;
         }
 
@@ -57,19 +57,24 @@ ChangeAccountNameWnd::~ChangeAccountNameWnd() {}
 void ChangeAccountNameWnd::changeNameInDB() {
     QSqlQuery query;
 
-    if (query.exec("SELECT name FROM user LIMIT 1")) {
+    query.prepare("SELECT id, name FROM users WHERE id = :id");
+    query.bindValue(":id", UserSession::getUserId());
+
+    if (query.exec()) {
         if (query.next()) {
             this->oldName = query.value("name").toString();
 
             qDebug() << "old name:" << query.value("name").toString();
             qDebug() << "new name: " << this->newUsername->text().trimmed();
         }
-    }
+    } else
+        qDebug() << "SQL error: " << query.lastError();
 
     if (this->newUsername->text().trimmed() != this->oldName.trimmed())
     {
-        query.prepare("UPDATE user SET name = :name");
+        query.prepare("UPDATE users SET name = :name WHERE id = :id");
 
+        query.bindValue(":id", UserSession::getUserId());
         query.bindValue(":name", this->newUsername->text());
 
         if (!query.exec()) {
@@ -77,11 +82,11 @@ void ChangeAccountNameWnd::changeNameInDB() {
         }
     } else
     {
-        QMessageBox::warning(this, "Error", "New name matches current name, change name");
+        QMessageBox::warning(this, tr("Error"), tr("New name matches current name"));
         return;
     }
 
-    QMessageBox::warning(this, "Success", "New name is saved");
+    QMessageBox::warning(this, tr("Success"), tr("New name is saved"));
 
     emit this->onUpdateName();
     this->close();

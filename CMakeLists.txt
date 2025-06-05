@@ -58,6 +58,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         UserSession.cpp
         appicon.rc
         changelanguagewnd.h changelanguagewnd.cpp
+        taskmanager.h taskmanager.cpp
     )
 endif()
 

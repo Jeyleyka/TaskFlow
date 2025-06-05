@@ -119,7 +119,7 @@ void ChooseCategory::addCategory(const QString &name, const QColor &color, const
     }
 
     if (checkQuery.next() && checkQuery.value(0).toInt() > 0) {
-        QMessageBox::warning(this, "Duplicate Category", "Category with this name already exists.");
+        QMessageBox::warning(this, tr("Duplicate Category"), tr("Category with this name already exists"));
         return; // Не добавляем дубликат
     }
 

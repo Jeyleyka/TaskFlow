@@ -85,13 +85,13 @@ CreateAccount::CreateAccount(QWidget* parent)
     connect(this->loginBtn, &QPushButton::clicked, this, [this] {
         if (this->usernameEdit->text().isEmpty() || this->passwordEdit->text().isEmpty())
         {
-            QMessageBox::warning(this, "Warning", "Area must not be empty!");
+            QMessageBox::warning(this, tr("Warning"), tr("Area must not be empty!"));
             return;
         }
 
         if (this->confirmPassEdit->text() != this->passwordEdit->text())
         {
-            QMessageBox::warning(this, "Warning", "Passwords do not match!");
+            QMessageBox::warning(this, tr("Warning"), tr("Passwords do not match!"));
             return;
         }
 

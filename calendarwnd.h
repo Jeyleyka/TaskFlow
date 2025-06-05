@@ -9,14 +9,16 @@
 #include "taskinfo.h"
 #include "navigationbar.h"
 #include "calendarwidget.h"
+#include "taskmanager.h"
 
 #include <QWidget>
+#include <QShowEvent>
 
 class CalendarWnd : public QWidget
 {
     Q_OBJECT
 public:
-    CalendarWnd(QWidget* parent = nullptr);
+    CalendarWnd(TaskManager* taskManager, QWidget* parent = nullptr);
     ~CalendarWnd();
 
     // Initialization
@@ -31,6 +33,9 @@ signals:
     void switchToFocus();
     void switchToProfile();
 
+// protected:
+//     void showEvent(QShowEvent* event) override;
+
 private:
     CalendarWidget* calendarWidget;
 
@@ -41,6 +46,8 @@ private:
     TaskDialog* dialog = nullptr;
 
     TaskModel* model;
+
+    TaskManager* taskManager;
 
     DatabaseManager* dataBase;
 
@@ -71,5 +78,11 @@ private:
     QWidget* btnsContainer;
 
     void showTaskDialog();
+
+private slots:
+    void clearTasksUI();
+    void onTaskCreated(const Task& task);
+    void onTaskUpdated(const Task& task);
+    void onTaskDeleted(const int taskId);
 };
 #endif // CALENDARWND_H

@@ -72,7 +72,7 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
         if (this->titleLineEdit->text().isEmpty() || this->descriptionTextEdit->toPlainText().isEmpty()
             || this->priorityWidget->getPriority() == 0 || this->itemWidget->getName() == "")
         {
-            QMessageBox::warning(this, "Error", "Not all fields are recorded");
+            QMessageBox::warning(this, tr("Error"), tr("Not all fields are recorded"));
             return;
         }
 
@@ -109,11 +109,6 @@ Task TaskDialog::getTask() const {
 CategoryItemWidget* TaskDialog::getSelectedCategoryWidget() {
     if (this->itemWidget)
         return this->itemWidget;
-    else
-    {
-        QMessageBox::warning(this, "Error", "widget is invalid");
-        return this->itemWidget;
-    }
 }
 
 void TaskDialog::hideWithAnim() {

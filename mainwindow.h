@@ -48,6 +48,8 @@ protected:
 private:
     ChooseCategory* chooseCategory;
 
+    TaskManager* taskManager;
+
     CalendarWnd* calendarWndWidget;
 
     IndexWnd* indexWndWidget;

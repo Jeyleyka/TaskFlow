@@ -143,19 +143,23 @@ void FocusModeWnd::showTaskDialog() {
             this->tasks.append(taskUI);
             this->tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
 
-            connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI] {
-                this->tasks.removeOne(taskUI);
-                this->completedTasks.append(taskUI);
-                tasksLayout->removeWidget(taskUI);
-                this->completeTaskslayout->addWidget(taskUI, 1, Qt::AlignHCenter);
-            });
-
-            connect(taskUI, &TaskUI::onUpdateTaskToNotComplete, this, [this, taskUI] {
-                this->completedTasks.removeOne(taskUI);
-                this->tasks.append(taskUI);
-                this->completeTaskslayout->removeWidget(taskUI);
-                tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
-            });
+            // connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI](const int taskId, bool completed) {
+            //     if (completed)
+            //     {
+            //         this->tasks.removeOne(taskUI);
+            //         this->completedTasks.append(taskUI);
+            //         tasksLayout->removeWidget(taskUI);
+            //         this->completeTaskslayout->addWidget(taskUI, 1, Qt::AlignHCenter);
+            //     } else
+            //     {
+            //         this->completedTasks.removeOne(taskUI);
+            //         this->tasks.append(taskUI);
+            //         this->completeTaskslayout->removeWidget(taskUI);
+            //         tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
+            //     }
+            //     emit updateTasks();
+            //     this->taskManager->setTaskCompleted(taskId, completed);
+            // });
 
             connect(taskUI, &TaskUI::taskClicked, this, [=] {
                 TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);
@@ -178,8 +182,6 @@ void FocusModeWnd::showTaskDialog() {
                 });
             });
             // this->model->addTask(task);
-        } else {
-            QMessageBox::warning(this, "Error", "Failed to save task to database....");
         }
 
         this->dialog->deleteLater();

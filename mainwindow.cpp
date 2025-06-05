@@ -6,6 +6,8 @@ MainWindow::MainWindow(QWidget *parent)
     this->hide(); // скрываем главное окно
     this->setWindowIcon(QIcon(":/icons/logo.png"));
 
+    DatabaseManager* db = new DatabaseManager();
+
     // Иконка в трее
     this->trayIcon = new QSystemTrayIcon(QIcon(":/icons/logo.png"), this);
 
@@ -23,10 +25,12 @@ MainWindow::MainWindow(QWidget *parent)
     trayIcon->setToolTip("Task Flow");
     trayIcon->show();
 
+    this->taskManager = new TaskManager(db);
+
     this->stackedWidget = new QStackedWidget(this);
 
     // ---------- Инициализация страниц ----------
-    this->calendarWndWidget = new CalendarWnd(this);
+    this->calendarWndWidget = new CalendarWnd(this->taskManager, this);
     this->calendarWndWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     connect(this->calendarWndWidget, &CalendarWnd::switchToIndex, this, [this] {
@@ -41,7 +45,7 @@ MainWindow::MainWindow(QWidget *parent)
         this->stackedWidget->setCurrentIndex(3);
     });
 
-    this->indexWndWidget = new IndexWnd(this);
+    this->indexWndWidget = new IndexWnd(this->taskManager, this);
     this->indexWndWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 
     connect(this->indexWndWidget, &IndexWnd::switchToCalendar, this, [this] {
@@ -132,7 +136,6 @@ void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason) {
 //     // Проверка ID перед удалением
 //     if (this->model->taskAt(row).id <= 0) {
 //         qDebug() << "Ошибка: Невалидный ID задачи" << this->model->taskAt(row).id;
-//         QMessageBox::warning(this, "Error", "Invalid task ID");
 //         return;
 //     }
 
@@ -142,7 +145,5 @@ void MainWindow::onTrayIconActivated(QSystemTrayIcon::ActivationReason reason) {
 //     if (this->dataBase->deleteTaskFromDatabase(this->model->taskAt(row).id)) {
 //         qDebug() << "Задача с ID" << this->model->taskAt(row).id << "успешно удалена из базы данных";
 //         this->model->removeTask(row);  // Убираем задачу из модели
-//     } else {
-//         QMessageBox::warning(this, "Error", "Failed to remove task from database");
 //     }
 // }

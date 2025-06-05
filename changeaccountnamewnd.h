@@ -13,6 +13,8 @@
 #include <QSqlError>
 #include <QMessageBox>
 
+#include "UserSession.h"
+
 class ChangeAccountNameWnd : public QDialog
 {
     Q_OBJECT

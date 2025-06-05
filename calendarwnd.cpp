@@ -1,8 +1,17 @@
 #include "calendarwnd.h"
 
-CalendarWnd::CalendarWnd(QWidget* parent)
-    : QWidget(parent)
+CalendarWnd::CalendarWnd(TaskManager* taskManager, QWidget* parent)
+    : QWidget(parent), taskManager(taskManager)
 {
+    if (!this->taskManager) {
+        qWarning() << "CalendarWnd: TaskManager is null!";
+        return;
+    }
+
+    connect(taskManager, &TaskManager::taskCreated, this, &CalendarWnd::onTaskCreated);
+    connect(taskManager, &TaskManager::taskUpdated, this, &CalendarWnd::onTaskUpdated);
+    connect(taskManager, &TaskManager::taskDeleted, this, &CalendarWnd::onTaskDeleted);
+
     // Основной layout
     QVBoxLayout* layout = new QVBoxLayout(this);
     layout->setContentsMargins(0, 20, 0, 0);
@@ -33,41 +42,10 @@ CalendarWnd::CalendarWnd(QWidget* parent)
     this->tasksLayout->setSpacing(15);
     this->tasksLayout->setContentsMargins(0, 30, 0, 0);
 
-    QList<Task> tasks = this->dataBase->loadTasksFromDatabase();
+    QList<Task> tasks = this->taskManager->getAllTasks();
+
     for (const Task& task : tasks) {
-        TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate),
-                                    task.priority, task.categoryName, task.categoryColor, task.categoryIcon,
-                                    task.id, task.completed, this);
-
-        if (taskUI->getDate().contains(tr("Today")))
-        {
-            taskUI->setFixedSize(920, 98);
-            this->tasks.append(taskUI);
-            tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
-        } else
-        {
-            taskUI->deleteLater();
-            taskUI = nullptr;
-        }
-
-        connect(taskUI, &TaskUI::taskClicked, this, [=] {
-            TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description,
-                                              task.formatDateTime(task.dueDate), taskUI, this);
-            taskInfo->setFixedSize(500, 600);
-            taskInfo->show();
-
-            connect(taskInfo, &TaskInfo::onChangeUI, this, [=] {
-                if (!taskUI || !taskInfo) return;
-
-                QString title = taskInfo->getTitle();
-
-                taskUI->setTitle(title);
-                taskUI->setCategory(taskInfo->getCategoryName(),
-                                    taskInfo->getCategoryColor(),
-                                    taskInfo->getCategoryIcon(), 14, 14);
-                taskUI->setPriority(taskInfo->getPriority());
-            });
-        });
+        this->onTaskCreated(task);
     }
 
     this->navBar = new NavigationBar(this);
@@ -147,7 +125,6 @@ void CalendarWnd::onDeleteTask(const int row) {
     // Проверка ID перед удалением
     if (this->model->taskAt(row).id <= 0) {
         qDebug() << "Ошибка: Невалидный ID задачи" << this->model->taskAt(row).id;
-        QMessageBox::warning(this, "Error", "Invalid task ID");
         return;
     }
 
@@ -157,8 +134,28 @@ void CalendarWnd::onDeleteTask(const int row) {
     if (this->dataBase->deleteTaskFromDatabase(this->model->taskAt(row).id)) {
         qDebug() << "Задача с ID" << this->model->taskAt(row).id << "успешно удалена из базы данных";
         this->model->removeTask(row);  // Убираем задачу из модели
-    } else {
-        QMessageBox::warning(this, "Error", "Failed to remove task from database");
+    }
+}
+
+// void CalendarWnd::showEvent(QShowEvent *event) {
+//     QWidget::showEvent(event);
+
+//     const QList<Task> tasks = this->taskManager->getAllTasks();
+//     this->clearTasksUI();
+
+//     for (const Task& task : tasks)
+//         this->onTaskCreated(task);
+// }
+
+void CalendarWnd::clearTasksUI() {
+    // Удаляем все виджеты из layout
+    QLayoutItem* item;
+    while ((item = tasksLayout->takeAt(0)) != nullptr) {
+        if (QWidget* widget = item->widget()) {
+            widget->setParent(nullptr); // отключить от layout
+            widget->deleteLater();      // удалить безопасно
+        }
+        delete item; // удалить сам QLayoutItem
     }
 }
 
@@ -191,45 +188,75 @@ void CalendarWnd::showTaskDialog() {
 
     connect(this->dialog, &TaskDialog::accepted, this, [this]() {
         Task task = this->dialog->getTask();
-        if (this->dataBase->insertTaskToDatabase(task)) {
-            QString formattedDate = task.formatDateTime(task.dueDate);
-
-            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.priority, task.categoryName, task.categoryColor, task.categoryIcon, task.id, task.completed, this);
-            taskUI->setFixedSize(920, 100);
-            this->tasks.append(taskUI);
-            this->tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
-
-            connect(taskUI, &TaskUI::taskClicked, this, [=] {
-                TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);
-                taskInfo->setFixedSize(500, 600);
-                taskInfo->show();
-
-                connect(taskInfo, &TaskInfo::onChangeUI, this, [this, taskUI, taskInfo] {
-                    qDebug() << "Signal onChangeUI received";
-
-                    if (!taskUI || !taskInfo) return;
-
-                    QString title = taskInfo->getTitle();
-                    QString desc = taskInfo->getDesc();
-
-                    qDebug() << "Got data:" << title << desc;
-
-                    taskUI->setTitle(title);
-                    taskUI->setCategory(taskInfo->getCategoryName(), taskInfo->getCategoryColor(), taskInfo->getCategoryIcon(), 14,14);
-                    // taskUI->setDesc(desc);
-                });
-            });
-            // this->model->addTask(task);
-        } else {
-            QMessageBox::warning(this, "Error", "Failed to save task to database....");
-        }
-
-        this->dialog->deleteLater();
-        this->dialog = nullptr;
+        this->taskManager->createTask(task);
     });
 
     connect(this->dialog, &TaskDialog::rejected, this, [this]() {
         this->dialog->deleteLater();
         this->dialog = nullptr;
     });
+}
+
+void CalendarWnd::onTaskCreated(const Task &task) {
+    QString formattedDate = task.formatDateTime(task.dueDate);
+
+    if (!formattedDate.contains(tr("Today"))) return;
+
+    TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate),
+                                task.priority, task.categoryName, task.categoryColor, task.categoryIcon,
+                                task.id, task.completed, this);
+
+    // connect(taskUI, &TaskUI::onUpdateTaskToComplete, profile, &ProfileWnd::updateTasksData);
+
+    taskUI->setFixedSize(920, 98);
+    this->tasks.append(taskUI);
+    tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
+
+    connect(taskUI, &TaskUI::taskClicked, this, [=] {
+        TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description,
+                                          task.formatDateTime(task.dueDate), taskUI, this);
+        taskInfo->setFixedSize(500, 600);
+        taskInfo->show();
+
+        connect(taskInfo, &TaskInfo::onChangeUI, this, [=] {
+            if (!taskUI || !taskInfo) return;
+
+            QString title = taskInfo->getTitle();
+
+            taskUI->setTitle(title);
+            taskUI->setCategory(taskInfo->getCategoryName(),
+                                taskInfo->getCategoryColor(),
+                                taskInfo->getCategoryIcon(), 14, 14);
+            taskUI->setPriority(taskInfo->getPriority());
+        });
+    });
+}
+
+void CalendarWnd::onTaskUpdated(const Task &task) {
+    for (TaskUI* taskUI : this->tasks) {
+        if (taskUI->getId() == task.id) {
+            QString title = task.title;
+            taskUI->setTitle(title);
+            taskUI->setPriority(QString::number(task.priority));
+            taskUI->setCategory(task.categoryName, task.categoryColor, task.categoryIcon, 14, 14);
+            taskUI->setCompleted(task.completed);
+            taskUI->update();
+            break;
+        }
+    }
+}
+
+void CalendarWnd::onTaskDeleted(const int taskId) {
+    auto removeTask = [this, taskId](QList<TaskUI*>& list, QVBoxLayout* layout) {
+        for (TaskUI* taskUI : list) {
+            if (taskUI->getId() == taskId) {
+                list.removeOne(taskUI);
+                layout->removeWidget(taskUI);
+                taskUI->deleteLater();
+                break;
+            }
+        }
+    };
+
+    removeTask(this->tasks, this->tasksLayout);
 }

@@ -78,6 +78,36 @@
         <source>Edit</source>
         <translation>Bearbeiten</translation>
     </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="34" />
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="34" />
+        <source>New username must not be empty!</source>
+        <translation>Der neue Name darf nicht leer sein</translation>
+    </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="80" />
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="80" />
+        <source>New name matches current name</source>
+        <translation>Der neue Name stimmt mit dem aktuellen Namen überein</translation>
+    </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="84" />
+        <source>Success</source>
+        <translation>Erfolg</translation>
+    </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="84" />
+        <source>New name is saved</source>
+        <translation>Neuer Name gespeichert</translation>
+    </message>
 </context>
 <context>
     <name>ChangeImgWnd</name>
@@ -90,6 +120,26 @@
         <location filename="../changeimgwnd.cpp" line="23" />
         <source>Import from gallery</source>
         <translation>Aus Galerie importieren</translation>
+    </message>
+    <message>
+        <location filename="../changeimgwnd.cpp" line="34" />
+        <source>No icon selected</source>
+        <translation>Kein Symbol ausgewählt</translation>
+    </message>
+    <message>
+        <location filename="../changeimgwnd.cpp" line="34" />
+        <source>Icon was not changed.</source>
+        <translation>Das Symbol wurde nicht geändert.</translation>
+    </message>
+    <message>
+        <location filename="../changeimgwnd.cpp" line="63" />
+        <source>Success</source>
+        <translation>Erfolg</translation>
+    </message>
+    <message>
+        <location filename="../changeimgwnd.cpp" line="63" />
+        <source>New img is saved</source>
+        <translation>Neues Bild wird gespeichert</translation>
     </message>
 </context>
 <context>
@@ -120,6 +170,36 @@
         <location filename="../changepasswnd.cpp" line="41" />
         <source>Edit</source>
         <translation>Bearbeiten</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="46" />
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="46" />
+        <source>New password must not be empty!</source>
+        <translation>Das neue Passwort darf nicht leer sein!</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="92" />
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="92" />
+        <source>old password is incorrect</source>
+        <translation>Altes Passwort ist falsch</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="96" />
+        <source>Success</source>
+        <translation>Erfolg</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="96" />
+        <source>New password is saved</source>
+        <translation>Das neue Passwort wurde gespeichert!</translation>
     </message>
 </context>
 <context>
@@ -155,6 +235,26 @@
         <location filename="../createaccount.cpp" line="72" />
         <source>Confirm Password</source>
         <translation>Passwort bestätigen</translation>
+    </message>
+    <message>
+        <location filename="../createaccount.cpp" line="88" />
+        <source>Warning</source>
+        <translation>Warnung</translation>
+    </message>
+    <message>
+        <location filename="../createaccount.cpp" line="88" />
+        <source>Area must not be empty!</source>
+        <translation>Bereich darf nicht leer sein!</translation>
+    </message>
+    <message>
+        <location filename="../createaccount.cpp" line="94" />
+        <source>Warning</source>
+        <translation>Warnung</translation>
+    </message>
+    <message>
+        <location filename="../createaccount.cpp" line="94" />
+        <source>Passwords do not match!</source>
+        <translation>Die Passwörter stimmen nicht überein!</translation>
     </message>
     <message>
         <location filename="../createaccount.cpp" line="107" />
@@ -271,9 +371,29 @@
         <translation>Passwort eingeben</translation>
     </message>
     <message>
+        <location filename="../login.cpp" line="72" />
+        <source>Warning</source>
+        <translation>Warnung</translation>
+    </message>
+    <message>
+        <location filename="../login.cpp" line="72" />
+        <source>Area must not be empty!</source>
+        <translation>Bereich darf nicht leer sein!</translation>
+    </message>
+    <message>
         <location filename="../login.cpp" line="83" />
         <source>Don't have an account? Register</source>
         <translation>Noch kein Konto? Registrieren</translation>
+    </message>
+    <message>
+        <location filename="../login.cpp" line="133" />
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../login.cpp" line="133" />
+        <source>Username or password is incorrect!</source>
+        <translation>Benutzername oder Passwort sind falsch!</translation>
     </message>
 </context>
 <context>
@@ -398,6 +518,16 @@
         <source>Category: </source>
         <translation>Kategorie:</translation>
     </message>
+    <message>
+        <location filename="../taskdialog.cpp" line="75" />
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <location filename="../taskdialog.cpp" line="75" />
+        <source>Not all fields are recorded</source>
+        <translation>Nicht alle Felder werden erfasst</translation>
+    </message>
 </context>
 <context>
     <name>TaskInfo</name>
@@ -485,6 +615,16 @@
         <location filename="../choosecategory.cpp" line="45" />
         <source>Add Category</source>
         <translation type="unfinished">Agregar categoría</translation>
+    </message>
+    <message>
+        <location filename="../choosecategory.cpp" line="122" />
+        <source>Duplicate Category</source>
+        <translation type="unfinished">Doppelte Kategorie</translation>
+    </message>
+    <message>
+        <location filename="../choosecategory.cpp" line="122" />
+        <source>Category with this name already exists</source>
+        <translation type="unfinished">Kategorie mit diesem Namen existiert bereits</translation>
     </message>
 </context>
 <context>

@@ -114,6 +114,44 @@ bool DatabaseManager::deleteTaskFromDatabase(int id)
     return true;
 }
 
+bool DatabaseManager::updateTaskInDatabase(Task& task) {
+    QSqlQuery query;
+
+    query.prepare(R"(
+        UPDATE tasks
+        SET title = :title,
+            description = :description,
+            due_date = :due_date,
+            is_completed = :is_completed,
+            category_name = :category_name,
+            category_color = :category_color,
+            category_icon = :category_icon
+        WHERE id = :id
+    )");
+
+    query.bindValue(":title", task.title);
+    query.bindValue(":description", task.description);
+    query.bindValue(":due_date", task.dueDate.toString(Qt::ISODate));
+    query.bindValue(":is_completed", task.completed);
+    query.bindValue(":category_name", task.categoryName);
+    query.bindValue(":category_color", task.categoryColor.name()); // сохраняем как строку "#RRGGBB"
+
+    QByteArray iconData;
+    QBuffer buffer(&iconData);
+    buffer.open(QIODevice::WriteOnly);
+    task.categoryIcon.pixmap(32, 32).save(&buffer, "PNG");
+    query.bindValue(":category_icon", iconData);
+
+    query.bindValue(":id", task.id);
+
+    if (!query.exec()) {
+        qDebug() << "Ошибка обновления задачи:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+}
+
 QList<Task> DatabaseManager::loadTasksFromDatabase() {
     QList<Task> tasks;
     QSqlQuery query;

@@ -43,7 +43,7 @@ ChangePass::ChangePass(QWidget* parent)
 
     connect(this->edit, &QPushButton::clicked, this, [this] {
         if (this->newPasswordEdit->text().isEmpty()) {
-            QMessageBox::warning(this, "Error", "New password must not be empty!");
+            QMessageBox::warning(this, tr("Error"), tr("New password must not be empty!"));
             return;
         }
 
@@ -72,7 +72,10 @@ ChangePass::~ChangePass() {}
 void ChangePass::changePassInDB() {
     QSqlQuery query;
 
-    if (query.exec("SELECT password FROM user LIMIT 1")) {
+    query.prepare("SELECT password FROM users WHERE id = :id");
+    query.bindValue(":id", UserSession::getUserId());
+
+    if (query.exec()) {
         if (query.next()) {
             this->oldPass = query.value("password").toString();
         }
@@ -80,19 +83,28 @@ void ChangePass::changePassInDB() {
 
     if (this->oldPasswordEdit->text().trimmed() == this->oldPass.trimmed())
     {
-        query.prepare("UPDATE user SET password = :password");
+        if (this->newPasswordEdit->text() != this->oldPass.trimmed())
+        {
+            query.prepare("UPDATE user SET password = :password WHERE id = :id");
 
-        query.bindValue(":password", this->newPasswordEdit->text());
+            query.bindValue(":id", UserSession::getUserId());
+            query.bindValue(":password", this->newPasswordEdit->text());
+        } else
+        {
+            QMessageBox::warning(this, tr("Warning"), tr("The new password matches the current password"));
+            return;
+        }
+
 
         if (!query.exec()) {
             qDebug() << "Ошибка при обновлении задачи:" << query.lastError().text();
         }
     } else
     {
-        QMessageBox::warning(this, "Error", "old password is incorrect");
+        QMessageBox::warning(this, tr("Error"), tr("old password is incorrect"));
         return;
     }
 
-    QMessageBox::warning(this, "Success", "New password is saved");
+    QMessageBox::warning(this, tr("Success"), tr("New password is saved"));
     this->close();
 }
