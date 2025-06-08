@@ -11,6 +11,21 @@ NavigationBar::NavigationBar(QWidget* parent)
     this->container->setMaximumWidth(QWIDGETSIZE_MAX);
     this->container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
 
+    ThemeManager::instance().loadTheme();
+
+    QColor color = ThemeManager::instance().navbarColor();
+    this->container->setStyleSheet("background-color: " + color.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().navbarColor();
+        this->container->setStyleSheet("background-color: " + color.name());
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::navbarChanged, this, [this](const QColor& color) {
+        QString style = QString("background-color: %1").arg(color.name());
+        this->container->setStyleSheet(style);
+    });
+
     this->indexBtn = new QPushButton(this);
     this->indexBtn->setIcon(QIcon(":/icons/home.png"));
     this->indexBtn->setIconSize(QSize(26,26));
@@ -51,6 +66,14 @@ NavigationBar::NavigationBar(QWidget* parent)
     this->addTaskButton->setIcon(QIcon(":/icons/plus.png"));
     this->addTaskButton->setIconSize(QSize(30,30));
     this->addTaskButton->setStyleSheet("width: 64px; height: 64px; background-color: #8687E7; border-radius: 32px;");
+
+    QColor btnColor = ThemeManager::instance().buttonColor();
+    this->addTaskButton->setStyleSheet("width: 64px; height: 64px; border-radius: 32px; background-color: " + btnColor.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().buttonColor();
+        this->addTaskButton->setStyleSheet("width: 64px; height: 64px; border-radius: 32px; background-color: " + color.name());
+    });
 
     connect(this->addTaskButton, &QPushButton::clicked, this, [this] {
         emit this->onShowTaskDialog();

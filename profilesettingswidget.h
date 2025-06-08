@@ -7,6 +7,8 @@
 #include <QLabel>
 #include <QMouseEvent>
 
+#include "thememanager.h"
+
 class ProfileSettingsWidget : public QWidget
 {
     Q_OBJECT

@@ -60,12 +60,42 @@ FocusModeWnd::FocusModeWnd(QWidget* parent)
     this->startStopFocusBtn = new QPushButton(tr("Start Focusing"), this);
     this->startStopFocusBtn->setStyleSheet("width: 200px; height: 40px; background-color: #8687E7; margin-top: 20px;");
 
+    ThemeManager::instance().loadTheme();
+
+    // Обновить после загрузки вручную:
+    QColor color = ThemeManager::instance().buttonColor();
+    this->startStopFocusBtn->setStyleSheet("width: 200px; height: 40px; margin-top: 20px; background-color: " + color.name());
+
+    // Подключение на будущее
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().buttonColor();
+        this->startStopFocusBtn->setStyleSheet("width: 200px; height: 40px; margin-top: 20px; background-color: " + color.name());
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::btnChanged, this, [this](const QColor& color) {
+        QString style = QString("width: 200px; height: 40px; background-color: #8687E7; margin-top: 20px; background-color: %1").arg(color.name());
+        this->startStopFocusBtn->setStyleSheet(style);
+    });
+
     connect(this->startStopFocusBtn, &QPushButton::clicked, this, &FocusModeWnd::startStopFocus);
 
     this->appList = new QListWidget(this);
     this->appList->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->appList->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
     this->appList->setVerticalScrollMode(QAbstractItemView::ScrollPerPixel);
+
+    QColor bgColor = ThemeManager::instance().backgroundColor();
+    this->appList->setStyleSheet("background-color: " + bgColor.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().backgroundColor();
+        this->appList->setStyleSheet("background-color: " + color.name());
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::bgChanged, this, [this](const QColor& color) {
+        QString style = QString("background-color: %1").arg(color.name());
+        this->appList->setStyleSheet(style);
+    });
 
     setStyleSheet(R"(
         QListWidget { background-color: #1e1e1e; border: none; }
@@ -142,24 +172,6 @@ void FocusModeWnd::showTaskDialog() {
             taskUI->setFixedSize(920, 100);
             this->tasks.append(taskUI);
             this->tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
-
-            // connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI](const int taskId, bool completed) {
-            //     if (completed)
-            //     {
-            //         this->tasks.removeOne(taskUI);
-            //         this->completedTasks.append(taskUI);
-            //         tasksLayout->removeWidget(taskUI);
-            //         this->completeTaskslayout->addWidget(taskUI, 1, Qt::AlignHCenter);
-            //     } else
-            //     {
-            //         this->completedTasks.removeOne(taskUI);
-            //         this->tasks.append(taskUI);
-            //         this->completeTaskslayout->removeWidget(taskUI);
-            //         tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
-            //     }
-            //     emit updateTasks();
-            //     this->taskManager->setTaskCompleted(taskId, completed);
-            // });
 
             connect(taskUI, &TaskUI::taskClicked, this, [=] {
                 TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);

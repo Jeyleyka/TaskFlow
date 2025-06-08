@@ -1,7 +1,7 @@
 #include "calendarwnd.h"
 
 CalendarWnd::CalendarWnd(TaskManager* taskManager, QWidget* parent)
-    : QWidget(parent), taskManager(taskManager)
+    : QWidget(parent), taskManager(taskManager), isActive(true), activeButton(nullptr)
 {
     if (!this->taskManager) {
         qWarning() << "CalendarWnd: TaskManager is null!";
@@ -36,6 +36,10 @@ CalendarWnd::CalendarWnd(TaskManager* taskManager, QWidget* parent)
     this->initSortTags();
 
     layout->addWidget(this->btnsContainer, 0, Qt::AlignHCenter);
+
+    connect(&ThemeManager::instance(), &ThemeManager::btnChanged, this, [this](const QColor& color) {
+        this->updateButtonStyles();
+    });
 
     // Layout для задач
     this->tasksLayout = new QVBoxLayout;
@@ -81,15 +85,27 @@ void CalendarWnd::initSortTags() {
     this->btnsContainer = new QWidget(this);
     this->btnsContainer->setStyleSheet("width: 700px; height: 80px; margin-top: 20px; border-radius: 5px; background-color: #363636");
 
+    QColor color = ThemeManager::instance().widgetsColor();
+    this->btnsContainer->setStyleSheet("width: 700px; height: 80px; margin-top: 20px; border-radius: 5px; background-color: " + color.name() + ";");
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().widgetsColor();
+        this->btnsContainer->setStyleSheet("width: 700px; height: 80px; margin-top: 20px; border-radius: 5px; background-color: " + color.name() + ";");
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::widgetsChanged, this, [this](const QColor& color) {
+        this->btnsContainer->setStyleSheet("width: 700px; height: 80px; margin-top: 20px; border-radius: 5px; background-color: " + color.name());
+    });
+
     this->btnsLayout = new QHBoxLayout(this->btnsContainer);
     this->btnsLayout->setContentsMargins(0,20,0,0);
 
     this->todayTasksBtn = new QPushButton(tr("Today"), this);
-    this->todayTasksBtn->setStyleSheet("width: 250px; height: 49px; background-color: #8687E7; margin: 20px;");
+    this->todayTasksBtn->setStyleSheet("width: 250px; height: 49px; background-color: #8182DE; margin: 20px;");
 
     connect(this->todayTasksBtn, &QPushButton::clicked, this, [this] {
-        this->completedTasksBtn->setStyleSheet("width: 250px; height: 49px; border: 1px solid #848484; background-color: transparent; margin: 20px;");
-        this->todayTasksBtn->setStyleSheet("width: 250px; height: 49px; background-color: #8687E7; margin: 20px;");
+        this->currentActiveButton = this->todayTasksBtn;
+        this->updateButtonStyles();
 
         for (TaskUI* task : this->tasks) {
             if (task->getDate().contains(tr("Today")))
@@ -103,8 +119,8 @@ void CalendarWnd::initSortTags() {
     this->completedTasksBtn->setStyleSheet("width: 250px; height: 49px; border: 1px solid #848484; background-color: transparent; margin: 20px;");
 
     connect(this->completedTasksBtn, &QPushButton::clicked, this, [this] {
-        this->todayTasksBtn->setStyleSheet("width: 250px; height: 49px; border: 1px solid #848484; background-color: transparent; margin: 20px;");
-        this->completedTasksBtn->setStyleSheet("width: 250px; height: 49px; background-color: #8687E7; margin: 20px;");
+        this->currentActiveButton = this->completedTasksBtn;
+        this->updateButtonStyles();
 
         for (TaskUI* task : this->tasks) {
             if (task->getCompleted())
@@ -113,6 +129,13 @@ void CalendarWnd::initSortTags() {
                 task->hide();
         }
     });
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, &CalendarWnd::updateButtonStyles);
+
+    this->currentActiveButton = this->todayTasksBtn;
+    this->allTaskButtons = { this->todayTasksBtn, this->completedTasksBtn };
+    ThemeManager::instance().loadTheme();
+    this->updateButtonStyles();
 
     this->btnsLayout->addWidget(this->todayTasksBtn);
     this->btnsLayout->addWidget(this->completedTasksBtn);
@@ -196,6 +219,21 @@ void CalendarWnd::showTaskDialog() {
         this->dialog = nullptr;
     });
 }
+
+void CalendarWnd::updateButtonStyles() {
+    QColor activeColor = ThemeManager::instance().buttonColor();
+    QString activeStyle = QString(
+                              "width: 250px; height: 49px; background-color: %1; margin: 20px;"
+                              ).arg(activeColor.name());
+
+    QString inactiveStyle =
+        "width: 250px; height: 49px; border: 1px solid #848484; background-color: transparent; margin: 20px;";
+
+    for (QPushButton* btn : this->allTaskButtons) {
+        btn->setStyleSheet(btn == currentActiveButton ? activeStyle : inactiveStyle);
+    }
+}
+
 
 void CalendarWnd::onTaskCreated(const Task &task) {
     QString formattedDate = task.formatDateTime(task.dueDate);

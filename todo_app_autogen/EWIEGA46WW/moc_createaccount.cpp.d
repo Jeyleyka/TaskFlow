@@ -186,6 +186,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_createaccount.cpp: D:/Work/todo
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QCloseEvent \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QColor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QFont \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QIcon \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QKeyEvent \
@@ -807,6 +808,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_createaccount.cpp: D:/Work/todo
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wtypesbase.h \
   D:/Work/todo_app/Task.h \
   D:/Work/todo_app/UserSession.h \
+  D:/Work/todo_app/aboutuswnd.h \
   D:/Work/todo_app/appsettings.h \
   D:/Work/todo_app/appusageitem.h \
   D:/Work/todo_app/appusagetracker.h \
@@ -827,6 +829,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_createaccount.cpp: D:/Work/todo
   D:/Work/todo_app/edittask.h \
   D:/Work/todo_app/flowlayout.h \
   D:/Work/todo_app/focusmodewnd.h \
+  D:/Work/todo_app/helpandfeedbackwnd.h \
   D:/Work/todo_app/indexwnd.h \
   D:/Work/todo_app/intro.h \
   D:/Work/todo_app/login.h \
@@ -840,4 +843,6 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_createaccount.cpp: D:/Work/todo
   D:/Work/todo_app/taskinfo.h \
   D:/Work/todo_app/taskmanager.h \
   D:/Work/todo_app/taskmodel.h \
-  D:/Work/todo_app/taskui.h
+  D:/Work/todo_app/taskui.h \
+  D:/Work/todo_app/themedialog.h \
+  D:/Work/todo_app/thememanager.h

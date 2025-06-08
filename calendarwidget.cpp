@@ -4,6 +4,21 @@ CalendarWidget::CalendarWidget(QWidget* parent)
     : QWidget(parent), currentDate(QDate::currentDate()), selectedDate(QDate::currentDate())
 {
     this->setStyleSheet("margin-top: 10px; background-color: #363636; max-height: 130px;");
+
+    ThemeManager::instance().loadTheme();
+
+    QColor color = ThemeManager::instance().widgetsColor();
+    this->setStyleSheet("margin-top: 10px; max-height: 130px; background-color: " + color.name() + ";");
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().widgetsColor();
+        this->setStyleSheet("margin-top: 10px; max-height: 130px; background-color: " + color.name() + ";");
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::widgetsChanged, this, [this](const QColor& color) {
+        this->setStyleSheet("margin-top: 10px; max-height: 130px; background-color: " + color.name() + ";");
+    });
+
     QWidget* container = new QWidget(this);
     container->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding); // растягивать
 

@@ -12,6 +12,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSize \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QString \
@@ -117,6 +118,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qset.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qsettings.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata_impl.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qsharedpointer.h \
@@ -171,6 +173,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QCloseEvent \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QColor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QIcon \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QKeyEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent \
@@ -783,4 +786,5 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   D:/Work/todo_app/task.h \
   D:/Work/todo_app/taskdialog.h \
   D:/Work/todo_app/taskinfo.h \
-  D:/Work/todo_app/taskui.h
+  D:/Work/todo_app/taskui.h \
+  D:/Work/todo_app/thememanager.h

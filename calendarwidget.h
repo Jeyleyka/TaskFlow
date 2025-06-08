@@ -10,6 +10,8 @@
 #include <QPushButton>
 #include <QLabel>
 
+#include "thememanager.h"
+
 class CalendarWidget : public QWidget
 {
     Q_OBJECT

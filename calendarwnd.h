@@ -67,6 +67,10 @@ private:
     QPushButton* profileImageBtn;
     QPushButton* todayTasksBtn;
     QPushButton* completedTasksBtn;
+    QPushButton* activeButton;
+    QPushButton* currentActiveButton;
+
+    QList<QPushButton*> allTaskButtons;
 
     QVBoxLayout* layout;
     QVBoxLayout* tasksLayout;
@@ -75,9 +79,14 @@ private:
     QHBoxLayout* titleLayout;
     QHBoxLayout* btnsLayout;
 
+    QColor newColor;
+
     QWidget* btnsContainer;
 
+    bool isActive;
+
     void showTaskDialog();
+    void updateButtonStyles();
 
 private slots:
     void clearTasksUI();

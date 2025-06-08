@@ -14,6 +14,7 @@
 #include <QMessageBox>
 
 #include "UserSession.h"
+#include "thememanager.h"
 
 class ChangePass : public QDialog
 {

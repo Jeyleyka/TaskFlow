@@ -10,6 +10,22 @@ Login::Login(QWidget* parent)
 
     QWidget* container = new QWidget(this);
 
+    ThemeManager::instance().loadTheme();
+
+    QColor color = ThemeManager::instance().backgroundColor();
+    QPalette pal = container->palette();
+    pal.setColor(QPalette::Window, color);
+    container->setAutoFillBackground(true);
+    container->setPalette(pal);
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [container] {
+        QColor color = ThemeManager::instance().backgroundColor();
+        QPalette pal = container->palette();
+        pal.setColor(QPalette::Window, color);
+        container->setAutoFillBackground(true);
+        container->setPalette(pal);
+    });
+
     this->prevWndBtn = new QPushButton("<", this);
     this->prevWndBtn->setStyleSheet("background-color: transparent; border: none; font-size: 30px;");
 
@@ -65,6 +81,14 @@ Login::Login(QWidget* parent)
 
     this->loginBtn = new QPushButton(tr("Login"), this);
     this->loginBtn->setStyleSheet("width: 350px; height: 50px; background-color: #8687E7; border-radius: 5px; margin-top: 20px;");
+
+    QColor colorBtn = ThemeManager::instance().buttonColor();
+    this->loginBtn->setStyleSheet("width: 350px; height: 50px; border-radius: 5px; margin-top: 20px; background-color: " + colorBtn.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor colorBtn = ThemeManager::instance().buttonColor();
+        this->loginBtn->setStyleSheet("width: 350px; height: 50px; border-radius: 5px; margin-top: 20px; background-color: " + colorBtn.name());
+    });
 
     connect(this->loginBtn, &QPushButton::clicked, this, [this] {
         if (this->usernameEdit->text().isEmpty() || this->passwordEdit->text().isEmpty())

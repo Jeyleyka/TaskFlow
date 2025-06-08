@@ -10,6 +10,21 @@ ProfileSettingsWidget::ProfileSettingsWidget(const QIcon& icon, const QString& s
     this->container->setStyleSheet("background-color: #363636; border-radius: 5px;");
     this->container->setFixedSize(327, 48);
 
+    ThemeManager::instance().loadTheme();
+
+    QColor color = ThemeManager::instance().widgetsColor();
+    this->container->setStyleSheet("border-radius: 5px; background-color: " + color.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().widgetsColor();
+        this->container->setStyleSheet("border-radius: 5px; background-color: " + color.name());
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::widgetsChanged, this, [this](const QColor& color) {
+        QString style = QString("background-color: %1; border-radius: 5px;").arg(color.name());
+        this->container->setStyleSheet(style);
+    });
+
     this->iconBtn = new QPushButton(this);
     this->iconBtn->setIcon(icon);
     this->iconBtn->setIconSize(QSize(24,24));

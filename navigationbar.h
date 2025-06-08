@@ -7,6 +7,8 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 
+#include "thememanager.h"
+
 class NavigationBar : public QWidget
 {
     Q_OBJECT

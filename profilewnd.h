@@ -20,6 +20,8 @@
 #include "changeimgwnd.h"
 #include "appsettings.h"
 #include "UserSession.h"
+#include "aboutuswnd.h"
+#include "helpandfeedbackwnd.h"
 
 class ProfileWnd : public QWidget
 {
@@ -47,6 +49,10 @@ private:
     DatabaseManager* dataBase;
 
     ChangeImgWnd* changeImgWnd;
+
+    AboutUsWnd* about;
+
+    HelpAndFeedbackWnd* feedback;
 
     QLabel* wndTitle;
     QLabel* username;

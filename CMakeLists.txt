@@ -59,6 +59,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         appicon.rc
         changelanguagewnd.h changelanguagewnd.cpp
         taskmanager.h taskmanager.cpp
+        aboutuswnd.h aboutuswnd.cpp
+        helpandfeedbackwnd.h helpandfeedbackwnd.cpp
+        thememanager.h thememanager.cpp
+        themedialog.h themedialog.cpp
+
     )
 endif()
 

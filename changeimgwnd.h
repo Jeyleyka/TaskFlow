@@ -16,6 +16,7 @@
 #include <QBuffer>
 
 #include "UserSession.h"
+#include "thememanager.h"
 
 class ChangeImgWnd : public QDialog
 {

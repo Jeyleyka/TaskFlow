@@ -7,6 +7,7 @@
 #include "focusmodewnd.h"
 #include "profilewnd.h"
 #include "login.h"
+#include "thememanager.h"
 
 #include <QMainWindow>
 #include <QTableView>

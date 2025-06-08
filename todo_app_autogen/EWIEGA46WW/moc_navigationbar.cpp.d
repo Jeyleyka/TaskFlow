@@ -1,5 +1,7 @@
 D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_navigationbar.cpp: D:/Work/todo_app/navigationbar.h \
   D:/Work/todo_app/todo_app_autogen/moc_predefs.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q20iterator.h \
@@ -77,6 +79,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_navigationbar.cpp: D:/Work/todo
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qset.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qsettings.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata_impl.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qsharedpointer.h \
@@ -127,6 +130,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_navigationbar.cpp: D:/Work/todo
   C:/Qt/6.9.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QColor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qbitmap.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qbrush.h \
@@ -383,4 +387,5 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_navigationbar.cpp: D:/Work/todo
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h
+  C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
+  D:/Work/todo_app/thememanager.h

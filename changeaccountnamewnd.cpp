@@ -5,6 +5,7 @@ ChangeAccountNameWnd::ChangeAccountNameWnd(QWidget* parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
     this->setFixedSize(327, 187);
+    this->setStyleSheet("background-color: #121212;");
 
     // this->container = new QWidget(parent);
 
@@ -21,13 +22,30 @@ ChangeAccountNameWnd::ChangeAccountNameWnd(QWidget* parent)
     this->newUsername->setPlaceholderText(tr("Enter new name"));
     this->newUsername->setStyleSheet("background-color: transparent; border: 1px solid #727272; font-size: 15px; width: 287px; height: 43px; margin-top: 10px;");
 
+    ThemeManager::instance().loadTheme();
+
     this->cancel = new QPushButton(tr("Cancel"), this);
     this->cancel->setStyleSheet("width: 153px; height: 48px; background-color: transparent; border: none; color: #7C7DD1");
+
+    QColor color = ThemeManager::instance().buttonColor();
+    this->cancel->setStyleSheet("width: 153px; height: 48px; background-color: transparent; border: none; color: " + color.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().buttonColor();
+        this->cancel->setStyleSheet("width: 153px; height: 48px; background-color: transparent; border: none; color: " + color.name());
+    });
 
     connect(this->cancel, &QPushButton::clicked, this, &ChangeAccountNameWnd::close);
 
     this->edit = new QPushButton(tr("Edit"), this);
     this->edit->setStyleSheet("width: 153px; height: 48px; background-color: #8687E7; color: #fff");
+
+    this->edit->setStyleSheet("width: 153px; height: 48px; color: #fff; background-color: " + color.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().buttonColor();
+        this->edit->setStyleSheet("width: 153px; height: 48px; color: #fff; background-color: " + color.name());
+    });
 
     connect(this->edit, &QPushButton::clicked, this, [this] {
         if (this->newUsername->text().isEmpty()) {

@@ -37,5 +37,8 @@
         <file>icons/brush.png</file>
         <file>icons/language.png</file>
         <file>icons/t.png</file>
+        <file>icons/github.png</file>
+        <file>icons/instagram.png</file>
+        <file>icons/telegram.png</file>
     </qresource>
 </RCC>

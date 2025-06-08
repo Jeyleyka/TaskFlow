@@ -4,6 +4,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_taskui.cpp: D:/Work/todo_app/ta
   C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSize \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h \
@@ -95,6 +96,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_taskui.cpp: D:/Work/todo_app/ta
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qset.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qsettings.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata_impl.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qsharedpointer.h \
@@ -145,6 +147,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_taskui.cpp: D:/Work/todo_app/ta
   C:/Qt/6.9.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QColor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QIcon \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QTransform \
@@ -426,4 +429,5 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_taskui.cpp: D:/Work/todo_app/ta
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   D:/Work/todo_app/UserSession.h \
-  D:/Work/todo_app/categoryitemwidget.h
+  D:/Work/todo_app/categoryitemwidget.h \
+  D:/Work/todo_app/thememanager.h

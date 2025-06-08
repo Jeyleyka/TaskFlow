@@ -110,6 +110,29 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget* container = new QWidget(this);
     container->setLayout(mainLayout);
 
+    ThemeManager::instance().loadTheme();
+
+    QColor color = ThemeManager::instance().backgroundColor();
+    QPalette pal = container->palette();
+    pal.setColor(QPalette::Window, color);
+    container->setAutoFillBackground(true);
+    container->setPalette(pal);
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [container] {
+        QColor color = ThemeManager::instance().backgroundColor();
+        QPalette pal = container->palette();
+        pal.setColor(QPalette::Window, color);
+        container->setAutoFillBackground(true);
+        container->setPalette(pal);
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::bgChanged, this, [container](const QColor& color) {
+        QPalette pal = container->palette();
+        pal.setColor(QPalette::Window, color);
+        container->setAutoFillBackground(true);
+        container->setPalette(pal);
+    });
+
     this->setCentralWidget(container);
 
     this->showMaximized();

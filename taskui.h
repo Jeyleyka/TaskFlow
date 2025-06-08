@@ -14,6 +14,7 @@
 
 #include "categoryitemwidget.h"
 #include "UserSession.h"
+#include "thememanager.h"
 
 class TaskUI : public QWidget {
     Q_OBJECT

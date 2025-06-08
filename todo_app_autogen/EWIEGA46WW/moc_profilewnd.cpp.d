@@ -7,6 +7,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_profilewnd.cpp: D:/Work/todo_ap
   C:/Qt/6.9.0/mingw_64/include/QtCore/QDateTime \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QEvent \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QMap \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation \
@@ -174,6 +175,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_profilewnd.cpp: D:/Work/todo_ap
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QCloseEvent \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QColor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QIcon \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QKeyEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent \
@@ -536,6 +538,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_profilewnd.cpp: D:/Work/todo_ap
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h \
   D:/Work/todo_app/Task.h \
   D:/Work/todo_app/UserSession.h \
+  D:/Work/todo_app/aboutuswnd.h \
   D:/Work/todo_app/appsettings.h \
   D:/Work/todo_app/categoryeditor.h \
   D:/Work/todo_app/categoryitemwidget.h \
@@ -548,10 +551,13 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_profilewnd.cpp: D:/Work/todo_ap
   D:/Work/todo_app/database.h \
   D:/Work/todo_app/edittask.h \
   D:/Work/todo_app/flowlayout.h \
+  D:/Work/todo_app/helpandfeedbackwnd.h \
   D:/Work/todo_app/navigationbar.h \
   D:/Work/todo_app/priorityitemwidget.h \
   D:/Work/todo_app/profilesettingswidget.h \
   D:/Work/todo_app/task.h \
   D:/Work/todo_app/taskdialog.h \
   D:/Work/todo_app/taskinfo.h \
-  D:/Work/todo_app/taskui.h
+  D:/Work/todo_app/taskui.h \
+  D:/Work/todo_app/themedialog.h \
+  D:/Work/todo_app/thememanager.h

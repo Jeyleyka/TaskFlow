@@ -5,6 +5,7 @@ ChangeImgWnd::ChangeImgWnd(QWidget* parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
     this->setFixedSize(327, 311);
+    this->setStyleSheet("background-color: #121212;");
 
     this->mainLayout = new QVBoxLayout(this);
     this->mainLayout->setContentsMargins(15,15,15,15);
@@ -21,11 +22,30 @@ ChangeImgWnd::ChangeImgWnd(QWidget* parent)
     this->mainLayout->addWidget(this->wndTitle, 0, Qt::AlignTop);
     this->mainLayout->addWidget(this->line);
 
+    ThemeManager::instance().loadTheme();
+
     this->importBtn = new QPushButton(tr("Import from gallery"), this);
     this->importBtn->setStyleSheet("background-color: #8182DE; height: 35px; border-radius: 5px;");
 
+    QColor color = ThemeManager::instance().buttonColor();
+    this->importBtn->setStyleSheet("height: 35px; border-radius: 5px; background-color: " + color.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().buttonColor();
+        this->importBtn->setStyleSheet("height: 35px; border-radius: 5px; background-color: " + color.name());
+    });
+
     this->closeBtn = new QPushButton(tr("Close"), this);
     this->closeBtn->setStyleSheet("background-color: transparent; height: 35px; color: #8182DE; border: 1px solid #8182DE; border-radius: 5px;");
+
+    QString style = QString("background-color: transparent; height: 35px; color: %1; border: 1px solid %1; border-radius: 5px;").arg(color.name());
+    this->closeBtn->setStyleSheet(style);
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().buttonColor();
+        QString style = QString("background-color: transparent; height: 35px; color: %1; border: 1px solid %1; border-radius: 5px;").arg(color.name());
+        this->closeBtn->setStyleSheet(style);
+    });
 
     connect(this->closeBtn, &QPushButton::clicked, this, &ChangeImgWnd::close);
 

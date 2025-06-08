@@ -118,9 +118,19 @@ ProfileWnd::ProfileWnd(QWidget* parent)
         });
     });
 
-    this->aboutUsBtn = new ProfileSettingsWidget(QIcon(":/icons/category.png"), tr("About US"), this);
+    this->aboutUsBtn = new ProfileSettingsWidget(QIcon(":/icons/category.png"), tr("About the developer"), this);
+
+    connect(this->aboutUsBtn, &ProfileSettingsWidget::onClicked, this, [this] {
+        this->about = new AboutUsWnd(this);
+        this->about->show();
+    });
+
     this->helpAndFeedBtn = new ProfileSettingsWidget(QIcon(":/icons/lightning-bolt.png"), tr("Help & Feedback"), this);
-    this->supportBtn = new ProfileSettingsWidget(QIcon(":/icons/social.png"), tr("Support US"), this);
+
+    connect(this->helpAndFeedBtn, &ProfileSettingsWidget::onClicked, this, [this] {
+        this->feedback = new HelpAndFeedbackWnd(this);
+        this->feedback->show();
+    });
 
     QVBoxLayout* contentLayout = new QVBoxLayout;
     contentLayout->setSpacing(10);
@@ -133,7 +143,6 @@ ProfileWnd::ProfileWnd(QWidget* parent)
     contentLayout->addWidget(this->taskFlow);
     contentLayout->addWidget(this->aboutUsBtn);
     contentLayout->addWidget(this->helpAndFeedBtn);
-    contentLayout->addWidget(this->supportBtn);
 
     QWidget* container = new QWidget;
     container->setLayout(contentLayout);
@@ -197,9 +206,26 @@ void ProfileWnd::initTasksStatus() {
     this->tasksDone->setStyleSheet("min-width: 160px; min-height: 50px; background-color: #363636; border-radius: 5px;");
     this->tasksDone->setAlignment(Qt::AlignCenter);
 
+    ThemeManager::instance().loadTheme();
+
+    QColor color = ThemeManager::instance().widgetsColor();
+    this->tasksDone->setStyleSheet("min-width: 160px; min-height: 50px; border-radius: 5px; background-color: " + color.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().widgetsColor();
+        this->tasksDone->setStyleSheet("min-width: 160px; min-height: 50px; border-radius: 5px; background-color: " + color.name());
+    });
+
     this->tasksLeft = new QLabel(QString::number(totalCount - completedCount) + tr(" Task left"), this);
     this->tasksLeft->setStyleSheet("min-width: 160px; min-height: 50px; background-color: #363636; border-radius: 5px;");
     this->tasksLeft->setAlignment(Qt::AlignCenter);
+
+    this->tasksLeft->setStyleSheet("min-width: 160px; min-height: 50px; border-radius: 5px; background-color: " + color.name());
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this] {
+        QColor color = ThemeManager::instance().widgetsColor();
+        this->tasksLeft->setStyleSheet("min-width: 160px; min-height: 50px; border-radius: 5px; background-color: " + color.name());
+    });
 
     QHBoxLayout* tasksLayout = new QHBoxLayout;
     tasksLayout->addStretch();

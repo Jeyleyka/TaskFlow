@@ -17,6 +17,44 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                          "height: 50px;"
                          "}");
 
+    ThemeManager::instance().loadTheme();
+
+    QColor color = ThemeManager::instance().widgetsColor();
+
+    frame->setStyleSheet("QFrame {"
+                         "border-radius: 5px;"
+                         "padding: 10px;"
+                         "min-width: 900px;"
+                         "max-width: 900px;"
+                         "height: 50px;"
+                         "background-color: " + color.name() +
+                         "}");
+
+    connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, [this, frame] {
+        QColor color = ThemeManager::instance().widgetsColor();
+
+        frame->setStyleSheet("QFrame {"
+                             "border-radius: 5px;"
+                             "padding: 10px;"
+                             "min-width: 900px;"
+                             "max-width: 900px;"
+                             "height: 50px;"
+                             "background-color: " + color.name() +
+                             "}");
+    });
+
+    connect(&ThemeManager::instance(), &ThemeManager::widgetsChanged, this, [this, frame](const QColor& color) {
+        QString style = QString("QFrame {"
+                                "border-radius: 5px;"
+                                "background-color: %1;"
+                                "padding: 10px;"
+                                "min-width: 900px;"
+                                "max-width: 900px;"
+                                "height: 50px;"
+                                "}").arg(color.name());
+        frame->setStyleSheet(style);
+    });
+
     auto* mainLayout = new QHBoxLayout(frame);
     QVBoxLayout* textLayout = new QVBoxLayout();
 

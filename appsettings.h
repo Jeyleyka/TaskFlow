@@ -12,6 +12,7 @@
 
 #include "profilesettingswidget.h"
 #include "changelanguagewnd.h"
+#include "themedialog.h"
 
 class AppSettings : public QDialog
 {

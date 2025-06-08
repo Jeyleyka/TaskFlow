@@ -7,6 +7,8 @@ IndexWnd::IndexWnd(TaskManager* taskManager, QWidget* parent)
     layout->setContentsMargins(0, 20, 0, 0);
     layout->setSpacing(0);
 
+    ThemeManager::instance().loadTheme();
+
     // --- Заголовок и иконка профиля ---
     this->titleLayout = new QHBoxLayout();
 

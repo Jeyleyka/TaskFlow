@@ -2,6 +2,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_appsettings.cpp: D:/Work/todo_a
   D:/Work/todo_app/todo_app_autogen/moc_predefs.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QCoreApplication \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QMap \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
@@ -151,6 +152,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_appsettings.cpp: D:/Work/todo_a
   C:/Qt/6.9.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QColor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qaction.h \
@@ -197,6 +199,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_appsettings.cpp: D:/Work/todo_a
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QColorDialog \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QComboBox \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialog \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialogButtonBox \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QFrame \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QHBoxLayout \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QLabel \
@@ -212,6 +215,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_appsettings.cpp: D:/Work/todo_a
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qcolordialog.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qcombobox.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdialog.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qframe.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qgridlayout.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qlabel.h \
@@ -441,4 +445,6 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_appsettings.cpp: D:/Work/todo_a
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
   D:/Work/todo_app/changelanguagewnd.h \
-  D:/Work/todo_app/profilesettingswidget.h
+  D:/Work/todo_app/profilesettingswidget.h \
+  D:/Work/todo_app/themedialog.h \
+  D:/Work/todo_app/thememanager.h

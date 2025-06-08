@@ -40,32 +40,8 @@ AppSettings::AppSettings(QWidget* parent)
     this->changeAppColor = new ProfileSettingsWidget(QIcon(":/icons/brush.png"), tr("Change app color"), this);
 
     connect(this->changeAppColor, &ProfileSettingsWidget::onClicked, this, [this] {
-        QColor color = QColorDialog::getColor(Qt::white, this, tr("Choose App Color"));
-
-        if (color.isValid()) {
-            QPalette newPalette;
-            newPalette.setColor(QPalette::Window, color);             // QWidget и QMainWindow фон
-            newPalette.setColor(QPalette::Base, color.lighter(110));  // QLineEdit, QTextEdit и т.д.
-
-            // Кнопки
-            newPalette.setColor(QPalette::Button, color.darker(110));
-            newPalette.setColor(QPalette::ButtonText, Qt::white);
-
-            // Текст
-            newPalette.setColor(QPalette::WindowText, Qt::white);
-            newPalette.setColor(QPalette::Text, Qt::black);  // текст в QLineEdit
-
-            // Подсветка (например, выделение в списках)
-            newPalette.setColor(QPalette::Highlight, color.darker(150));
-            newPalette.setColor(QPalette::HighlightedText, Qt::white);
-
-            foreach (QWidget *w, QApplication::allWidgets()) {
-                w->update();
-            }
-
-            // Установка палитры на всё приложение
-            qApp->setPalette(newPalette);
-        }
+        ThemeDialog* themeDialog = new ThemeDialog(this);
+        themeDialog->show();
     });
 
     this->changeAppTypography = new ProfileSettingsWidget(QIcon(":/icons/t.png"), tr("Change app typography"), this);
