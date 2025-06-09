@@ -93,7 +93,8 @@ Login::Login(QWidget* parent)
     connect(this->loginBtn, &QPushButton::clicked, this, [this] {
         if (this->usernameEdit->text().isEmpty() || this->passwordEdit->text().isEmpty())
         {
-            QMessageBox::warning(this, tr("Warning"), tr("Area must not be empty!"));
+            WarningWnd* warning = new WarningWnd(tr("Areas must not be empty!"), this);
+            warning->showWithAnimation();
             return;
         }
 
@@ -154,7 +155,8 @@ bool Login::CheckDataToCorrectly(const QString &name, const QString &password) {
             }
         }
 
-        QMessageBox::warning(this, tr("Error"), tr("Username or password is incorrect!"));
+        WarningWnd* warning = new WarningWnd(tr("Username or password is incorrect!"), this);
+        warning->showWithAnimation();
         return false;
     } else {
         qDebug() << "Ошибка запроса:" << query.lastError().text();

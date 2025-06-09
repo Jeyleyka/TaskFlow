@@ -194,6 +194,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_login.cpp: D:/Work/todo_app/log
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPaintEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPainter \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPixmap \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QScreen \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QShowEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.0/mingw_64/include/QtGui/Qcolor \
@@ -809,7 +810,6 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_login.cpp: D:/Work/todo_app/log
   D:/Work/todo_app/Task.h \
   D:/Work/todo_app/UserSession.h \
   D:/Work/todo_app/aboutuswnd.h \
-  D:/Work/todo_app/appsettings.h \
   D:/Work/todo_app/appusageitem.h \
   D:/Work/todo_app/appusagetracker.h \
   D:/Work/todo_app/calendarwidget.h \
@@ -845,4 +845,5 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_login.cpp: D:/Work/todo_app/log
   D:/Work/todo_app/taskmodel.h \
   D:/Work/todo_app/taskui.h \
   D:/Work/todo_app/themedialog.h \
-  D:/Work/todo_app/thememanager.h
+  D:/Work/todo_app/thememanager.h \
+  D:/Work/todo_app/warningwnd.h

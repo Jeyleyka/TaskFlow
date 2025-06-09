@@ -17,6 +17,7 @@
 #include "categoryeditor.h"
 #include "categoryitemwidget.h"
 #include "UserSession.h"
+#include "warningwnd.h"
 
 class ChooseCategory : public QDialog
 {
@@ -34,6 +35,8 @@ public slots:
 
 private:
     CategoryEditor* editor;
+
+    CategoryItemWidget* selectedCategory;
 
     QLabel* wndTitle;
 

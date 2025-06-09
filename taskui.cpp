@@ -3,7 +3,7 @@
 TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                QString categoryName, QColor categoryColor, QIcon categoryIcon, int id,
                int completed, QWidget* parent)
-    : QWidget(parent), createDate(createData), counter(completed), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(false), taskID(id)
+    : QWidget(parent), createDate(createData), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(false), taskID(id)
 {
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
@@ -58,41 +58,32 @@ TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
     auto* mainLayout = new QHBoxLayout(frame);
     QVBoxLayout* textLayout = new QVBoxLayout();
 
-    qDebug() << "COUNTER: " << this->counter;
-
     this->circle = new QPushButton(frame);
     this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
     this->circle->setIconSize(QSize(24,24));
     this->circle->setStyleSheet("border: none;");
 
-    if (this->counter == 1) {
+    if (this->completed) {
         this->circle->setIcon(QIcon(":/icons/blue-circle.png"));
-        this->circle->setIconSize(QSize(24,24));
-        this->counter--;
-        this->completed = 0;
     } else {
         this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
-        this->circle->setIconSize(QSize(24,24));
-        this->counter++;
-        this->completed = 1;
     }
+    this->circle->setIconSize(QSize(24,24));
 
-    connect(circle, &QPushButton::clicked, this, [this]{
-        if (this->counter == 1) {
+    connect(circle, &QPushButton::clicked, this, [this] {
+        this->completed = !this->completed;
+
+        if (this->completed) {
             this->circle->setIcon(QIcon(":/icons/blue-circle.png"));
-            this->circle->setIconSize(QSize(24,24));
-            this->counter--;
-            this->completed = false;
         } else {
             this->circle->setIcon(QIcon(":/icons/empty-circle.png"));
-            this->circle->setIconSize(QSize(24,24));
-            this->counter++;
-            this->completed = true;
         }
-
+        this->circle->setIconSize(QSize(24, 24));
         this->updateData();
-        emit onUpdateTaskToComplete(this->taskID, !this->completed);
+
+        emit onUpdateTaskToComplete(this->taskID, this->completed);
     });
+
 
     this->categoryLabel = new QLabel(categoryName);
     this->categoryLabel->hide();
@@ -207,7 +198,7 @@ int TaskUI::getPriority() const {
 }
 
 bool TaskUI::getCompleted() const {
-    return !this->counter;
+    return this->completed;
 }
 
 void TaskUI::mousePressEvent(QMouseEvent *event) {
@@ -220,7 +211,7 @@ void TaskUI::updateData() {
     QSqlQuery query;
     query.prepare("UPDATE tasks SET completed = :completed WHERE id = :id");
 
-    query.bindValue(":completed", !this->counter);
+    query.bindValue(":completed", this->completed);
     query.bindValue(":id", this->taskID);
 
     if (!query.exec()) {

@@ -5,7 +5,9 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   C:/Qt/6.9.0/mingw_64/include/QtCore/QEvent \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSize \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QString \
@@ -16,6 +18,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   C:/Qt/6.9.0/mingw_64/include/QtCore/q20type_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q20utility.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q23utility.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qabstractanimation.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qabstracteventdispatcher.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qabstractitemmodel.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qalgorithms.h \
@@ -52,6 +55,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdatastream.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdeadlinetimer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdebug.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qeasingcurve.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qendian.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qeventloop.h \
@@ -95,12 +99,14 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qrefcount.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qset.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qsettings.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qshareddata_impl.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qsharedpointer.h \
@@ -147,14 +153,17 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   C:/Qt/6.9.0/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qvariant.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qvariantanimation.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qyieldcpu.h \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QColor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QIcon \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QKeyEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPainter \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QScreen \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.0/mingw_64/include/QtGui/Qcolor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qaction.h \
@@ -210,6 +219,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsql-config.h \
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlexports.h \
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlglobal.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QApplication \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QColorDialog \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QComboBox \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDialog \
@@ -231,6 +241,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractslider.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractspinbox.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qapplication.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qboxlayout.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qcolordialog.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qcombobox.h \
@@ -475,4 +486,6 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_edittask.cpp: D:/Work/todo_app/
   D:/Work/todo_app/choosecategory.h \
   D:/Work/todo_app/choosepriority.h \
   D:/Work/todo_app/flowlayout.h \
-  D:/Work/todo_app/priorityitemwidget.h
+  D:/Work/todo_app/priorityitemwidget.h \
+  D:/Work/todo_app/thememanager.h \
+  D:/Work/todo_app/warningwnd.h

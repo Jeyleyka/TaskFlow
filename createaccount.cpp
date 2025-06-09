@@ -5,10 +5,8 @@ CreateAccount::CreateAccount(QWidget* parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
 
-    this->initDatabase();
-
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("tasks.db");
+    this->dataBase = new DatabaseManager;
+    this->dataBase->initializeDatabase();
 
     QWidget* container = new QWidget(this);
 
@@ -85,13 +83,15 @@ CreateAccount::CreateAccount(QWidget* parent)
     connect(this->loginBtn, &QPushButton::clicked, this, [this] {
         if (this->usernameEdit->text().isEmpty() || this->passwordEdit->text().isEmpty())
         {
-            QMessageBox::warning(this, tr("Warning"), tr("Area must not be empty!"));
+            WarningWnd* warning = new WarningWnd(tr("Areas must not be empty!"), this);
+            warning->showWithAnimation();
             return;
         }
 
         if (this->confirmPassEdit->text() != this->passwordEdit->text())
         {
-            QMessageBox::warning(this, tr("Warning"), tr("Passwords do not match!"));
+            WarningWnd* warning = new WarningWnd(tr("Password do not match!"), this);
+            warning->showWithAnimation();
             return;
         }
 

@@ -3,12 +3,12 @@
 ProfileSettingsWidget::ProfileSettingsWidget(const QIcon& icon, const QString& str, QWidget* parent)
     : QWidget(parent)
 {
-    this->setFixedSize(327, 48);
+    this->setFixedSize(370, 48);
     this->setAutoFillBackground(true);
 
     this->container = new QWidget(this);
     this->container->setStyleSheet("background-color: #363636; border-radius: 5px;");
-    this->container->setFixedSize(327, 48);
+    this->container->setFixedSize(370, 48);
 
     ThemeManager::instance().loadTheme();
 

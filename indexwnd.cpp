@@ -248,7 +248,8 @@ void IndexWnd::onTaskCreated(const Task &task) {
             this->completeTaskslayout->removeWidget(taskUI);
             tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
         }
-        emit updateTasks();
+
+        emit updateTasks(this->taskManager->getTaskById(taskId));
         this->taskManager->setTaskCompleted(taskId, completed);
     });
 
@@ -273,15 +274,49 @@ void IndexWnd::onTaskCreated(const Task &task) {
 }
 
 void IndexWnd::onTaskUpdated(const Task &task) {
-    for (TaskUI* taskUI : this->tasks + this->completedTasks) {
-        if (taskUI->getId() == task.id) {
-            QString title = task.title;
-            taskUI->setTitle(title);
-            taskUI->setPriority(QString::number(task.priority));
-            taskUI->setCategory(task.categoryName, task.categoryColor, task.categoryIcon, 14, 14);
-            taskUI->setCompleted(task.completed);
-            taskUI->update();
+    TaskUI* taskUI = nullptr;
+
+    // Ищем TaskUI с этим id в обоих списках
+    for (TaskUI* t : tasks) {
+        if (t->getId() == task.id) {
+            taskUI = t;
             break;
+        }
+    }
+    if (!taskUI) {
+        for (TaskUI* t : completedTasks) {
+            if (t->getId() == task.id) {
+                taskUI = t;
+                break;
+            }
+        }
+    }
+    if (!taskUI) return; // не нашли, может нужно создать
+
+    // Обновляем UI
+    QString title = task.title;
+
+    taskUI->setTitle(title);
+    taskUI->setCategory(task.categoryName, task.categoryColor, task.categoryIcon, 14, 14);
+    taskUI->setPriority(QString::number(task.priority));
+    taskUI->setCompleted(task.completed);
+
+    // Перемещаем в нужный список и layout если изменился статус completed
+    if (task.completed) {
+        if (!completedTasks.contains(taskUI)) {
+            tasks.removeOne(taskUI);
+            tasksLayout->removeWidget(taskUI);
+
+            completedTasks.append(taskUI);
+            completeTaskslayout->addWidget(taskUI, 1, Qt::AlignHCenter);
+        }
+    } else {
+        if (!tasks.contains(taskUI)) {
+            completedTasks.removeOne(taskUI);
+            completeTaskslayout->removeWidget(taskUI);
+
+            tasks.append(taskUI);
+            tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
         }
     }
 }

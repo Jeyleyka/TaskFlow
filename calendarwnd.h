@@ -28,10 +28,14 @@ public:
 
     void onDeleteTask(const int row);
 
+public slots:
+    void onTaskUpdated(const Task& task);
+
 signals:
     void switchToIndex();
     void switchToFocus();
     void switchToProfile();
+    void taskUpdated(const Task &task);
 
 // protected:
 //     void showEvent(QShowEvent* event) override;
@@ -84,6 +88,8 @@ private:
     QWidget* btnsContainer;
 
     bool isActive;
+    bool filterCompletedOnly = false;
+    bool filterTodayOnly = true;
 
     void showTaskDialog();
     void updateButtonStyles();
@@ -91,7 +97,7 @@ private:
 private slots:
     void clearTasksUI();
     void onTaskCreated(const Task& task);
-    void onTaskUpdated(const Task& task);
     void onTaskDeleted(const int taskId);
+    // void applyFilter();
 };
 #endif // CALENDARWND_H

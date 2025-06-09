@@ -56,7 +56,7 @@ bool DatabaseManager::initializeDatabase() {
     query.prepare("CREATE TABLE IF NOT EXISTS categories ("
                   "id INTEGER PRIMARY KEY AUTOINCREMENT, "
                   "user_id INTEGER, "
-                  "name TEXT UNIQUE NOT NULL, "
+                  "name TEXT NOT NULL, "
                   "color TEXT NOT NULL, "
                   "icon BLOB, "
                   "FOREIGN KEY (user_id) REFERENCES user(id) )");

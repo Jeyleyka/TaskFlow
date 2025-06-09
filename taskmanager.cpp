@@ -31,18 +31,20 @@ QList<Task> TaskManager::getAllTasks() const {
     return db->loadTasksFromDatabase();
 }
 
-Task TaskManager::getTaskById(int id) {
+Task TaskManager::getTaskById(int taskId) {
     QSqlQuery query;
-    query.prepare("SELECT id, title, description, due_date, priority, category_name, category_color, category_icon, completed FROM tasks WHERE id = :id");
-    query.bindValue(":id", id);
+    query.prepare("SELECT id, user_id, title, description, due_date, priority, completed, category_name, category_color, category_icon FROM tasks WHERE id = :id");
+    query.bindValue(":id", taskId);
 
     if (query.exec() && query.next()) {
         Task task;
         task.id = query.value("id").toInt();
+        task.user_id = query.value("user_id").toInt();
         task.title = query.value("title").toString();
         task.description = query.value("description").toString();
         task.dueDate = query.value("due_date").toDateTime();
         task.priority = query.value("priority").toInt();
+        task.completed = query.value("completed").toBool();
         task.categoryName = query.value("category_name").toString();
         task.categoryColor = QColor(query.value("category_color").toString());
 
@@ -51,16 +53,12 @@ Task TaskManager::getTaskById(int id) {
         pixmap.loadFromData(iconData);
         task.categoryIcon = QIcon(pixmap);
 
-        task.completed = query.value("completed").toBool();
-
         return task;
+    } else {
+        qDebug() << "getTaskById: Task not found or error:" << query.lastError().text();
+        return Task();  // Возвращаем пустой объект, чтобы избежать краша
     }
-
-    // Вернуть "пустую" задачу, если не найдена
-    qDebug() << "getTaskById: не удалось найти задачу с ID" << id;
-    return Task();
 }
-
 
 bool TaskManager::updateTask(Task& task) {
     if (!this->db) {
@@ -91,8 +89,12 @@ bool TaskManager::deleteTask(const int taskId) {
 }
 
 bool TaskManager::setTaskCompleted(int taskId, bool completed) {
-    QSqlQuery query;
+    static bool updating = false;
+    if (updating) return true; // предотвращает рекурсию
 
+    updating = true;
+
+    QSqlQuery query;
     query.prepare("UPDATE tasks SET completed = :completed WHERE id = :id");
     query.bindValue(":completed", completed);
     query.bindValue(":id", taskId);
@@ -100,10 +102,11 @@ bool TaskManager::setTaskCompleted(int taskId, bool completed) {
     if (query.exec()) {
         Task updatedTask = getTaskById(taskId);
         emit taskUpdated(updatedTask);
+        updating = false;
         return true;
-    } else
-    {
+    } else {
         qDebug() << "Ошибка при обновлении completed:" << query.lastError().text();
+        updating = false;
         return false;
     }
 }

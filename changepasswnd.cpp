@@ -60,8 +60,9 @@ ChangePass::ChangePass(QWidget* parent)
     });
 
     connect(this->edit, &QPushButton::clicked, this, [this] {
-        if (this->newPasswordEdit->text().isEmpty()) {
-            QMessageBox::warning(this, tr("Error"), tr("New password must not be empty!"));
+        if (this->newPasswordEdit->text().isEmpty()) {            
+            WarningWnd* warning = new WarningWnd(tr("New password must not be empty!"), this);
+            warning->showWithAnimation();
             return;
         }
 
@@ -109,7 +110,8 @@ void ChangePass::changePassInDB() {
             query.bindValue(":password", this->newPasswordEdit->text());
         } else
         {
-            QMessageBox::warning(this, tr("Warning"), tr("The new password matches the current password"));
+            WarningWnd* warning = new WarningWnd(tr("The new password matches the current password"), this);
+            warning->showWithAnimation();
             return;
         }
 
@@ -119,10 +121,12 @@ void ChangePass::changePassInDB() {
         }
     } else
     {
-        QMessageBox::warning(this, tr("Error"), tr("old password is incorrect"));
+        WarningWnd* warning = new WarningWnd(tr("old password is incorrect"), this);
+        warning->showWithAnimation();
         return;
     }
 
-    QMessageBox::warning(this, tr("Success"), tr("New password is saved"));
+    WarningWnd* warning = new WarningWnd(tr("New password is saved"), this);
+    warning->showWithAnimation();
     this->close();
 }

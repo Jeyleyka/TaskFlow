@@ -18,10 +18,12 @@
 #include "changeaccountnamewnd.h"
 #include "changepasswnd.h"
 #include "changeimgwnd.h"
-#include "appsettings.h"
 #include "UserSession.h"
 #include "aboutuswnd.h"
 #include "helpandfeedbackwnd.h"
+#include "profilesettingswidget.h"
+#include "themedialog.h"
+#include "changelanguagewnd.h"
 
 class ProfileWnd : public QWidget
 {
@@ -63,6 +65,8 @@ private:
     QLabel* tasksDone;
     QLabel* iconLabel;
 
+    ProfileSettingsWidget* changeAppColor;
+    ProfileSettingsWidget* changeAppLanguage;
     ProfileSettingsWidget* appSettingsBtn;
     ProfileSettingsWidget* changeAccNameBtn;
     ProfileSettingsWidget* changePasswBtn;

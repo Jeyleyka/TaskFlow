@@ -76,6 +76,21 @@
         <source>Edit</source>
         <translation type="unfinished">Изменить</translation>
     </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="52"/>
+        <source>New username must not be empty!</source>
+        <translation type="unfinished">Новое имя пользователя не должно быть пустым</translation>
+    </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="103"/>
+        <source>New name matches current name</source>
+        <translation type="unfinished">Новое имя пользователя совпадает текущему</translation>
+    </message>
+    <message>
+        <location filename="../changeaccountnamewnd.cpp" line="107"/>
+        <source>New name is saved</source>
+        <translation type="unfinished">Новое имя пользователя сохранено</translation>
+    </message>
 </context>
 <context>
     <name>ChangeImgWnd</name>
@@ -88,6 +103,16 @@
         <location filename="../changeimgwnd.cpp" line="23"/>
         <source>Import from gallery</source>
         <translation type="unfinished">Загрузить из галереи</translation>
+    </message>
+    <message>
+        <location filename="../changeimgwnd.cpp" line="60"/>
+        <source>Icon was not changed.</source>
+        <translation type="unfinished">Иконка не изменена</translation>
+    </message>
+    <message>
+        <location filename="../changeimgwnd.cpp" line="91"/>
+        <source>New img is saved</source>
+        <translation type="unfinished">Новая иконка сохранена</translation>
     </message>
 </context>
 <context>
@@ -118,6 +143,26 @@
         <location filename="../changepasswnd.cpp" line="41"/>
         <source>Edit</source>
         <translation type="unfinished">Изменить</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="64"/>
+        <source>New password must not be empty!</source>
+        <translation type="unfinished">Новый пароль не должен быть пустым</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="112"/>
+        <source>The new password matches the current password</source>
+        <translation type="unfinished">Новый пароль совпадает текущему паролю</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="122"/>
+        <source>old password is incorrect</source>
+        <translation type="unfinished">Пароль неверный</translation>
+    </message>
+    <message>
+        <location filename="../changepasswnd.cpp" line="126"/>
+        <source>New password is saved</source>
+        <translation type="unfinished">Новый пароль сохранен</translation>
     </message>
 </context>
 <context>
@@ -153,6 +198,16 @@
         <location filename="../createaccount.cpp" line="72"/>
         <source>Confirm Password</source>
         <translation type="unfinished">Подтвердите пароль</translation>
+    </message>
+    <message>
+        <location filename="../createaccount.cpp" line="88"/>
+        <source>Areas must not be empty!</source>
+        <translation type="unfinished">Поля не должны быть пустыми</translation>
+    </message>
+    <message>
+        <location filename="../createaccount.cpp" line="88"/>
+        <source>Passwords do not match!</source>
+        <translation type="unfinished">Пароль не совпадает</translation>
     </message>
     <message>
         <location filename="../createaccount.cpp" line="107"/>
@@ -272,6 +327,16 @@
         <location filename="../login.cpp" line="83"/>
         <source>Don&apos;t have an account? Register</source>
         <translation type="unfinished">Нету аккаунта? Зарегестрироваться</translation>
+    </message>
+    <message>
+        <location filename="../login.cpp" line="96"/>
+        <source>Areas must not be empty!</source>
+        <translation type="unfinished">Поля не должны быть пустыми</translation>
+    </message>
+    <message>
+        <location filename="../login.cpp" line="157"/>
+        <source>Username or password is incorrect!</source>
+        <translation type="unfinished">Имя пользователя или пароль неверны</translation>
     </message>
 </context>
 <context>
@@ -396,6 +461,11 @@
         <source>Category: </source>
         <translation type="unfinished">Категория</translation>
     </message>
+    <message>
+        <location filename="../taskdialog.cpp" line="75"/>
+        <source>Not all fields are recorded</source>
+        <translation type="unfinished">Не все поля заполнены</translation>
+    </message>
 </context>
 <context>
     <name>TaskInfo</name>
@@ -484,6 +554,11 @@
         <source>Add Category</source>
         <translation type="unfinished">Добавить категорию</translation>
     </message>
+    <message>
+        <location filename="../choosecategory.cpp" line="122"/>
+        <source>Category with this name already exists</source>
+        <translation type="unfinished">Категория с данным названием уже существует</translation>
+    </message>
 </context>
 <context>
     <name>ChoosePriority</name>
@@ -562,6 +637,37 @@
         <location filename="../changelanguagewnd.cpp" line="67"/>
         <source>After selecting the language the application will restart</source>
         <translation type="unfinished">После выбора языка приложение будет перезапущено</translation>
+    </message>
+</context>
+<context>
+    <name>ThemeDialog</name>
+    <message>
+        <location filename="../themedialog.cpp" line="17"/>
+        <source>Ok</source>
+        <translation type="unfinished">Сохранить</translation>
+    </message>
+    <message>
+        <location filename="../themedialog.cpp" line="20"/>
+        <source>Reset</source>
+        <translation type="unfinished">Сбросить</translation>
+    </message>
+    <message>
+        <location filename="../themedialog.cpp" line="23"/>
+        <source>Cancel</source>
+        <translation type="unfinished">Отмена</translation>
+    </message>
+    <message>
+        <location filename="../themedialog.cpp" line="48"/>
+        <source>Choose...</source>
+        <translation type="unfinished">Выбрать...</translation>
+    </message>
+</context>
+<context>
+    <name>WarningWnd</name>
+    <message>
+        <location filename="../warningwnd.cpp" line="58"/>
+        <source>Close</source>
+        <translation type="unfinished">Закрыть</translation>
     </message>
 </context>
 </TS>

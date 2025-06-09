@@ -1,7 +1,7 @@
 #include "choosecategory.h"
 
 ChooseCategory::ChooseCategory(QWidget* parent)
-    : QDialog(parent) {
+    : QDialog(parent), selectedCategory(nullptr) {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
     this->setFixedSize(327,556);
 
@@ -47,8 +47,6 @@ ChooseCategory::ChooseCategory(QWidget* parent)
     this->addCategoryBtn->setStyleSheet("width: 315px; height: 48px; color: #fff; background-color: #8687E7; font-size: 13px;");
     this->addCategoryBtn->setCheckable(true);
 
-    // connect(this->addCategoryBtn, &QPushButton::clicked, this, &ChooseCategory::onAddCategory);
-
     connect(this->listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem* item) {
         // Получить виджет, связанный с элементом
         QWidget* widget = this->listWidget->itemWidget(item);
@@ -61,19 +59,18 @@ ChooseCategory::ChooseCategory(QWidget* parent)
         // Сравниваем название
         if (categoryWidget->getName() == "Create new") {
             this->editor->show();
-        } else {
-            // Тут можно добавить действия для обычной категории
-            qDebug() << "Выбрана категория:" << categoryWidget->getName();
+            return;
         }
+
+        this->selectedCategory = categoryWidget;
     });
 
-    connect(this->listWidget, &QListWidget::itemClicked, this, [this](QListWidgetItem* item) {
-        auto* widget = qobject_cast<CategoryItemWidget*>(this->listWidget->itemWidget(item));
-        if (!widget) return;
-
-        emit categorySelected(widget->getName(), widget->getColor(), widget->getIcon());
-
-        this->close(); // Закрываем окно выбора категории после выбора
+    connect(this->addCategoryBtn, &QPushButton::clicked, this, [this] {
+        if (this->selectedCategory)
+        {
+            emit categorySelected(this->selectedCategory->getName(), this->selectedCategory->getColor(), this->selectedCategory->getIcon());
+            this->close();
+        }
     });
 
     containerLayout->addWidget(this->addCategoryBtn);
@@ -119,7 +116,8 @@ void ChooseCategory::addCategory(const QString &name, const QColor &color, const
     }
 
     if (checkQuery.next() && checkQuery.value(0).toInt() > 0) {
-        QMessageBox::warning(this, tr("Duplicate Category"), tr("Category with this name already exists"));
+        WarningWnd* warning = new WarningWnd(tr("Category with this name already exists"), this);
+        warning->showWithAnimation();
         return; // Не добавляем дубликат
     }
 

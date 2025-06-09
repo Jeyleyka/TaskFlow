@@ -53,7 +53,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         changeaccountnamewnd.h changeaccountnamewnd.cpp
         changepasswnd.h changepasswnd.cpp
         changeimgwnd.h changeimgwnd.cpp
-        appsettings.h appsettings.cpp
+
         UserSession.h
         UserSession.cpp
         appicon.rc
@@ -63,6 +63,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         helpandfeedbackwnd.h helpandfeedbackwnd.cpp
         thememanager.h thememanager.cpp
         themedialog.h themedialog.cpp
+        warningwnd.h warningwnd.cpp
 
     )
 endif()

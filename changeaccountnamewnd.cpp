@@ -49,7 +49,8 @@ ChangeAccountNameWnd::ChangeAccountNameWnd(QWidget* parent)
 
     connect(this->edit, &QPushButton::clicked, this, [this] {
         if (this->newUsername->text().isEmpty()) {
-            QMessageBox::warning(this, tr("Error"), tr("New username must not be empty!"));
+            WarningWnd* warning = new WarningWnd(tr("New username must not be empty!"), this);
+            warning->showWithAnimation();
             return;
         }
 
@@ -100,11 +101,13 @@ void ChangeAccountNameWnd::changeNameInDB() {
         }
     } else
     {
-        QMessageBox::warning(this, tr("Error"), tr("New name matches current name"));
+        WarningWnd* warning = new WarningWnd(tr("New name matches current name"), this);
+        warning->showWithAnimation();
         return;
     }
 
-    QMessageBox::warning(this, tr("Success"), tr("New name is saved"));
+    WarningWnd* warning = new WarningWnd(tr("New name is saved"), this);
+    warning->showWithAnimation();
 
     emit this->onUpdateName();
     this->close();

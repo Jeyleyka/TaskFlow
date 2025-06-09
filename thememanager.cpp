@@ -83,3 +83,5 @@ void ThemeManager::resetToDefault() {
     emit this->themeChanged();
 }
 
+
+

@@ -60,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent)
         this->stackedWidget->setCurrentIndex(3);
     });
 
+    connect(this->indexWndWidget, &IndexWnd::updateTasks, this->calendarWndWidget, &CalendarWnd::onTaskUpdated);
+
     this->focusWndWidget = new FocusModeWnd(this);
     this->focusWndWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 

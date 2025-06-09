@@ -56,11 +56,18 @@ ProfileWnd::ProfileWnd(QWidget* parent)
     this->taskFlow->setStyleSheet("font-size: 14px; color: #888888; margin-top: 10px;");
     this->taskFlow->setAlignment(Qt::AlignHCenter);
 
-    this->appSettingsBtn = new ProfileSettingsWidget(QIcon(":/icons/setting.png"), tr("App settings"), this);
+    this->changeAppColor = new ProfileSettingsWidget(QIcon(":/icons/brush.png"), tr("Change app color"), this);
 
-    connect(this->appSettingsBtn, &ProfileSettingsWidget::onClicked, this, [this] {
-        AppSettings* appSettings = new AppSettings(this);
-        appSettings->show();
+    connect(this->changeAppColor, &ProfileSettingsWidget::onClicked, this, [this] {
+        ThemeDialog* themeDialog = new ThemeDialog(this);
+        themeDialog->show();
+    });
+
+    this->changeAppLanguage = new ProfileSettingsWidget(QIcon(":/icons/language.png"), tr("Change app language"), this);
+
+    connect(this->changeAppLanguage, &ProfileSettingsWidget::onClicked, this, [this] {
+        ChangeLanguageWnd* languageWnd = new ChangeLanguageWnd(this);
+        languageWnd->show();
     });
 
     this->changeAccNameBtn = new ProfileSettingsWidget(QIcon(":/icons/user.png"), tr("Change account name"), this);
@@ -135,7 +142,8 @@ ProfileWnd::ProfileWnd(QWidget* parent)
     QVBoxLayout* contentLayout = new QVBoxLayout;
     contentLayout->setSpacing(10);
     contentLayout->addWidget(this->settings);
-    contentLayout->addWidget(this->appSettingsBtn);
+    contentLayout->addWidget(this->changeAppColor);
+    contentLayout->addWidget(this->changeAppLanguage);
     contentLayout->addWidget(this->account);
     contentLayout->addWidget(this->changeAccNameBtn);
     contentLayout->addWidget(this->changePasswBtn);

@@ -12,22 +12,29 @@ ThemeDialog::ThemeDialog(QWidget* parent)
     this->addColorOption("navbar", "Navbar", ThemeManager::instance().navbarColor());
     this->addColorOption("button", "Button", ThemeManager::instance().buttonColor());
 
-    auto* buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
+    auto* buttonBox = new QDialogButtonBox();
 
-    QPushButton* resetBtn = new QPushButton("Reset");
+    QPushButton* saveBtn = new QPushButton(tr("Ok"));
+    buttonBox->addButton(saveBtn, QDialogButtonBox::AcceptRole);
+
+    QPushButton* resetBtn = new QPushButton(tr("Reset"));
     buttonBox->addButton(resetBtn, QDialogButtonBox::ResetRole);
 
-    connect(resetBtn, &QPushButton::clicked, this, [this] {
-        ThemeManager::instance().resetToDefault();
-        this->accept();
-    });
+    QPushButton* cancelBtn = new QPushButton(tr("Cancel"));
+    buttonBox->addButton(cancelBtn, QDialogButtonBox::RejectRole);
 
-    connect(buttonBox, &QDialogButtonBox::accepted, this, [this]() {
+    connect(saveBtn, &QPushButton::clicked, this, [this]() {
         this->applyTheme();
         this->accept();
     });
 
-    connect(buttonBox, &QDialogButtonBox::rejected, this, &ThemeDialog::reject);
+    connect(resetBtn, &QPushButton::clicked, this, [this] {
+        ThemeManager::instance().resetToDefault();
+        ThemeManager::instance().saveTheme();
+        this->accept();
+    });
+
+    connect(cancelBtn, &QPushButton::clicked, this, &ThemeDialog::reject);
 
     this->mainLayout->addWidget(buttonBox);
 }
@@ -38,7 +45,7 @@ void ThemeDialog::addColorOption(const QString &key, const QString &labelText, c
     QHBoxLayout* layout = new QHBoxLayout;
 
     QLabel* label = new QLabel(labelText);
-    QPushButton* button = new QPushButton("Choose...");
+    QPushButton* button = new QPushButton(tr("Choose..."));
     QLabel* preview = new QLabel;
     preview->setFixedSize(40,20);
     preview->setStyleSheet("background-color: " + defaultColor.name() + "; border: 1px solid black");

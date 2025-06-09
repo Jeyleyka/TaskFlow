@@ -72,7 +72,8 @@ TaskDialog::TaskDialog(QWidget* parent) : QDialog(parent), isClosing(false) {
         if (this->titleLineEdit->text().isEmpty() || this->descriptionTextEdit->toPlainText().isEmpty()
             || this->priorityWidget->getPriority() == 0 || this->itemWidget->getName() == "")
         {
-            QMessageBox::warning(this, tr("Error"), tr("Not all fields are recorded"));
+            WarningWnd* warning = new WarningWnd(tr("Not all fields are recorded"), this);
+            warning->showWithAnimation();
             return;
         }
 

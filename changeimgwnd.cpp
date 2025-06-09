@@ -57,7 +57,8 @@ ChangeImgWnd::ChangeImgWnd(QWidget* parent)
             this->selectedIcon = icon;
             this->changeImgInDB();
         } else {
-            QMessageBox::information(this, tr("No icon selected"), tr("Icon was not changed."));
+            WarningWnd* warning = new WarningWnd(tr("Icon was not changed."), this);
+            warning->showWithAnimation();
         }
     });
 
@@ -88,7 +89,9 @@ void ChangeImgWnd::changeImgInDB() {
         qDebug() << "Ошибка при обновлении задачи:" << query.lastError().text();
     }
 
-    QMessageBox::warning(this, tr("Success"), tr("New img is saved"));
+    WarningWnd* warning = new WarningWnd(tr("New img is saved"), this);
+    warning->showWithAnimation();
+
 
     emit this->onUpdateImg();
     this->close();

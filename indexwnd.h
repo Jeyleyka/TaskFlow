@@ -39,7 +39,7 @@ signals:
     void switchToCalendar();
     void switchToFocus();
     void switchToProfile();
-    void updateTasks();
+    void updateTasks(const Task& task);
 
 private:
     ChooseCategory* chooseCategory;

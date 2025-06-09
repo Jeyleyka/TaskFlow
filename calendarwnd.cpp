@@ -113,6 +113,10 @@ void CalendarWnd::initSortTags() {
             else
                 task->hide();
         }
+
+        this->filterTodayOnly = true;
+        this->filterCompletedOnly = false;
+        // this->applyFilter();
     });
 
     this->completedTasksBtn = new QPushButton(tr("Completed"), this);
@@ -128,6 +132,10 @@ void CalendarWnd::initSortTags() {
             else
                 task->hide();
         }
+
+        this->filterTodayOnly = false;
+        this->filterCompletedOnly = true;
+        // this->applyFilter();
     });
 
     connect(&ThemeManager::instance(), &ThemeManager::themeChanged, this, &CalendarWnd::updateButtonStyles);
@@ -246,6 +254,11 @@ void CalendarWnd::onTaskCreated(const Task &task) {
 
     // connect(taskUI, &TaskUI::onUpdateTaskToComplete, profile, &ProfileWnd::updateTasksData);
 
+    connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI, task](const int taskId, bool completed) {
+        taskUI->setCompleted(completed);
+        this->taskManager->setTaskCompleted(taskId, completed);
+    });
+
     taskUI->setFixedSize(920, 98);
     this->tasks.append(taskUI);
     tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
@@ -271,14 +284,28 @@ void CalendarWnd::onTaskCreated(const Task &task) {
 }
 
 void CalendarWnd::onTaskUpdated(const Task &task) {
-    for (TaskUI* taskUI : this->tasks) {
+    for (int i = 0; i < tasks.size(); ++i) {
+        TaskUI* taskUI = tasks[i];
         if (taskUI->getId() == task.id) {
+            // Обновляем UI
             QString title = task.title;
             taskUI->setTitle(title);
             taskUI->setPriority(QString::number(task.priority));
             taskUI->setCategory(task.categoryName, task.categoryColor, task.categoryIcon, 14, 14);
             taskUI->setCompleted(task.completed);
+
+            this->taskManager->setTaskCompleted(task.id, task.completed);
             taskUI->update();
+
+            qDebug() << "task: " << task.title << " has completed: " << task.completed;
+
+            // Если задача теперь не соответствует текущему фильтру — удаляем из отображения
+            if (filterCompletedOnly && !task.completed) {
+                taskUI->hide(); // или delete taskUI;
+            } else if (filterTodayOnly) {
+                taskUI->show(); // или delete taskUI;
+            }
+
             break;
         }
     }

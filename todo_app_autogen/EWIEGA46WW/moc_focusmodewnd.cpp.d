@@ -180,6 +180,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPaintEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPainter \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPixmap \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QScreen \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.0/mingw_64/include/QtGui/Qcolor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qaction.h \
@@ -236,6 +237,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsql-config.h \
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlexports.h \
   C:/Qt/6.9.0/mingw_64/include/QtSql/qtsqlglobal.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/QApplication \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QColorDialog \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QComboBox \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/QDateEdit \
@@ -261,6 +263,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractscrollarea.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractslider.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qabstractspinbox.h \
+  C:/Qt/6.9.0/mingw_64/include/QtWidgets/qapplication.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qboxlayout.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qcolordialog.h \
   C:/Qt/6.9.0/mingw_64/include/QtWidgets/qcombobox.h \
@@ -787,4 +790,5 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_focusmodewnd.cpp: D:/Work/todo_
   D:/Work/todo_app/taskdialog.h \
   D:/Work/todo_app/taskinfo.h \
   D:/Work/todo_app/taskui.h \
-  D:/Work/todo_app/thememanager.h
+  D:/Work/todo_app/thememanager.h \
+  D:/Work/todo_app/warningwnd.h

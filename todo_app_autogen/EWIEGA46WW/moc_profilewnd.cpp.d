@@ -180,6 +180,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_profilewnd.cpp: D:/Work/todo_ap
   C:/Qt/6.9.0/mingw_64/include/QtGui/QKeyEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QMouseEvent \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QPainter \
+  C:/Qt/6.9.0/mingw_64/include/QtGui/QScreen \
   C:/Qt/6.9.0/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.9.0/mingw_64/include/QtGui/Qcolor \
   C:/Qt/6.9.0/mingw_64/include/QtGui/qaction.h \
@@ -539,7 +540,6 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_profilewnd.cpp: D:/Work/todo_ap
   D:/Work/todo_app/Task.h \
   D:/Work/todo_app/UserSession.h \
   D:/Work/todo_app/aboutuswnd.h \
-  D:/Work/todo_app/appsettings.h \
   D:/Work/todo_app/categoryeditor.h \
   D:/Work/todo_app/categoryitemwidget.h \
   D:/Work/todo_app/changeaccountnamewnd.h \
@@ -560,4 +560,5 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_profilewnd.cpp: D:/Work/todo_ap
   D:/Work/todo_app/taskinfo.h \
   D:/Work/todo_app/taskui.h \
   D:/Work/todo_app/themedialog.h \
-  D:/Work/todo_app/thememanager.h
+  D:/Work/todo_app/thememanager.h \
+  D:/Work/todo_app/warningwnd.h

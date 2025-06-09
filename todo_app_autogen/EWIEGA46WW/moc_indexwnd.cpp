@@ -45,11 +45,11 @@ template <> constexpr inline auto IndexWnd::qt_create_metaobjectdata<qt_meta_tag
         "switchToFocus",
         "switchToProfile",
         "updateTasks",
+        "Task",
+        "task",
         "updateProfileIcon",
         "pixmap",
         "onTaskCreated",
-        "Task",
-        "task",
         "onTaskUpdated",
         "onTaskDeleted",
         "taskId"
@@ -63,18 +63,20 @@ template <> constexpr inline auto IndexWnd::qt_create_metaobjectdata<qt_meta_tag
         // Signal 'switchToProfile'
         QtMocHelpers::SignalData<void()>(4, 2, QMC::AccessPublic, QMetaType::Void),
         // Signal 'updateTasks'
-        QtMocHelpers::SignalData<void()>(5, 2, QMC::AccessPublic, QMetaType::Void),
+        QtMocHelpers::SignalData<void(const Task &)>(5, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 6, 7 },
+        }}),
         // Slot 'updateProfileIcon'
-        QtMocHelpers::SlotData<void(const QPixmap &)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QPixmap, 7 },
+        QtMocHelpers::SlotData<void(const QPixmap &)>(8, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::QPixmap, 9 },
         }}),
         // Slot 'onTaskCreated'
-        QtMocHelpers::SlotData<void(const Task &)>(8, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 9, 10 },
+        QtMocHelpers::SlotData<void(const Task &)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 6, 7 },
         }}),
         // Slot 'onTaskUpdated'
         QtMocHelpers::SlotData<void(const Task &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 9, 10 },
+            { 0x80000000 | 6, 7 },
         }}),
         // Slot 'onTaskDeleted'
         QtMocHelpers::SlotData<void(const int)>(12, 2, QMC::AccessPrivate, QMetaType::Void, {{
@@ -106,7 +108,7 @@ void IndexWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 0: _t->switchToCalendar(); break;
         case 1: _t->switchToFocus(); break;
         case 2: _t->switchToProfile(); break;
-        case 3: _t->updateTasks(); break;
+        case 3: _t->updateTasks((*reinterpret_cast< std::add_pointer_t<Task>>(_a[1]))); break;
         case 4: _t->updateProfileIcon((*reinterpret_cast< std::add_pointer_t<QPixmap>>(_a[1]))); break;
         case 5: _t->onTaskCreated((*reinterpret_cast< std::add_pointer_t<Task>>(_a[1]))); break;
         case 6: _t->onTaskUpdated((*reinterpret_cast< std::add_pointer_t<Task>>(_a[1]))); break;
@@ -121,7 +123,7 @@ void IndexWnd::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
             return;
         if (QtMocHelpers::indexOfMethod<void (IndexWnd::*)()>(_a, &IndexWnd::switchToProfile, 2))
             return;
-        if (QtMocHelpers::indexOfMethod<void (IndexWnd::*)()>(_a, &IndexWnd::updateTasks, 3))
+        if (QtMocHelpers::indexOfMethod<void (IndexWnd::*)(const Task & )>(_a, &IndexWnd::updateTasks, 3))
             return;
     }
 }
@@ -176,8 +178,8 @@ void IndexWnd::switchToProfile()
 }
 
 // SIGNAL 3
-void IndexWnd::updateTasks()
+void IndexWnd::updateTasks(const Task & _t1)
 {
-    QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
 }
 QT_WARNING_POP

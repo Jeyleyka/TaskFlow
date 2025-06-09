@@ -68,7 +68,6 @@ private:
     QPushButton* circle;
     QPushButton* categoryBtn;
 
-    int counter;
     int priority;
     int taskID;
 

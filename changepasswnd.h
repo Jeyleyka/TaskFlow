@@ -15,6 +15,7 @@
 
 #include "UserSession.h"
 #include "thememanager.h"
+#include "warningwnd.h"
 
 class ChangePass : public QDialog
 {
