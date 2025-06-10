@@ -301,16 +301,11 @@
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="59"/>
-        <source>Change app color</source>
-        <translation type="unfinished">Cambiar color de la aplicación</translation>
+        <source>App settings</source>
+        <translation type="unfinished">Configuración de la aplicación</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="66"/>
-        <source>Change app language</source>
-        <translation type="unfinished">Cambiar idioma de la aplicación</translation>
-    </message>
-    <message>
-        <location filename="../profilewnd.cpp" line="73"/>
         <source>Change account name</source>
         <translation type="unfinished">Cambiar nombre de cuenta</translation>
     </message>
@@ -321,13 +316,13 @@
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="92"/>
-        <source>Change account image</source>
+        <source>Change account Imgage</source>
         <translation type="unfinished">Cambiar imagen de cuenta</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="121"/>
-        <source>About the developer</source>
-        <translation type="unfinished">Sobre el desarrollador</translation>
+        <source>About US</source>
+        <translation type="unfinished">Sobre nosotros</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="122"/>

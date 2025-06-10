@@ -112,6 +112,11 @@ void CalendarWidget::updateCalendar() {
     daysLayout->setContentsMargins(10, 0, 10, 0);
     daysLayout->setSpacing(10);
 
+    for (QPushButton* btn : dayButtons) {
+        btn->deleteLater();
+    }
+    dayButtons.clear();
+
     for (int i = 0; i < 7; ++i) {
         QDate date = startDate.addDays(i);
         QString weekday = locale.toString(date, "ddd").toUpper();
@@ -132,11 +137,17 @@ void CalendarWidget::updateCalendar() {
             textColor = (date.dayOfWeek() == 6 || date.dayOfWeek() == 7) ? "color: red;" : "color: white;";
         }
 
+        if (date == selectedDate) {
+            style = "background-color: #887aff; border-radius: 10px; font-weight: bold;";
+            textColor = (date.dayOfWeek() == 6 || date.dayOfWeek() == 7) ? "color: red;" : "color: white;";
+        }
+
         dayButton->setStyleSheet(style + textColor);
         dayButton->setFont(QFont("Segoe UI", 9));
         dayButton->setCursor(Qt::PointingHandCursor);
 
         daysLayout->addWidget(dayButton);
+        dayButtons.append(dayButton);
     }
 }
 

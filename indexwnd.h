@@ -14,7 +14,7 @@
 #include "taskmanager.h"
 
 #include <QWidget>
-
+#include <QScrollArea>
 
 class IndexWnd : public QWidget
 {
@@ -67,6 +67,9 @@ private:
     QLabel* focusLabel;
     QLabel* profileLabel;
     QLabel* indexTitle;
+
+    QScrollArea* scrollArea;
+    QScrollArea* completedScroll;
 
     QPushButton* iconBtn;
     QPushButton* addTaskButton;

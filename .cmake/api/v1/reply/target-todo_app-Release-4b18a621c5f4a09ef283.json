@@ -245,7 +245,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g -std=gnu++17 -fdiagnostics-color=always"
+					"fragment" : "-O3 -DNDEBUG -std=gnu++17 -fdiagnostics-color=always"
 				}
 			],
 			"defines" : 
@@ -265,6 +265,10 @@
 				{
 					"backtrace" : 20,
 					"define" : "QT_NEEDS_QMAIN"
+				},
+				{
+					"backtrace" : 20,
+					"define" : "QT_NO_DEBUG"
 				},
 				{
 					"backtrace" : 6,
@@ -411,6 +415,10 @@
 					"define" : "QT_NEEDS_QMAIN"
 				},
 				{
+					"backtrace" : 20,
+					"define" : "QT_NO_DEBUG"
+				},
+				{
 					"backtrace" : 6,
 					"define" : "QT_SQL_LIB"
 				},
@@ -517,7 +525,7 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "-g",
+				"fragment" : "-O3 -DNDEBUG",
 				"role" : "flags"
 			},
 			{

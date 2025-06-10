@@ -363,38 +363,38 @@
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="59"/>
-        <source>App settings</source>
-        <translation type="unfinished">Настройки приложения</translation>
+        <source>Change app color</source>
+        <translation type="unfinished">Изменить цветовую тему</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="66"/>
+        <source>Change app language</source>
+        <translation type="unfinished">Изменить язык приложения</translation>
+    </message>
+    <message>
+        <location filename="../profilewnd.cpp" line="73"/>
         <source>Change account name</source>
         <translation type="unfinished">Изменить имя пользователя</translation>
     </message>
     <message>
-        <location filename="../profilewnd.cpp" line="85"/>
+        <location filename="../profilewnd.cpp" line="92"/>
         <source>Change account password</source>
         <translation type="unfinished">Изменить пароль</translation>
     </message>
     <message>
-        <location filename="../profilewnd.cpp" line="92"/>
-        <source>Change account Imgage</source>
-        <translation type="unfinished">Изменить иконку</translation>
+        <location filename="../profilewnd.cpp" line="99"/>
+        <source>Change account image</source>
+        <translation type="unfinished">Изменить иконку аккаунта</translation>
     </message>
     <message>
-        <location filename="../profilewnd.cpp" line="121"/>
-        <source>About US</source>
-        <translation type="unfinished">О нас</translation>
-    </message>
-    <message>
-        <location filename="../profilewnd.cpp" line="122"/>
-        <source>Help &amp; Feedback</source>
-        <translation type="unfinished">Помощь &amp; Обратная связь</translation>
+        <location filename="../profilewnd.cpp" line="128"/>
+        <source>About the developer</source>
+        <translation type="unfinished">О разработчике</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="123"/>
-        <source>Support US</source>
-        <translation type="unfinished">Поддержать нас</translation>
+        <source>Help &amp; Feedback</source>
+        <translation type="unfinished">Помощь &amp; Обратная связь</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="149"/>

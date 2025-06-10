@@ -76,9 +76,6 @@ void CalendarWnd::initDatabase() {
 
 void CalendarWnd::initCalendarWidget() {
     this->calendarWidget = new CalendarWidget(this);
-    connect(this->calendarWidget, &CalendarWidget::dateSelected, this, [](QDate date) {
-        qDebug() << "Selected date:" << date.toString();
-    });
 }
 
 void CalendarWnd::initSortTags() {

@@ -96,7 +96,7 @@ ProfileWnd::ProfileWnd(QWidget* parent)
         changePassWnd->show();
     });
 
-    this->changeAccImg = new ProfileSettingsWidget(QIcon(":/icons/camera.png"), tr("Change account Imgage"), this);
+    this->changeAccImg = new ProfileSettingsWidget(QIcon(":/icons/camera.png"), tr("Change account image"), this);
 
     connect(this->changeAccImg, &ProfileSettingsWidget::onClicked, this, [this] {
         this->changeImgWnd = new ChangeImgWnd(this);

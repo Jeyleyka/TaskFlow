@@ -10,24 +10,11 @@ IndexWnd::IndexWnd(TaskManager* taskManager, QWidget* parent)
     ThemeManager::instance().loadTheme();
 
     // --- Заголовок и иконка профиля ---
-    this->titleLayout = new QHBoxLayout();
-
-    // Левая заглушка (для симметрии)
-    QWidget* leftSpacer = new QWidget(this);
-    leftSpacer->setFixedWidth(40);  // как отступ
-
-    // Центр – заголовок
-    this->titleLayout = new QHBoxLayout();
-    this->titleLayout->setContentsMargins(0, 20, 0, 20);
-    this->titleLayout->setSpacing(0);
-
-    // Создаём заголовок
     QLabel* indexTitle = new QLabel(tr("Index"), this);
     indexTitle->setStyleSheet("font-size: 19px; margin-left: 310px; padding-right: 250px; color: #fff;");
-    indexTitle->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-    indexTitle->setAlignment(Qt::AlignCenter); // Центрируем текст внутри QLabel
+    indexTitle->setAlignment(Qt::AlignCenter);
 
-    // Создаём кнопку-иконку
+    this->iconBtn = nullptr; // обязательно обнуляем
     QSqlQuery query;
     query.prepare("SELECT icon FROM users WHERE id = :id");
     query.bindValue(":id", UserSession::getUserId());
@@ -35,7 +22,6 @@ IndexWnd::IndexWnd(TaskManager* taskManager, QWidget* parent)
     if (query.exec() && query.next()) {
         QPixmap pixmap;
         pixmap.loadFromData(query.value("icon").toByteArray());
-
         this->iconBtn = new QPushButton(this);
         this->iconBtn->setFixedSize(54, 54);
         this->iconBtn->setIcon(pixmap.scaled(54, 54, Qt::KeepAspectRatio, Qt::SmoothTransformation));
@@ -45,24 +31,17 @@ IndexWnd::IndexWnd(TaskManager* taskManager, QWidget* parent)
         qDebug() << "Ошибка запроса иконки пользователя:" << query.lastError().text();
     }
 
-    // Создаём контейнер с layout по центру
     QHBoxLayout* wrapperLayout = new QHBoxLayout();
     wrapperLayout->setContentsMargins(0, 0, 0, 20);
-    wrapperLayout->addStretch();         // Раздвигаем влево
+    wrapperLayout->addStretch();
     wrapperLayout->addWidget(indexTitle);
-    wrapperLayout->addSpacing(10);       // Промежуток между текстом и кнопкой
-    if (this->iconBtn) {
-        wrapperLayout->addWidget(this->iconBtn);
-    }
-    wrapperLayout->addStretch();         // Раздвигаем вправо
+    wrapperLayout->addSpacing(10);
+    if (this->iconBtn) wrapperLayout->addWidget(this->iconBtn);
+    wrapperLayout->addStretch();
 
-    // Оборачиваем всё в виджет, чтобы потом легко вставить в основной layout
     QWidget* wrapperWidget = new QWidget(this);
     wrapperWidget->setLayout(wrapperLayout);
-
-    // Добавляем в основной layout
     layout->addWidget(wrapperWidget);
-
 
     // --- Поиск ---
     this->initSearch();
@@ -71,48 +50,68 @@ IndexWnd::IndexWnd(TaskManager* taskManager, QWidget* parent)
     searchLayout->setContentsMargins(0, 0, 0, 20);
     layout->addLayout(searchLayout);
 
-    // --- Активные задачи ---
+    // --- Активные задачи с прокруткой ---
     this->todayTasksBtn = new QPushButton(tr("Today:"), this);
     this->todayTasksBtn->setStyleSheet("width: 100px; height: 31px; border-radius: 5px; background-color: #292929;");
-    this->tasksLayout = new QVBoxLayout;
+
+    QWidget* scrollContent = new QWidget();
+    this->tasksLayout = new QVBoxLayout(scrollContent);
+    this->tasksLayout->setAlignment(Qt::AlignTop);
     this->tasksLayout->setSpacing(15);
     this->tasksLayout->setContentsMargins(0, 30, 0, 0);
     this->tasksLayout->addWidget(this->todayTasksBtn, 0, Qt::AlignHCenter);
-    layout->addLayout(this->tasksLayout);
 
-    // --- Профиль ---
-    this->profile = new ProfileWnd;
+    scrollContent->setLayout(this->tasksLayout);
 
-    // --- Завершённые задачи ---
-    this->initSortTags();  // Создаёт completedTasksBtn и заполняет completedTasks
-    this->completeTaskslayout = new QVBoxLayout;
+    this->scrollArea = new QScrollArea(this);
+    this->scrollArea->setWidgetResizable(true);
+    this->scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    this->scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    this->scrollArea->setFrameShape(QFrame::NoFrame);
+    this->scrollArea->setWidget(scrollContent);
+
+    layout->addWidget(this->scrollArea);
+
+    // --- Выполненные задачи с прокруткой ---
+    this->completedTasksBtn = new QPushButton(tr("Completed:"), this);
+    this->completedTasksBtn->setStyleSheet("width: 100px; height: 31px; border-radius: 5px; background-color: #292929;");
+
+    QWidget* completedContent = new QWidget();
+    this->completeTaskslayout = new QVBoxLayout(completedContent);
+    this->completeTaskslayout->setAlignment(Qt::AlignTop);
     this->completeTaskslayout->setSpacing(15);
     this->completeTaskslayout->setContentsMargins(0, 20, 0, 0);
     this->completeTaskslayout->addWidget(this->completedTasksBtn, 0, Qt::AlignHCenter);
-    for (TaskUI* task : this->completedTasks) {
-        task->setFixedSize(920, 98);
-        this->completeTaskslayout->addWidget(task, 0, Qt::AlignHCenter);
-    }
-    layout->addLayout(this->completeTaskslayout);
-    layout->addStretch();
+
+    completedContent->setLayout(this->completeTaskslayout);
+
+    this->completedScroll = new QScrollArea(this);
+    this->completedScroll->setWidgetResizable(true);
+    this->completedScroll->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    this->completedScroll->setFrameShape(QFrame::NoFrame);
+    this->completedScroll->setWidget(completedContent);
+
+    layout->addWidget(this->completedScroll);
 
     // --- Навигация ---
     this->navBar = new NavigationBar(this);
     layout->addWidget(this->navBar);
 
-    connect(this->navBar, &NavigationBar::onShowTaskDialog, this, &IndexWnd::showTaskDialog);
+    this->profile = new ProfileWnd;
+    this->initSortTags();
 
     // --- Сигналы от панели навигации ---
+    connect(this->navBar, &NavigationBar::onShowTaskDialog, this, &IndexWnd::showTaskDialog);
     connect(this->navBar, &NavigationBar::switchToCalendar, this, &IndexWnd::switchToCalendar);
     connect(this->navBar, &NavigationBar::switchToFocus, this, &IndexWnd::switchToFocus);
     connect(this->navBar, &NavigationBar::switchToProfile, this, &IndexWnd::switchToProfile);
 
-    // --- Подключение сигналов TaskManager ---
+    // --- Сигналы от TaskManager ---
     connect(taskManager, &TaskManager::taskCreated, this, &IndexWnd::onTaskCreated);
     connect(taskManager, &TaskManager::taskUpdated, this, &IndexWnd::onTaskUpdated);
     connect(taskManager, &TaskManager::taskDeleted, this, &IndexWnd::onTaskDeleted);
 
-    // --- Показать уже существующие задачи ---
+    // --- Добавляем существующие задачи ---
     for (const Task& task : taskManager->getAllTasks()) {
         this->onTaskCreated(task);
     }

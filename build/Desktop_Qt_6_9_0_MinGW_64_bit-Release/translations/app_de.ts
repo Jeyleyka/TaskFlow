@@ -420,16 +420,11 @@
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="59" />
-        <source>Change app color</source>
-        <translation>App-Farbe ändern</translation>
+        <source>App settings</source>
+        <translation>App-Einstellungen</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="66" />
-        <source>Change app language</source>
-        <translation>App-Sprache ändern</translation>
-    </message>
-    <message>
-        <location filename="../profilewnd.cpp" line="73" />
         <source>Change account name</source>
         <translation>Kontonamen ändern</translation>
     </message>
@@ -440,13 +435,13 @@
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="92" />
-        <source>Change account image</source>
+        <source>Change account Imgage</source>
         <translation>Konto-Bild ändern</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="121" />
-        <source>About the developer</source>
-        <translation>Über den Entwickler</translation>
+        <source>About US</source>
+        <translation>Über uns</translation>
     </message>
     <message>
         <location filename="../profilewnd.cpp" line="122" />

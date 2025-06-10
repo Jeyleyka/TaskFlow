@@ -25,11 +25,16 @@ signals:
 private:
     QHBoxLayout* headerLayout;
     QHBoxLayout* daysLayout;
+
     QLabel* monthLabel;
     QLabel* yearLabel;
+
     QDate currentDate;
     QDate selectedDate;
+
     QScrollArea* scrollArea;
+
+    QList<QPushButton*> dayButtons;
 
     void updateCalendar();
     void highlightToday(QPushButton* btn, const QDate& date);
