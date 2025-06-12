@@ -2,7 +2,10 @@
 
 **TaskFlow** is a minimalist and stylish desktop application that helps you organize your day by creating tasks, prioritizing them, and tracking your progress. The user-friendly interface, categories, and priority system make planning fast and efficient.
 
+**Design** - by Amir Baghestani
 ---
+
+![License](https://img.shields.io/pypi/l/taskflow?style=flat)
 
 ## 🚀 Opportunity
 
