@@ -5,6 +5,11 @@ CalendarWidget::CalendarWidget(QWidget* parent)
 {
     this->setStyleSheet("margin-top: 10px; background-color: #363636; max-height: 130px;");
 
+    this->dataBase = new DatabaseManager;
+    this->dataBase->initializeDatabase();
+
+    this->datesWithTasks = this->dataBase->getDatesWithTasksForUser(UserSession::getUserId());
+
     ThemeManager::instance().loadTheme();
 
     QColor color = ThemeManager::instance().widgetsColor();
@@ -95,10 +100,12 @@ CalendarWidget::CalendarWidget(QWidget* parent)
 void CalendarWidget::updateCalendar() {
     QDate today = QDate::currentDate();
     QDate startDate = currentDate.addDays(-3); // 3 дня до currentDate
-
     QLocale locale = QLocale::system();
 
-    // Заголовки месяца и года на основе currentDate
+    // Получаем даты с задачами
+    this->datesWithTasks = this->dataBase->getDatesWithTasksForUser(UserSession::getUserId());
+
+    // Заголовки месяца и года
     this->monthLabel->setText(locale.toString(currentDate, "MMMM").toUpper());
     this->yearLabel->setText(locale.toString(currentDate, "yyyy").toUpper());
 
@@ -109,13 +116,13 @@ void CalendarWidget::updateCalendar() {
         delete child;
     }
 
+    // for (QPushButton* btn : dayButtons)
+    //     btn->deleteLater();
+
+    dayButtons.clear();
+
     daysLayout->setContentsMargins(10, 0, 10, 0);
     daysLayout->setSpacing(10);
-
-    for (QPushButton* btn : dayButtons) {
-        btn->deleteLater();
-    }
-    dayButtons.clear();
 
     for (int i = 0; i < 7; ++i) {
         QDate date = startDate.addDays(i);
@@ -124,18 +131,15 @@ void CalendarWidget::updateCalendar() {
 
         QPushButton* dayButton = new QPushButton(QString("%1\n%2").arg(weekday, dayNumber), this);
         dayButton->setFixedSize(60, 70);
+        dayButton->setProperty("buttonDate", date);
+
+        connect(dayButton, &QPushButton::clicked, this, &CalendarWidget::onDayButtonClicked);
 
         QString style = "background-color: #1e1e1e; border-radius: 10px; font-weight: bold;";
         QString textColor = "color: gray;";
 
-        if (date.dayOfWeek() == 6 || date.dayOfWeek() == 7) {
+        if (date.dayOfWeek() == 6 || date.dayOfWeek() == 7)
             textColor = "color: red;";
-        }
-
-        if (date == today) {
-            style = "background-color: #887aff; border-radius: 10px; font-weight: bold;";
-            textColor = (date.dayOfWeek() == 6 || date.dayOfWeek() == 7) ? "color: red;" : "color: white;";
-        }
 
         if (date == selectedDate) {
             style = "background-color: #887aff; border-radius: 10px; font-weight: bold;";
@@ -145,6 +149,19 @@ void CalendarWidget::updateCalendar() {
         dayButton->setStyleSheet(style + textColor);
         dayButton->setFont(QFont("Segoe UI", 9));
         dayButton->setCursor(Qt::PointingHandCursor);
+
+        // Если есть задачи на этот день (и он не сегодня) — добавим точку
+        if (this->datesWithTasks.contains(date) && date != today) {
+            QLabel* dot = new QLabel("●", this);
+            dot->setAlignment(Qt::AlignCenter);
+            dot->setStyleSheet("color: #7a74ff; font-size: 11px;");
+            dot->setFixedHeight(11);
+
+            QVBoxLayout* btnLayout = new QVBoxLayout(dayButton);
+            btnLayout->setContentsMargins(0, 0, 0, 0);
+            btnLayout->addStretch();
+            btnLayout->addWidget(dot, 0, Qt::AlignHCenter | Qt::AlignBottom);
+        }
 
         daysLayout->addWidget(dayButton);
         dayButtons.append(dayButton);
@@ -166,4 +183,27 @@ void CalendarWidget::highlightWeekend(QPushButton* btn, const QDate& date)
         btn->setStyleSheet(btn->styleSheet() +
                            " QPushButton { color: red; }");
     }
+}
+
+void CalendarWidget::onDayButtonClicked()
+{
+    QPushButton* clickedButton = qobject_cast<QPushButton*>(sender());
+    if (!clickedButton) return;
+
+    QDate date = clickedButton->property("buttonDate").toDate();
+    if (date.isValid()) {
+        selectedDate = date;
+        emit dateSelected(date);  // Сначала сигнал
+
+        // А потом обновим календарь с задержкой в 0 мс
+        QTimer::singleShot(0, this, [this]() {
+            updateCalendar();
+        });
+    }
+}
+
+void CalendarWidget::setSelectedDate(const QDate& date) {
+    this->selectedDate = date;
+    emit this->dateSelected(date);
+    this->updateCalendar();
 }

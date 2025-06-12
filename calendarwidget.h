@@ -9,8 +9,10 @@
 #include <QScrollBar>
 #include <QPushButton>
 #include <QLabel>
+#include <QTimer>
 
 #include "thememanager.h"
+#include "database.h"
 
 class CalendarWidget : public QWidget
 {
@@ -19,12 +21,18 @@ class CalendarWidget : public QWidget
 public:
     CalendarWidget(QWidget* parent = nullptr);
 
+    void setSelectedDate(const QDate& date);
+
 signals:
     void dateSelected(const QDate& date);
 
 private:
     QHBoxLayout* headerLayout;
     QHBoxLayout* daysLayout;
+
+    DatabaseManager* dataBase;
+
+    QSet<QDate> datesWithTasks;
 
     QLabel* monthLabel;
     QLabel* yearLabel;
@@ -39,6 +47,9 @@ private:
     void updateCalendar();
     void highlightToday(QPushButton* btn, const QDate& date);
     void highlightWeekend(QPushButton* btn, const QDate& date);
+
+private slots:
+    void onDayButtonClicked();
 };
 
 #endif // CALENDARWIDGET_H

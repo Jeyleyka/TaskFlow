@@ -16,6 +16,7 @@ public:
     bool deleteTaskFromDatabase(int id);
     bool updateTaskInDatabase(Task& task);
     QList<Task> loadTasksFromDatabase();
+    QSet<QDate> getDatesWithTasksForUser(int userId);
     static QSqlDatabase getDatabase();
 
 private:

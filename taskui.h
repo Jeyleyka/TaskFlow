@@ -11,6 +11,7 @@
 #include <QBuffer>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QDate>
 
 #include "categoryitemwidget.h"
 #include "UserSession.h"
@@ -31,6 +32,7 @@ public:
     void setCategory(QString name, QColor color, QIcon icon, int width, int height);
     void setPriority(QString priority) const;
     void setCompleted(bool completed);
+    void setDueDate(const QDate& date);
 
     int getId() const;
     QString getTitle() const;
@@ -38,16 +40,13 @@ public:
     QColor getCategoryColor() const;
     QIcon getCategoryIcon() const;
     QString getDate() const;
+    QDate getRawDueDate() const;
     int getPriority() const;
     bool getCompleted() const;
 
 signals:
     void taskClicked();
     void onUpdateTaskToComplete(const int taskId, bool completed);
-    void taskCreatedInIndex(const QString name, const QString desc, const QString dueDate, const int priority, const QString catName, QColor catColor,
-                            QIcon catIco, const int id, const int completed);
-    void taskCreatedInCalendar(const QString name, const QString desc, const QString dueDate, const int priority, const QString catName, QColor catColor,
-                               QIcon catIco, const int id, const int completed);
 
 protected:
     void mousePressEvent(QMouseEvent* event) override;
@@ -67,6 +66,8 @@ private:
     QPushButton* showDescription;
     QPushButton* circle;
     QPushButton* categoryBtn;
+
+    QDate rawDueDate;
 
     int priority;
     int taskID;

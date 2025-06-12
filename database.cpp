@@ -34,6 +34,7 @@ bool DatabaseManager::initializeDatabase() {
         "user_id INTEGER, "
         "title TEXT, "
         "description TEXT, "
+        "creation_date TEXT, "
         "due_date TEXT, "
         "priority INTEGER, "
         "completed INTEGER DEFAULT 0,"
@@ -71,8 +72,8 @@ bool DatabaseManager::initializeDatabase() {
 bool DatabaseManager::insertTaskToDatabase(Task &task) {
     QSqlQuery query;
     query.prepare(R"(
-        INSERT INTO tasks (user_id, title, description, due_date, priority, completed, category_name, category_color, category_icon)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO tasks (user_id, title, description, creation_date, due_date, priority, completed, category_name, category_color, category_icon)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     )");
 
     // Преобразуем иконку в QByteArray
@@ -86,7 +87,9 @@ bool DatabaseManager::insertTaskToDatabase(Task &task) {
     query.addBindValue(UserSession::getUserId());
     query.addBindValue(task.title);
     query.addBindValue(task.description);
-    QString formattedDate = QDateTime::currentDateTime().toString("yyyy-MM-dd HH:mm:ss");
+
+    query.addBindValue(task.creationDate.toString("yyyy-MM-dd HH:mm:ss"));
+    QString formattedDate = task.dueDate.toString("yyyy-MM-dd HH:mm:ss");
     query.addBindValue(formattedDate);
     query.addBindValue(task.priority);
     query.addBindValue(task.completed);
@@ -113,8 +116,8 @@ bool DatabaseManager::deleteTaskFromDatabase(int id)
     qDebug() << "Попытка удалить задачу с ID:" << id;  // Выводим ID задачи перед удалением
 
     QSqlQuery query;
-    query.prepare("DELETE FROM tasks WHERE id = ?");
-    query.addBindValue(id);  // Передаём ID, а не весь объект
+    query.prepare("DELETE FROM tasks WHERE id = :id");
+    query.bindValue(":id", id);  // Передаём ID, а не весь объект
 
     if (!query.exec()) {
         qDebug() << "Ошибка удаления из базы данных:" << query.lastError();
@@ -178,7 +181,15 @@ QList<Task> DatabaseManager::loadTasksFromDatabase() {
             task.title = query.value(2).toString();
             task.description = query.value(3).toString();
 
-            QString datetimeStr = query.value(4).toString().trimmed();
+            QString creationDatetimeStr = query.value(4).toString().trimmed();
+            QDateTime creationDate = QDateTime::fromString(creationDatetimeStr, "yyyy-MM-dd HH:mm:ss");
+            if (!creationDate.isValid()) {
+                qDebug() << "⚠️ Не удалось распарсить дату:" << creationDatetimeStr;
+            } else {
+                task.creationDate = creationDate;
+            }
+
+            QString datetimeStr = query.value(5).toString().trimmed();
             QDateTime dueDate = QDateTime::fromString(datetimeStr, "yyyy-MM-dd HH:mm:ss");
             if (!dueDate.isValid()) {
                 qDebug() << "⚠️ Не удалось распарсить дату:" << datetimeStr;
@@ -186,16 +197,16 @@ QList<Task> DatabaseManager::loadTasksFromDatabase() {
                 task.dueDate = dueDate;
             }
 
-            task.priority = query.value(5).toInt();
-            task.completed = query.value(6).toInt();
-            task.categoryName = query.value(7).toString();
+            task.priority = query.value(6).toInt();
+            task.completed = query.value(7).toInt();
+            task.categoryName = query.value(8).toString();
 
             // Цвет
-            QString colorStr = query.value(8).toString();
+            QString colorStr = query.value(9).toString();
             task.categoryColor = QColor(colorStr);
 
             // Иконка
-            QByteArray iconData = query.value(9).toByteArray();
+            QByteArray iconData = query.value(10).toByteArray();
             QPixmap pixmap;
             if (pixmap.loadFromData(iconData)) {
                 task.categoryIcon = QIcon(pixmap);
@@ -209,6 +220,30 @@ QList<Task> DatabaseManager::loadTasksFromDatabase() {
 
     return tasks;
 }
+
+QSet<QDate> DatabaseManager::getDatesWithTasksForUser(int userId)
+{
+    QSet<QDate> dates;
+    QSqlQuery query;
+    query.prepare(R"(
+        SELECT DISTINCT DATE(due_date) FROM tasks
+        WHERE user_id = ?
+    )");
+    query.addBindValue(userId);
+    if (query.exec()) {
+        while (query.next()) {
+            QString dateStr = query.value(0).toString(); // "yyyy-MM-dd"
+            QDate date = QDate::fromString(dateStr, "yyyy-MM-dd");
+            if (date.isValid()) {
+                dates.insert(date);
+            }
+        }
+    } else {
+        qDebug() << "getDatesWithTasksForUser error:" << query.lastError();
+    }
+    return dates;
+}
+
 
 QSqlDatabase DatabaseManager::getDatabase() {
     return db;

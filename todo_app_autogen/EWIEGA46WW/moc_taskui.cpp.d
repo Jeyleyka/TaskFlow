@@ -1,6 +1,7 @@
 D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_taskui.cpp: D:/Work/todo_app/taskui.h \
   D:/Work/todo_app/todo_app_autogen/moc_predefs.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QBuffer \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QDate \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
@@ -31,6 +32,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_taskui.cpp: D:/Work/todo_app/ta
   C:/Qt/6.9.0/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qbytearrayview.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qcalendar.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qchar.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qcompare.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qcompare_impl.h \
@@ -47,6 +49,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_taskui.cpp: D:/Work/todo_app/ta
   C:/Qt/6.9.0/mingw_64/include/QtCore/qcoreevent.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdatastream.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qdatetime.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdeadlinetimer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qdebug.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qelapsedtimer.h \

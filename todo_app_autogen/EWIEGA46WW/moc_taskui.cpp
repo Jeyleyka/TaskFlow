@@ -44,17 +44,7 @@ template <> constexpr inline auto TaskUI::qt_create_metaobjectdata<qt_meta_tag_Z
         "",
         "onUpdateTaskToComplete",
         "taskId",
-        "completed",
-        "taskCreatedInIndex",
-        "name",
-        "desc",
-        "dueDate",
-        "priority",
-        "catName",
-        "catColor",
-        "catIco",
-        "id",
-        "taskCreatedInCalendar"
+        "completed"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -63,18 +53,6 @@ template <> constexpr inline auto TaskUI::qt_create_metaobjectdata<qt_meta_tag_Z
         // Signal 'onUpdateTaskToComplete'
         QtMocHelpers::SignalData<void(const int, bool)>(3, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 4 }, { QMetaType::Bool, 5 },
-        }}),
-        // Signal 'taskCreatedInIndex'
-        QtMocHelpers::SignalData<void(const QString, const QString, const QString, const int, const QString, QColor, QIcon, const int, const int)>(6, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 7 }, { QMetaType::QString, 8 }, { QMetaType::QString, 9 }, { QMetaType::Int, 10 },
-            { QMetaType::QString, 11 }, { QMetaType::QColor, 12 }, { QMetaType::QIcon, 13 }, { QMetaType::Int, 14 },
-            { QMetaType::Int, 5 },
-        }}),
-        // Signal 'taskCreatedInCalendar'
-        QtMocHelpers::SignalData<void(const QString, const QString, const QString, const int, const QString, QColor, QIcon, const int, const int)>(15, 2, QMC::AccessPublic, QMetaType::Void, {{
-            { QMetaType::QString, 7 }, { QMetaType::QString, 8 }, { QMetaType::QString, 9 }, { QMetaType::Int, 10 },
-            { QMetaType::QString, 11 }, { QMetaType::QColor, 12 }, { QMetaType::QIcon, 13 }, { QMetaType::Int, 14 },
-            { QMetaType::Int, 5 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -101,8 +79,6 @@ void TaskUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->taskClicked(); break;
         case 1: _t->onUpdateTaskToComplete((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<bool>>(_a[2]))); break;
-        case 2: _t->taskCreatedInIndex((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<QColor>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QIcon>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[9]))); break;
-        case 3: _t->taskCreatedInCalendar((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5])),(*reinterpret_cast< std::add_pointer_t<QColor>>(_a[6])),(*reinterpret_cast< std::add_pointer_t<QIcon>>(_a[7])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[8])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[9]))); break;
         default: ;
         }
     }
@@ -110,10 +86,6 @@ void TaskUI::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         if (QtMocHelpers::indexOfMethod<void (TaskUI::*)()>(_a, &TaskUI::taskClicked, 0))
             return;
         if (QtMocHelpers::indexOfMethod<void (TaskUI::*)(const int , bool )>(_a, &TaskUI::onUpdateTaskToComplete, 1))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (TaskUI::*)(const QString , const QString , const QString , const int , const QString , QColor , QIcon , const int , const int )>(_a, &TaskUI::taskCreatedInIndex, 2))
-            return;
-        if (QtMocHelpers::indexOfMethod<void (TaskUI::*)(const QString , const QString , const QString , const int , const QString , QColor , QIcon , const int , const int )>(_a, &TaskUI::taskCreatedInCalendar, 3))
             return;
     }
 }
@@ -137,14 +109,14 @@ int TaskUI::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 2;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 4;
+        _id -= 2;
     }
     return _id;
 }
@@ -159,17 +131,5 @@ void TaskUI::taskClicked()
 void TaskUI::onUpdateTaskToComplete(const int _t1, bool _t2)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1, _t2);
-}
-
-// SIGNAL 2
-void TaskUI::taskCreatedInIndex(const QString _t1, const QString _t2, const QString _t3, const int _t4, const QString _t5, QColor _t6, QIcon _t7, const int _t8, const int _t9)
-{
-    QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1, _t2, _t3, _t4, _t5, _t6, _t7, _t8, _t9);
-}
-
-// SIGNAL 3
-void TaskUI::taskCreatedInCalendar(const QString _t1, const QString _t2, const QString _t3, const int _t4, const QString _t5, QColor _t6, QIcon _t7, const int _t8, const int _t9)
-{
-    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1, _t2, _t3, _t4, _t5, _t6, _t7, _t8, _t9);
 }
 QT_WARNING_POP

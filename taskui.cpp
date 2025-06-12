@@ -169,6 +169,10 @@ void TaskUI::setCompleted(bool completed) {
     }
 }
 
+void TaskUI::setDueDate(const QDate& date) {
+    this->rawDueDate = date;
+}
+
 int TaskUI::getId() const {
     return this->taskID;
 }
@@ -191,6 +195,10 @@ QIcon TaskUI::getCategoryIcon() const {
 
 QString TaskUI::getDate() const {
     return this->createDate;
+}
+
+QDate TaskUI::getRawDueDate() const {
+    return this->rawDueDate;
 }
 
 int TaskUI::getPriority() const {

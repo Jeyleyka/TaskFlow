@@ -213,15 +213,16 @@ void IndexWnd::searchTaskFilter(const QString &title) {
 }
 
 void IndexWnd::onTaskCreated(const Task &task) {
+    qDebug() << "time: " << task.dueDate.toString();
     QString formattedDate = task.formatDateTime(task.dueDate);
 
     if (!formattedDate.contains(tr("Today"))) return;
 
-    TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate),
+    TaskUI* taskUI = new TaskUI(task.title, task.description, formattedDate,
                                 task.priority, task.categoryName, task.categoryColor, task.categoryIcon,
                                 task.id, task.completed, this);
 
-    // connect(taskUI, &TaskUI::onUpdateTaskToComplete, profile, &ProfileWnd::updateTasksData);
+    taskUI->setDueDate(task.dueDate.date());
 
     taskUI->setFixedSize(920, 98);
     if (task.completed) {
@@ -254,7 +255,7 @@ void IndexWnd::onTaskCreated(const Task &task) {
 
     connect(taskUI, &TaskUI::taskClicked, this, [=] {
         TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description,
-                                          task.formatDateTime(task.dueDate), taskUI, this);
+                                          formattedDate, taskUI, this);
         taskInfo->setFixedSize(500, 600);
         taskInfo->show();
 

@@ -76,6 +76,18 @@ void CalendarWnd::initDatabase() {
 
 void CalendarWnd::initCalendarWidget() {
     this->calendarWidget = new CalendarWidget(this);
+
+    connect(this->calendarWidget, &CalendarWidget::dateSelected, this, [this](const QDate& date) {
+        this->selectedDate = date;
+        this->filterTasksByDate(date);
+
+        if (this->selectedDate == QDate::currentDate()) {
+            this->currentActiveButton = this->todayTasksBtn;
+            this->updateButtonStyles();
+        }
+
+        emit onDateUpdated(date);
+    });
 }
 
 void CalendarWnd::initSortTags() {
@@ -101,11 +113,16 @@ void CalendarWnd::initSortTags() {
     this->todayTasksBtn->setStyleSheet("width: 250px; height: 49px; background-color: #8182DE; margin: 20px;");
 
     connect(this->todayTasksBtn, &QPushButton::clicked, this, [this] {
+        QDate today = QDate::currentDate();
+
+        this->calendarWidget->setSelectedDate(today);
+        this->filterTasksByDate(today);
+
         this->currentActiveButton = this->todayTasksBtn;
         this->updateButtonStyles();
 
         for (TaskUI* task : this->tasks) {
-            if (task->getDate().contains(tr("Today")))
+            if (task->getRawDueDate() == QDate::currentDate())
                 task->show();
             else
                 task->hide();
@@ -239,17 +256,32 @@ void CalendarWnd::updateButtonStyles() {
     }
 }
 
+void CalendarWnd::filterTasksByDate(const QDate &date) {
+    this->currentActiveButton = nullptr;
+    this->updateButtonStyles();
+
+    this->filterTodayOnly = false;
+    this->filterCompletedOnly = false;
+
+    for (TaskUI* taskUI : this->tasks) {
+        QDate taskDate = taskUI->getRawDueDate();
+
+        if (taskDate == date) {
+            taskUI->show();
+        } else {
+            taskUI->hide();
+        }
+    }
+}
 
 void CalendarWnd::onTaskCreated(const Task &task) {
     QString formattedDate = task.formatDateTime(task.dueDate);
 
-    if (!formattedDate.contains(tr("Today"))) return;
-
-    TaskUI* taskUI = new TaskUI(task.title, task.description, task.formatDateTime(task.dueDate),
+    TaskUI* taskUI = new TaskUI(task.title, task.description, formattedDate,
                                 task.priority, task.categoryName, task.categoryColor, task.categoryIcon,
                                 task.id, task.completed, this);
 
-    // connect(taskUI, &TaskUI::onUpdateTaskToComplete, profile, &ProfileWnd::updateTasksData);
+    taskUI->setDueDate(task.dueDate.date());
 
     connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI, task](const int taskId, bool completed) {
         taskUI->setCompleted(completed);
@@ -260,9 +292,11 @@ void CalendarWnd::onTaskCreated(const Task &task) {
     this->tasks.append(taskUI);
     tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
 
+    if (taskUI->getRawDueDate() != QDate::currentDate()) taskUI->hide();
+
     connect(taskUI, &TaskUI::taskClicked, this, [=] {
         TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description,
-                                          task.formatDateTime(task.dueDate), taskUI, this);
+                                          formattedDate, taskUI, this);
         taskInfo->setFixedSize(500, 600);
         taskInfo->show();
 

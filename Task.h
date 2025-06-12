@@ -12,6 +12,7 @@ struct Task {
     int user_id;
     QString title;
     QString description;
+    QDateTime creationDate = QDateTime::currentDateTime();
     QDateTime dueDate;
     int priority;
     int completed = 0;

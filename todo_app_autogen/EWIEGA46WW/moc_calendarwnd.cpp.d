@@ -15,6 +15,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_calendarwnd.cpp: D:/Work/todo_a
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSize \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QString \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QTimer \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QVector \
   C:/Qt/6.9.0/mingw_64/include/QtCore/q17memory.h \
@@ -148,6 +149,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_calendarwnd.cpp: D:/Work/todo_a
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtenvironmentvariables.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtextstream.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtformat_impl.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qtimer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtimezone.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtmetamacros.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qtnoop.h \

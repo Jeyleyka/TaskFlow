@@ -36,6 +36,7 @@ signals:
     void switchToFocus();
     void switchToProfile();
     void taskUpdated(const Task &task);
+    void onDateUpdated(const QDate& date);
 
 // protected:
 //     void showEvent(QShowEvent* event) override;
@@ -56,6 +57,8 @@ private:
     DatabaseManager* dataBase;
 
     QVector<TaskUI*> tasks;
+
+    QDate selectedDate;
 
     QLabel* indexLabel;
     QLabel* calendarLabel;
@@ -93,6 +96,7 @@ private:
 
     void showTaskDialog();
     void updateButtonStyles();
+    void filterTasksByDate(const QDate& date);
 
 private slots:
     void clearTasksUI();
