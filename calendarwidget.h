@@ -22,6 +22,7 @@ public:
     CalendarWidget(QWidget* parent = nullptr);
 
     void setSelectedDate(const QDate& date);
+    void updateCalendar();
 
 signals:
     void dateSelected(const QDate& date);
@@ -44,7 +45,6 @@ private:
 
     QList<QPushButton*> dayButtons;
 
-    void updateCalendar();
     void highlightToday(QPushButton* btn, const QDate& date);
     void highlightWeekend(QPushButton* btn, const QDate& date);
 

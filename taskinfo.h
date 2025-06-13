@@ -31,6 +31,7 @@ public:
 
 signals:
     void onChangeUI();
+    void taskDeleted(const int& taskId);
 
 private:
     TaskUI* taskUI;

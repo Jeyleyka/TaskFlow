@@ -193,6 +193,8 @@ void IndexWnd::showTaskDialog() {
     connect(this->dialog, &TaskDialog::accepted, this, [this]() {
         Task task = this->dialog->getTask();
         this->taskManager->createTask(task);
+        this->dialog->deleteLater();
+        this->dialog = nullptr;
     });
 }
 
@@ -253,22 +255,33 @@ void IndexWnd::onTaskCreated(const Task &task) {
         this->taskManager->setTaskCompleted(taskId, completed);
     });
 
+    QPointer<TaskUI> safeTaskUI = taskUI;
+
     connect(taskUI, &TaskUI::taskClicked, this, [=] {
         TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description,
-                                          formattedDate, taskUI, this);
+                                          formattedDate, safeTaskUI, this);
+        QPointer<TaskInfo> safeTaskInfo = taskInfo;
+
         taskInfo->setFixedSize(500, 600);
         taskInfo->show();
 
+        connect(taskInfo, &QDialog::finished, taskInfo, &QObject::deleteLater);
+
+        connect(taskInfo, &TaskInfo::taskDeleted, this, [this, taskUI] {
+            this->taskManager->deleteTask(taskUI->getId());
+            taskUI->deleteLater();
+        });
+
         connect(taskInfo, &TaskInfo::onChangeUI, this, [=] {
-            if (!taskUI || !taskInfo) return;
+            if (!safeTaskUI || !safeTaskInfo) return; // ← теперь безопасно
 
-            QString title = taskInfo->getTitle();
+            QString title = safeTaskInfo->getTitle();
 
-            taskUI->setTitle(title);
-            taskUI->setCategory(taskInfo->getCategoryName(),
-                                taskInfo->getCategoryColor(),
-                                taskInfo->getCategoryIcon(), 14, 14);
-            taskUI->setPriority(taskInfo->getPriority());
+            safeTaskUI->setTitle(title);
+            safeTaskUI->setCategory(safeTaskInfo->getCategoryName(),
+                                    safeTaskInfo->getCategoryColor(),
+                                    safeTaskInfo->getCategoryIcon(), 14, 14);
+            safeTaskUI->setPriority(safeTaskInfo->getPriority());
         });
     });
 }

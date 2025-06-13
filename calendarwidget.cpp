@@ -151,7 +151,7 @@ void CalendarWidget::updateCalendar() {
         dayButton->setCursor(Qt::PointingHandCursor);
 
         // Если есть задачи на этот день (и он не сегодня) — добавим точку
-        if (this->datesWithTasks.contains(date) && date != today) {
+        if (this->datesWithTasks.contains(date) && date != today && date > today) {
             QLabel* dot = new QLabel("●", this);
             dot->setAlignment(Qt::AlignCenter);
             dot->setStyleSheet("color: #7a74ff; font-size: 11px;");

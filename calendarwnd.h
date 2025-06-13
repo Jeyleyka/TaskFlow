@@ -13,10 +13,12 @@
 
 #include <QWidget>
 #include <QShowEvent>
+#include <QPointer>
 
 class CalendarWnd : public QWidget
 {
     Q_OBJECT
+
 public:
     CalendarWnd(TaskManager* taskManager, QWidget* parent = nullptr);
     ~CalendarWnd();

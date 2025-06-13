@@ -42,14 +42,20 @@ template <> constexpr inline auto TaskInfo::qt_create_metaobjectdata<qt_meta_tag
         "TaskInfo",
         "onChangeUI",
         "",
+        "taskDeleted",
+        "taskId",
         "onDeleteTaskClicked"
     };
 
     QtMocHelpers::UintData qt_methods {
         // Signal 'onChangeUI'
         QtMocHelpers::SignalData<void()>(1, 2, QMC::AccessPublic, QMetaType::Void),
+        // Signal 'taskDeleted'
+        QtMocHelpers::SignalData<void(const int &)>(3, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 4 },
+        }}),
         // Slot 'onDeleteTaskClicked'
-        QtMocHelpers::SlotData<void()>(3, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(5, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -74,12 +80,15 @@ void TaskInfo::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->onChangeUI(); break;
-        case 1: _t->onDeleteTaskClicked(); break;
+        case 1: _t->taskDeleted((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 2: _t->onDeleteTaskClicked(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (TaskInfo::*)()>(_a, &TaskInfo::onChangeUI, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (TaskInfo::*)(const int & )>(_a, &TaskInfo::taskDeleted, 1))
             return;
     }
 }
@@ -103,14 +112,14 @@ int TaskInfo::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }
@@ -119,5 +128,11 @@ int TaskInfo::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void TaskInfo::onChangeUI()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
+}
+
+// SIGNAL 1
+void TaskInfo::taskDeleted(const int & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
 }
 QT_WARNING_POP

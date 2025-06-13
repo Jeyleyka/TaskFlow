@@ -15,6 +15,7 @@
 
 #include <QWidget>
 #include <QScrollArea>
+#include <QPointer>
 
 class IndexWnd : public QWidget
 {

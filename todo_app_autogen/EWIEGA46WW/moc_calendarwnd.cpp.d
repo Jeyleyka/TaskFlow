@@ -9,6 +9,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_calendarwnd.cpp: D:/Work/todo_a
   C:/Qt/6.9.0/mingw_64/include/QtCore/QList \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QPointer \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QSettings \
@@ -107,6 +108,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_calendarwnd.cpp: D:/Work/todo_a
   C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qpointer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qrect.h \

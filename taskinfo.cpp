@@ -137,8 +137,6 @@ TaskInfo::TaskInfo(int id, QString titleStr, QString descStr, QString createData
     this->deleteTask->setIconSize(QSize(32,32));
     this->deleteTask->setStyleSheet("font-size: 17px; color: #E14242; border: none; ");
 
-
-
     connect(this->deleteTask, &QPushButton::clicked, this, &TaskInfo::onDeleteTaskClicked);
 
     buttonLayout->addWidget(this->deleteTask, 0, Qt::AlignLeft);
@@ -205,13 +203,14 @@ void TaskInfo::onDeleteTaskClicked() {
         return;
     }
 
-    if (this->taskUI) {
-        this->taskUI->deleteLater();
-    }
+    this->taskUI->disconnect();
+    this->taskUI->deleteLater();
+    this->taskUI = nullptr;
 
     qDebug() << "Task deleted successfully";
 
-    this->accept();
+    emit taskDeleted(this->Taskid);
+    this->close();
 }
 
 void TaskInfo::onUpdateData() {

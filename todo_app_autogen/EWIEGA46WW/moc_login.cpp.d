@@ -14,6 +14,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_login.cpp: D:/Work/todo_app/log
   C:/Qt/6.9.0/mingw_64/include/QtCore/QModelIndex \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QObject \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPoint \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/QPointer \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QProcess \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QPropertyAnimation \
   C:/Qt/6.9.0/mingw_64/include/QtCore/QRect \
@@ -120,6 +121,7 @@ D:/Work/todo_app/todo_app_autogen/EWIEGA46WW/moc_login.cpp: D:/Work/todo_app/log
   C:/Qt/6.9.0/mingw_64/include/QtCore/qoverload.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpair.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpoint.h \
+  C:/Qt/6.9.0/mingw_64/include/QtCore/qpointer.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qprocess.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.9.0/mingw_64/include/QtCore/qpropertyanimation.h \
