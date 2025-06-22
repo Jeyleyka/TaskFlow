@@ -14,9 +14,11 @@ public:
     bool initializeDatabase();
     bool insertTaskToDatabase(Task& task);
     bool deleteTaskFromDatabase(int id);
-    bool updateTaskInDatabase(Task& task);
+    bool updateTaskInDatabase(const Task& task);
+    Task getTaskById(int id);
     QList<Task> loadTasksFromDatabase();
     QSet<QDate> getDatesWithTasksForUser(int userId);
+    bool isUsersTableExists();
     static QSqlDatabase getDatabase();
 
 private:

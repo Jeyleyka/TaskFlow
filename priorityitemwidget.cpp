@@ -30,3 +30,11 @@ PriorityItemWidget::PriorityItemWidget(const int priori, QWidget* parent)
 int PriorityItemWidget::getPriority() const {
     return this->priorityInt;
 }
+
+void PriorityItemWidget::setActive(bool active) {
+    if (active) {
+        this->setStyleSheet("width: 64px; height: 64px; background-color: #8687E7;");
+    } else {
+        this->setStyleSheet("width: 64px; height: 64px; background-color: #272727;");
+    }
+}

@@ -12,7 +12,7 @@
 #include "flowlayout.h"
 #include "priorityitemwidget.h"
 
-class ChoosePriority : public QDialog
+class ChoosePriority : public QWidget
 {
     Q_OBJECT
 
@@ -25,6 +25,8 @@ signals:
     void prioritySelected(const int priority);
 
 private:
+    PriorityItemWidget* currentActive;
+
     QLabel* titleWnd;
 
     QPushButton* cancel;

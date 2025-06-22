@@ -1,9 +1,0 @@
-D:/Work/todo_app/CMakeFiles/todo_app.dir
-D:/Work/todo_app/CMakeFiles/edit_cache.dir
-D:/Work/todo_app/CMakeFiles/rebuild_cache.dir
-D:/Work/todo_app/CMakeFiles/list_install_components.dir
-D:/Work/todo_app/CMakeFiles/install.dir
-D:/Work/todo_app/CMakeFiles/install/local.dir
-D:/Work/todo_app/CMakeFiles/install/strip.dir
-D:/Work/todo_app/CMakeFiles/todo_app_autogen_timestamp_deps.dir
-D:/Work/todo_app/CMakeFiles/todo_app_autogen.dir

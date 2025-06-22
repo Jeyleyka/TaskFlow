@@ -14,6 +14,8 @@ public:
 
     int getPriority() const;
 
+    void setActive(bool active);
+
 signals:
     void clickedWithId(int priority);
     void openPriorityWnd();

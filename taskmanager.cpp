@@ -33,7 +33,7 @@ QList<Task> TaskManager::getAllTasks() const {
 
 Task TaskManager::getTaskById(int taskId) {
     QSqlQuery query;
-    query.prepare("SELECT id, user_id, title, description, due_date, priority, completed, category_name, category_color, category_icon FROM tasks WHERE id = :id");
+    query.prepare("SELECT id, user_id, title, description, creation_date, due_date, priority, completed, category_name, category_color, category_icon FROM tasks WHERE id = :id");
     query.bindValue(":id", taskId);
 
     if (query.exec() && query.next()) {
@@ -60,7 +60,7 @@ Task TaskManager::getTaskById(int taskId) {
     }
 }
 
-bool TaskManager::updateTask(Task& task) {
+bool TaskManager::updateTask(const Task& task) {
     if (!this->db) {
         qWarning() << "TaskManager: cannot update task, db is null";
         return false;

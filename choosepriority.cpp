@@ -1,10 +1,12 @@
 #include "choosepriority.h"
 
 ChoosePriority::ChoosePriority(QWidget* parent) :
-    QDialog(parent) {
+    QWidget(parent), currentActive(nullptr) {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    this->setFixedSize(400, 556);
-    this->setAttribute(Qt::WA_TransparentForMouseEvents);
+    this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setFixedSize(327, 360);
+    // this->setAttribute(Qt::WA_TransparentForMouseEvents);
+    this->setStyleSheet("background-color: #2e2e2e; border-radius: 5px;");
 
     QWidget* container = new QWidget(this);
     container->setObjectName("container");
@@ -33,16 +35,21 @@ ChoosePriority::ChoosePriority(QWidget* parent) :
         this->widgets.push_back(new PriorityItemWidget(i, this));
 
     this->widgetsLayout = new FlowLayout;
-    this->widgetsLayout->setContentsMargins(0,0,0,0);
+    this->widgetsLayout->setContentsMargins(10, 20, 0, 0);
     this->widgetsLayout->setSpacing(0);
 
     for (PriorityItemWidget* widget : this->widgets)
     {
         this->widgetsLayout->addWidget(widget);
 
-        connect(widget, &PriorityItemWidget::clickedWithId, this, [this](int priority) {
+        connect(widget, &PriorityItemWidget::clickedWithId, this, [this, widget](int priority) {
+            if (this->currentActive)
+                this->currentActive->setActive(false);
+
+            this->currentActive = widget;
+            this->currentActive->setActive(true);
+
             this->prior = priority;
-            qDebug() << "нажат с приоритетом: " << priority;
         });
     }
 

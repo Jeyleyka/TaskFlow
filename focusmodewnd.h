@@ -3,7 +3,7 @@
 
 #include "navigationbar.h"
 #include "database.h"
-#include "taskdialog.h"
+#include "addtask.h"
 #include "taskui.h"
 #include "taskinfo.h"
 #include "circulartimerwidget.h"
@@ -45,7 +45,7 @@ private:
 
     CircularTimerWidget* timerWidget;
 
-    TaskDialog* dialog = nullptr;
+    AddTask* addTaskWnd = nullptr;
 
     DatabaseManager* dataBase;
 

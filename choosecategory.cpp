@@ -1,9 +1,11 @@
 #include "choosecategory.h"
 
 ChooseCategory::ChooseCategory(QWidget* parent)
-    : QDialog(parent), selectedCategory(nullptr) {
+    : QWidget(parent), selectedCategory(nullptr) {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground);
     this->setFixedSize(327,556);
+    this->setStyleSheet("background-color: #2e2e2e; border-radius: 5px;");
 
     QWidget* container = new QWidget(this);
     container->setObjectName("container");

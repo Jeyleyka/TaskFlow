@@ -2,8 +2,7 @@
 #define INDEXWND_H
 
 #include "choosecategory.h"
-#include "taskdialog.h"
-#include "taskmodel.h"
+#include "addtask.h"
 #include "database.h"
 #include "taskui.h"
 #include "taskinfo.h"
@@ -47,9 +46,7 @@ private:
 
     NavigationBar* navBar;
 
-    TaskDialog* dialog = nullptr;
-
-    TaskModel* model;
+    AddTask* addTaskWnd = nullptr;
 
     TaskManager* taskManager;
 

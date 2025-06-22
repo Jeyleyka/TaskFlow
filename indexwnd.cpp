@@ -144,57 +144,29 @@ void IndexWnd::initSortTags() {
     }
 }
 
-void IndexWnd::onDeleteTask(const int row) {
-    Task task = this->model->taskAt(row);
-    qDebug() << "DATA: " << task.id << ", " << task.title << ", " << task.description;
-
-    // Проверка ID перед удалением
-    if (this->model->taskAt(row).id <= 0) {
-        qDebug() << "Ошибка: Невалидный ID задачи" << this->model->taskAt(row).id;
-        return;
-    }
-
-    // dataBase->deleteTaskFromDatabase(this->model);
-
-    // Попытка удалить задачу из базы данных
-    if (this->dataBase->deleteTaskFromDatabase(this->model->taskAt(row).id)) {
-        qDebug() << "Задача с ID" << this->model->taskAt(row).id << "успешно удалена из базы данных";
-        this->model->removeTask(row);  // Убираем задачу из модели
-    }
-}
-
 void IndexWnd::showTaskDialog() {
-    if (this->dialog && this->dialog->isVisible()) {
-        this->dialog->raise();
-        this->dialog->activateWindow();
+    if (this->addTaskWnd && this->addTaskWnd->isVisible()) {
+        this->addTaskWnd->raise();
+        this->addTaskWnd->activateWindow();
         return;
     }
 
-    this->dialog = new TaskDialog(this);
-    this->dialog->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    this->dialog->setModal(true);
+    this->addTaskWnd = new AddTask(this);
+    this->addTaskWnd->showCentered(this);
+    // this->dialog->activateWindow();
+    // this->dialog->setFocus();
+    // this->dialog->setModal(true);
 
-    int dialogHeight = 400;
-    int dialogWidth = this->width();
-
-    QPoint startPos(this->x(), this->y() + this->height());
-    QPoint endPos(this->x(), this->y() + this->height() - dialogHeight);
-
-    dialog->setGeometry(startPos.x(), startPos.y(), dialogWidth, dialogHeight);
-    dialog->show();
-
-    QPropertyAnimation* show = new QPropertyAnimation(this->dialog, "pos");
-    show->setDuration(600);
-    show->setStartValue(startPos);
-    show->setEndValue(endPos);
-    show->setEasingCurve(QEasingCurve::OutCubic);
-    show->start(QAbstractAnimation::DeleteWhenStopped);
-
-    connect(this->dialog, &TaskDialog::accepted, this, [this]() {
-        Task task = this->dialog->getTask();
+    connect(this->addTaskWnd, &AddTask::onCreateTask, this, [this]() {
+        Task task = this->addTaskWnd->getTask();
         this->taskManager->createTask(task);
-        this->dialog->deleteLater();
-        this->dialog = nullptr;
+        this->addTaskWnd->deleteLater();
+        this->addTaskWnd = nullptr;
+    });
+
+    connect(this->addTaskWnd, &AddTask::onCloseWnd, this, [this]() {
+        this->addTaskWnd->deleteLater();
+        this->addTaskWnd = nullptr;
     });
 }
 
@@ -216,7 +188,7 @@ void IndexWnd::searchTaskFilter(const QString &title) {
 
 void IndexWnd::onTaskCreated(const Task &task) {
     qDebug() << "time: " << task.dueDate.toString();
-    QString formattedDate = task.formatDateTime(task.dueDate);
+    QString formattedDate = task.formatDateTime(task.creationDate);
 
     if (!formattedDate.contains(tr("Today"))) return;
 
@@ -237,14 +209,12 @@ void IndexWnd::onTaskCreated(const Task &task) {
     }
 
     connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI](const int taskId, bool completed) {
-        if (completed)
-        {
+        if (completed) {
             this->tasks.removeOne(taskUI);
             this->completedTasks.append(taskUI);
             tasksLayout->removeWidget(taskUI);
             this->completeTaskslayout->addWidget(taskUI, 1, Qt::AlignHCenter);
-        } else
-        {
+        } else {
             this->completedTasks.removeOne(taskUI);
             this->tasks.append(taskUI);
             this->completeTaskslayout->removeWidget(taskUI);
@@ -258,8 +228,11 @@ void IndexWnd::onTaskCreated(const Task &task) {
     QPointer<TaskUI> safeTaskUI = taskUI;
 
     connect(taskUI, &TaskUI::taskClicked, this, [=] {
-        TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description,
-                                          formattedDate, safeTaskUI, this);
+        Task newTask = this->dataBase->getTaskById(task.id);
+
+        TaskInfo* taskInfo = new TaskInfo(newTask.id, newTask.title, newTask.description,
+                                          newTask.dueDate, safeTaskUI, this);
+
         QPointer<TaskInfo> safeTaskInfo = taskInfo;
 
         taskInfo->setFixedSize(500, 600);
@@ -273,15 +246,19 @@ void IndexWnd::onTaskCreated(const Task &task) {
         });
 
         connect(taskInfo, &TaskInfo::onChangeUI, this, [=] {
-            if (!safeTaskUI || !safeTaskInfo) return; // ← теперь безопасно
+            if (!safeTaskUI || !safeTaskInfo) return;
 
-            QString title = safeTaskInfo->getTitle();
+            Task updatedTask = this->dataBase->getTaskById(task.id);
 
-            safeTaskUI->setTitle(title);
-            safeTaskUI->setCategory(safeTaskInfo->getCategoryName(),
-                                    safeTaskInfo->getCategoryColor(),
-                                    safeTaskInfo->getCategoryIcon(), 14, 14);
-            safeTaskUI->setPriority(safeTaskInfo->getPriority());
+            safeTaskInfo->loadTaskData(updatedTask);
+
+            safeTaskUI->setTitle(updatedTask.title);
+            safeTaskUI->setDueDate(updatedTask.dueDate.date());
+            safeTaskUI->setPriority(QString::number(updatedTask.priority));
+
+            safeTaskUI->setCategory(updatedTask.categoryName, updatedTask.categoryColor, updatedTask.categoryIcon, 14, 14);
+
+            this->taskManager->updateTask(updatedTask);
         });
     });
 }

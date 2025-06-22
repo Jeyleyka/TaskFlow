@@ -19,7 +19,7 @@
 #include "UserSession.h"
 #include "warningwnd.h"
 
-class ChooseCategory : public QDialog
+class ChooseCategory : public QWidget
 {
     Q_OBJECT
 public:

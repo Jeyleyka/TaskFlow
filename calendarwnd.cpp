@@ -163,25 +163,6 @@ void CalendarWnd::initSortTags() {
     this->btnsLayout->addWidget(this->completedTasksBtn);
 }
 
-void CalendarWnd::onDeleteTask(const int row) {
-    Task task = this->model->taskAt(row);
-    qDebug() << "DATA: " << task.id << ", " << task.title << ", " << task.description;
-
-    // Проверка ID перед удалением
-    if (this->model->taskAt(row).id <= 0) {
-        qDebug() << "Ошибка: Невалидный ID задачи" << this->model->taskAt(row).id;
-        return;
-    }
-
-    // dataBase->deleteTaskFromDatabase(this->model);
-
-    // Попытка удалить задачу из базы данных
-    if (this->dataBase->deleteTaskFromDatabase(this->model->taskAt(row).id)) {
-        qDebug() << "Задача с ID" << this->model->taskAt(row).id << "успешно удалена из базы данных";
-        this->model->removeTask(row);  // Убираем задачу из модели
-    }
-}
-
 // void CalendarWnd::showEvent(QShowEvent *event) {
 //     QWidget::showEvent(event);
 
@@ -205,40 +186,25 @@ void CalendarWnd::clearTasksUI() {
 }
 
 void CalendarWnd::showTaskDialog() {
-    if (this->dialog && this->dialog->isVisible()) {
-        this->dialog->raise();
-        this->dialog->activateWindow();
+    if (this->addTaskWnd && this->addTaskWnd->isVisible()) {
+        this->addTaskWnd->raise();
+        this->addTaskWnd->activateWindow();
         return;
     }
 
-    this->dialog = new TaskDialog(this);
-    this->dialog->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    this->dialog->setModal(true);
+    this->addTaskWnd = new AddTask(this);
+    this->addTaskWnd->show();
 
-    int dialogHeight = 400;
-    int dialogWidth = this->width();
-
-    QPoint startPos(this->x(), this->y() + this->height());
-    QPoint endPos(this->x(), this->y() + this->height() - dialogHeight);
-
-    dialog->setGeometry(startPos.x(), startPos.y(), dialogWidth, dialogHeight);
-    dialog->show();
-
-    QPropertyAnimation* show = new QPropertyAnimation(this->dialog, "pos");
-    show->setDuration(600);
-    show->setStartValue(startPos);
-    show->setEndValue(endPos);
-    show->setEasingCurve(QEasingCurve::OutCubic);
-    show->start(QAbstractAnimation::DeleteWhenStopped);
-
-    connect(this->dialog, &TaskDialog::accepted, this, [this]() {
-        Task task = this->dialog->getTask();
+    connect(this->addTaskWnd, &AddTask::onCreateTask, this, [this]() {
+        Task task = this->addTaskWnd->getTask();
         this->taskManager->createTask(task);
+        this->addTaskWnd->deleteLater();
+        this->addTaskWnd = nullptr;
     });
 
-    connect(this->dialog, &TaskDialog::rejected, this, [this]() {
-        this->dialog->deleteLater();
-        this->dialog = nullptr;
+    connect(this->addTaskWnd, &AddTask::onCloseWnd, this, [this]() {
+        this->addTaskWnd->deleteLater();
+        this->addTaskWnd = nullptr;
     });
 }
 
@@ -275,7 +241,7 @@ void CalendarWnd::filterTasksByDate(const QDate &date) {
 }
 
 void CalendarWnd::onTaskCreated(const Task &task) {
-    QString formattedDate = task.formatDateTime(task.dueDate);
+    QString formattedDate = task.formatDateTime(task.creationDate);
 
     TaskUI* taskUI = new TaskUI(task.title, task.description, formattedDate,
                                 task.priority, task.categoryName, task.categoryColor, task.categoryIcon,
@@ -283,7 +249,7 @@ void CalendarWnd::onTaskCreated(const Task &task) {
 
     taskUI->setDueDate(task.dueDate.date());
 
-    connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI, task](const int taskId, bool completed) {
+    connect(taskUI, &TaskUI::onUpdateTaskToComplete, this, [this, taskUI](const int taskId, bool completed) {
         taskUI->setCompleted(completed);
         this->taskManager->setTaskCompleted(taskId, completed);
     });
@@ -297,8 +263,9 @@ void CalendarWnd::onTaskCreated(const Task &task) {
     QPointer<TaskUI> safeTaskUI = taskUI;
 
     connect(taskUI, &TaskUI::taskClicked, this, [=] {
-        TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description,
-                                          formattedDate, safeTaskUI, this);
+        Task newTask = this->taskManager->getTaskById(taskUI->getId());
+        TaskInfo* taskInfo = new TaskInfo(newTask.id, newTask.title, newTask.description,
+                                          newTask.dueDate, safeTaskUI, this);
         QPointer<TaskInfo> safeTaskInfo = taskInfo;
 
         taskInfo->setFixedSize(500, 600);
@@ -314,13 +281,19 @@ void CalendarWnd::onTaskCreated(const Task &task) {
         connect(taskInfo, &TaskInfo::onChangeUI, this, [=] {
             if (!safeTaskUI || !safeTaskInfo) return; // ← теперь безопасно
 
-            QString title = safeTaskInfo->getTitle();
+            Task updatedTask = this->dataBase->getTaskById(task.id);
 
-            safeTaskUI->setTitle(title);
-            safeTaskUI->setCategory(safeTaskInfo->getCategoryName(),
-                                    safeTaskInfo->getCategoryColor(),
-                                    safeTaskInfo->getCategoryIcon(), 14, 14);
-            safeTaskUI->setPriority(safeTaskInfo->getPriority());
+            safeTaskInfo->loadTaskData(updatedTask);
+
+            safeTaskUI->setTitle(updatedTask.title);
+            safeTaskUI->setDueDate(updatedTask.dueDate.date());
+            safeTaskUI->setPriority(QString::number(updatedTask.priority));
+            safeTaskUI->setCategory(updatedTask.categoryName, updatedTask.categoryColor, updatedTask.categoryIcon, 14, 14);
+
+            if (this->selectedDate != updatedTask.dueDate.date())
+                taskUI->hide();
+
+            this->taskManager->updateTask(updatedTask);
         });
     });
 
@@ -334,6 +307,7 @@ void CalendarWnd::onTaskUpdated(const Task &task) {
             // Обновляем UI
             QString title = task.title;
             taskUI->setTitle(title);
+            // taskUI->setDueDate(task.dueDate.date());
             taskUI->setPriority(QString::number(task.priority));
             taskUI->setCategory(task.categoryName, task.categoryColor, task.categoryIcon, 14, 14);
             taskUI->setCompleted(task.completed);

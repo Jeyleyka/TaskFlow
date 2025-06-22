@@ -137,73 +137,57 @@ FocusModeWnd::FocusModeWnd(QWidget* parent)
 }
 
 void FocusModeWnd::showTaskDialog() {
-    if (this->dialog && this->dialog->isVisible()) {
-        this->dialog->raise();
-        this->dialog->activateWindow();
+    if (this->addTaskWnd && this->addTaskWnd->isVisible()) {
+        this->addTaskWnd->raise();
+        this->addTaskWnd->activateWindow();
         return;
     }
 
-    this->dialog = new TaskDialog(this);
-    this->dialog->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    this->dialog->setModal(true);
+    this->addTaskWnd = new AddTask(this);
 
-    int dialogHeight = 400;
-    int dialogWidth = this->width();
+    this->addTaskWnd->show();
 
-    QPoint startPos(this->x(), this->y() + this->height());
-    QPoint endPos(this->x(), this->y() + this->height() - dialogHeight);
+    // connect(this->addTaskWnd, &TaskDialog::accepted, this, [this]() {
+    //     Task task = this->dialog->getTask();
+    //     if (this->dataBase->insertTaskToDatabase(task)) {
+    //         QString formattedDate = task.formatDateTime(task.dueDate);
 
-    dialog->setGeometry(startPos.x(), startPos.y(), dialogWidth, dialogHeight);
-    dialog->show();
+    //         auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.priority, task.categoryName, task.categoryColor, task.categoryIcon, task.id, task.completed, this);
+    //         taskUI->setFixedSize(920, 100);
+    //         this->tasks.append(taskUI);
+    //         this->tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
 
-    QPropertyAnimation* show = new QPropertyAnimation(this->dialog, "pos");
-    show->setDuration(600);
-    show->setStartValue(startPos);
-    show->setEndValue(endPos);
-    show->setEasingCurve(QEasingCurve::OutCubic);
-    show->start(QAbstractAnimation::DeleteWhenStopped);
+    //         connect(taskUI, &TaskUI::taskClicked, this, [=] {
+    //             TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.dueDate, taskUI, this);
+    //             taskInfo->setFixedSize(500, 600);
+    //             taskInfo->show();
 
-    connect(this->dialog, &TaskDialog::accepted, this, [this]() {
-        Task task = this->dialog->getTask();
-        if (this->dataBase->insertTaskToDatabase(task)) {
-            QString formattedDate = task.formatDateTime(task.dueDate);
+    //             connect(taskInfo, &TaskInfo::onChangeUI, this, [this, taskUI, taskInfo] {
+    //                 qDebug() << "Signal onChangeUI received";
 
-            auto* taskUI = new TaskUI(task.title, task.description, formattedDate, task.priority, task.categoryName, task.categoryColor, task.categoryIcon, task.id, task.completed, this);
-            taskUI->setFixedSize(920, 100);
-            this->tasks.append(taskUI);
-            this->tasksLayout->addWidget(taskUI, 0, Qt::AlignHCenter);
+    //                 if (!taskUI || !taskInfo) return;
 
-            connect(taskUI, &TaskUI::taskClicked, this, [=] {
-                TaskInfo* taskInfo = new TaskInfo(task.id, task.title, task.description, task.formatDateTime(task.dueDate), taskUI, this);
-                taskInfo->setFixedSize(500, 600);
-                taskInfo->show();
+    //                 QString title = taskInfo->getTitle();
+    //                 QString desc = taskInfo->getDesc();
 
-                connect(taskInfo, &TaskInfo::onChangeUI, this, [this, taskUI, taskInfo] {
-                    qDebug() << "Signal onChangeUI received";
+    //                 qDebug() << "Got data:" << title << desc;
 
-                    if (!taskUI || !taskInfo) return;
+    //                 taskUI->setTitle(title);
+    //                 taskUI->setCategory(taskInfo->getCategoryName(), taskInfo->getCategoryColor(), taskInfo->getCategoryIcon(), 14,14);
+    //                 // taskUI->setDesc(desc);
+    //             });
+    //         });
+    //         // this->model->addTask(task);
+    //     }
 
-                    QString title = taskInfo->getTitle();
-                    QString desc = taskInfo->getDesc();
+    //     this->addTaskWnd->deleteLater();
+    //     this->addTaskWnd = nullptr;
+    // });
 
-                    qDebug() << "Got data:" << title << desc;
-
-                    taskUI->setTitle(title);
-                    taskUI->setCategory(taskInfo->getCategoryName(), taskInfo->getCategoryColor(), taskInfo->getCategoryIcon(), 14,14);
-                    // taskUI->setDesc(desc);
-                });
-            });
-            // this->model->addTask(task);
-        }
-
-        this->dialog->deleteLater();
-        this->dialog = nullptr;
-    });
-
-    connect(this->dialog, &TaskDialog::rejected, this, [this]() {
-        this->dialog->deleteLater();
-        this->dialog = nullptr;
-    });
+    // connect(this->addTaskWnd, &TaskDialog::rejected, this, [this]() {
+    //     this->addTaskWnd->deleteLater();
+    //     this->addTaskWnd = nullptr;
+    // });
 }
 
 void FocusModeWnd::startStopFocus() {

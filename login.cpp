@@ -4,6 +4,8 @@ Login::Login(QWidget* parent)
     : QDialog(parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setStyleSheet("background-color: #121212; border-radius: 5px;");
 
     this->dataBase = new DatabaseManager;
     this->dataBase->initializeDatabase();

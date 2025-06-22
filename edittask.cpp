@@ -1,10 +1,10 @@
 #include "edittask.h"
 
-EditTask::EditTask(QString titleStr, QString descStr, QString category_name, QColor category_color, QIcon category_icon, int priori, QWidget* parent)
+EditTask::EditTask(QString titleStr, QString descStr, QWidget* parent)
     : QDialog(parent) {
 
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
-    this->setFixedSize(327, 385);
+    this->setFixedSize(327, 225);
     this->installEventFilter(this);
 
     QWidget* container = new QWidget(this);
@@ -18,7 +18,7 @@ EditTask::EditTask(QString titleStr, QString descStr, QString category_name, QCo
 
     QVBoxLayout* containerLayout = new QVBoxLayout(container);
 
-    this->wndTitle = new QLabel(tr("Edit Task"), this);
+    this->wndTitle = new QLabel(tr("Edit Task title"), this);
     this->wndTitle->setStyleSheet("line-height: 20px; font-size: 14px; color: #fff; margin-bottom: 5px;");
     this->wndTitle->setAlignment(Qt::AlignHCenter);
 
@@ -51,70 +51,6 @@ EditTask::EditTask(QString titleStr, QString descStr, QString category_name, QCo
     });
 
     containerLayout->addWidget(this->editTitle);
-
-    this->categoryWidget = new CategoryItemWidget(category_name, category_color, category_icon);
-
-    connect(this->categoryWidget, &CategoryItemWidget::itemClicked, this, [this, containerLayout] {
-        this->categoryWnd = new ChooseCategory(this);
-        this->categoryWnd->show();
-
-        connect(this->categoryWnd, &ChooseCategory::categorySelected, this, [this, containerLayout](const QString& name, const QColor& color, const QIcon& icon) {
-            if (name == "Create new")
-                return;
-
-            if (this->categoryWidget)
-            {
-                containerLayout->removeWidget(this->categoryWidget);
-                containerLayout->removeWidget(this->priorityWidget);
-                containerLayout->removeWidget(this->description);
-                containerLayout->removeWidget(this->editDesc);
-                containerLayout->removeItem(this->btnsLayout);
-                this->categoryWidget->deleteLater();
-                this->categoryWidget = nullptr;
-            }
-
-            categoryName = name;
-            categoryColor = color;
-            categoryIcon = icon;
-            qDebug() << "path: " << this->categoryIcon;
-
-            this->categoryWidget = new CategoryItemWidget(name, color, icon);
-            containerLayout->addWidget(this->categoryWidget, 0, Qt::AlignLeft);
-            containerLayout->addWidget(this->priorityWidget, 0, Qt::AlignLeft);
-            containerLayout->addWidget(this->description);
-            containerLayout->addWidget(this->editDesc);
-            containerLayout->addLayout(this->btnsLayout);
-        });
-    });
-
-    containerLayout->addWidget(this->categoryWidget, 0, Qt::AlignLeft);
-
-    this->priorityWidget = new PriorityItemWidget(priori, this);
-    containerLayout->addWidget(this->priorityWidget, 0, Qt::AlignLeft);
-
-    connect(this->priorityWidget, &PriorityItemWidget::openPriorityWnd, this, [this, containerLayout] {
-        this->priorityWnd = new ChoosePriority;
-        this->priorityWnd->show();
-
-        connect(this->priorityWnd, &ChoosePriority::prioritySelected, this, [this, containerLayout](int priori) {
-            if (this->priorityWidget)
-            {
-                containerLayout->removeWidget(this->priorityWidget);
-                containerLayout->removeWidget(this->description);
-                containerLayout->removeWidget(this->editDesc);
-                containerLayout->removeItem(this->btnsLayout);
-                this->priorityWidget->deleteLater();
-                this->priorityWidget = nullptr;
-            }
-
-            this->priorityWidget = new PriorityItemWidget(priori, this);
-
-            containerLayout->addWidget(this->priorityWidget, 0, Qt::AlignLeft);
-            containerLayout->addWidget(this->description);
-            containerLayout->addWidget(this->editDesc);
-            containerLayout->addLayout(this->btnsLayout);
-        });
-    });
 
     this->description = new QLabel(descStr, this);
     this->description->setStyleSheet("font-size: 14px; color: #cccccc; max-height: 30px; margin-top: 15px;");
@@ -161,28 +97,12 @@ EditTask::EditTask(QString titleStr, QString descStr, QString category_name, QCo
     this->mainLayout->setContentsMargins(0, 0, 0, 0);
 }
 
-QString EditTask::text() const {
+QString EditTask::getTitle() const {
     return this->title->text();
 }
 
 QString EditTask::getDescription() const {
     return this->description->text();
-}
-
-QString EditTask::getPriority() const {
-    return QString::number(this->priorityWidget->getPriority());
-}
-
-QString EditTask::getCategoryName() const {
-    return this->categoryName;
-}
-
-QColor EditTask::getCategoryColor() const {
-    return this->categoryColor;
-}
-
-QIcon EditTask::getCategoryIcon() const {
-    return this->categoryWidget->getIcon();
 }
 
 void EditTask::setText(const QString &text) {

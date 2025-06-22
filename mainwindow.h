@@ -63,11 +63,9 @@ private:
 
     ProfileWnd* profileWndWidget;
 
-    TaskDialog* dialog = nullptr;
+    AddTask* addTask = nullptr;
 
     QTableView* table;
-
-    TaskModel* model;
 
     QStackedWidget* stackedWidget;
 

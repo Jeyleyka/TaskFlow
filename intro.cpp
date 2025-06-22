@@ -4,6 +4,9 @@ Intro::Intro(QWidget* parent)
     : QDialog(parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+    this->setFixedSize(375, 450);
+    this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setStyleSheet("background-color: #111111; border-radius: 5px;");
 
     this->container = new QWidget(this);
 
@@ -89,8 +92,6 @@ Intro::Intro(QWidget* parent)
     this->mainLayout->addStretch(1);
     this->mainLayout->addWidget(this->loginBtn);
     this->mainLayout->addWidget(this->createAccBtn);
-
-    this->setFixedSize(375, 450);
 }
 
 Intro::~Intro() {}

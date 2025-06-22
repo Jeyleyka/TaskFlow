@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "login.h"
-#include "intro.h"
+#include "logownd.h"
 #include "changelanguagewnd.h"
 
 #include <QSettings>
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 
     a.setWindowIcon(QIcon(":/icons/logo.png"));
     addToAutoStart();
-    Intro w;
+    LogoWnd w;
     w.show();
     return a.exec();
 }

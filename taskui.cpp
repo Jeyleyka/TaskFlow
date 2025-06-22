@@ -3,7 +3,7 @@
 TaskUI::TaskUI(QString titleStr, QString desc, QString createData, int priority,
                QString categoryName, QColor categoryColor, QIcon categoryIcon, int id,
                int completed, QWidget* parent)
-    : QWidget(parent), createDate(createData), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(false), taskID(id)
+    : QWidget(parent), createDate(createData), categoryIcon(categoryIcon), priority(priority), categoryColor(categoryColor), completed(completed), taskID(id)
 {
     QFrame* frame = new QFrame(this);
     frame->setFrameShape(QFrame::StyledPanel);
@@ -149,6 +149,8 @@ void TaskUI::setCategory(QString name, QColor color, QIcon icon, int width, int 
     this->categoryBtn->setIconSize(QSize(width, height));
     this->categoryBtn->setText(name);
     this->categoryBtn->setStyleSheet("min-width: 87px; min-height: 29px; margin-bottom: 4px; border-radius: 5px; font-size: 14px; color: #fff; background-color: " + color.name());
+
+    this->categoryColor = color;
 }
 
 void TaskUI::setPriority(QString priority) const {
@@ -182,7 +184,7 @@ QString TaskUI::getTitle() const {
 }
 
 QString TaskUI::getCategoryName() const {
-    return this->categoryLabel->text();
+    return this->categoryBtn->text();
 }
 
 QColor TaskUI::getCategoryColor() const {
@@ -190,7 +192,7 @@ QColor TaskUI::getCategoryColor() const {
 }
 
 QIcon TaskUI::getCategoryIcon() const {
-    return this->categoryIcon;
+    return this->categoryBtn->icon();
 }
 
 QString TaskUI::getDate() const {
@@ -202,7 +204,7 @@ QDate TaskUI::getRawDueDate() const {
 }
 
 int TaskUI::getPriority() const {
-    return this->priority;
+    return this->showDescription->text().toInt();
 }
 
 bool TaskUI::getCompleted() const {

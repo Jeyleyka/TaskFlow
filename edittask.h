@@ -23,14 +23,10 @@ class EditTask : public QDialog
     Q_OBJECT
 
 public:
-    explicit EditTask(QString titleStr, QString descStr, QString category_name, QColor category_color, QIcon category_icon, int priori, QWidget* parent = nullptr);
+    explicit EditTask(QString titleStr, QString descStr, QWidget* parent = nullptr);
 
-    QString text() const;
+    QString getTitle() const;
     QString getDescription() const;
-    QString getPriority() const;
-    QString getCategoryName() const;
-    QColor getCategoryColor() const;
-    QIcon getCategoryIcon() const;
     void setText(const QString& text);
 
 signals:
@@ -47,21 +43,9 @@ private slots:
     void onUpdateData();
 
 private:
-    ChoosePriority* priorityWnd;
-    ChooseCategory* categoryWnd;
-    CategoryItemWidget* categoryWidget;
-    PriorityItemWidget* priorityWidget;
-
     QLabel* wndTitle;
     QLabel* title;
     QLabel* description;
-    QLabel* priority;
-
-    QString categoryName;
-
-    QColor categoryColor;
-
-    QIcon categoryIcon;
 
     QFrame* line;
 

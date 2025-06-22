@@ -4,6 +4,9 @@ CreateAccount::CreateAccount(QWidget* parent)
     : QDialog(parent)
 {
     this->setWindowFlags(Qt::Dialog | Qt::FramelessWindowHint);
+    this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setFixedSize(375, 550);
+    this->setStyleSheet("background-color: #121212; border-radius: 5px;");
 
     this->dataBase = new DatabaseManager;
     this->dataBase->initializeDatabase();
@@ -124,8 +127,6 @@ CreateAccount::CreateAccount(QWidget* parent)
     this->mainLayout->setContentsMargins(10, 10, 10, 10);
     // this->mainLayout->setSpacing(10);
     // this->setLayout(this->mainLayout);
-
-    this->setFixedSize(375, 550);
 }
 
 CreateAccount::~CreateAccount() {}

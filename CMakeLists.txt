@@ -22,10 +22,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(todo_app
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        taskmodel.h taskmodel.cpp
+
         database.h database.cpp
         task.h
-        taskdialog.h taskdialog.cpp
+        addtask.h addtask.cpp
         deletebuttondelegate.h deletebuttondelegate.cpp
         taskui.h taskui.cpp
         icons.qrc
@@ -64,6 +64,11 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         thememanager.h thememanager.cpp
         themedialog.h themedialog.cpp
         warningwnd.h warningwnd.cpp
+        customcalendar.h customcalendar.cpp
+        timepickerwidget.h timepickerwidget.cpp
+        deletetaskwnd.h deletetaskwnd.cpp
+        logownd.h logownd.cpp
+        infofornewuserwnd.h infofornewuserwnd.cpp
 
     )
 endif()
@@ -119,4 +124,5 @@ find_package(Qt6 REQUIRED COMPONENTS Widgets Sql)
 # find_package(Qt5 REQUIRED COMPONENTS Widgets Sql)
 
 target_link_libraries(todo_app PRIVATE Qt6::Widgets Qt6::Sql)
+
 

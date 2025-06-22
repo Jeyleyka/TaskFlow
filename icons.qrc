@@ -40,5 +40,16 @@
         <file>icons/github.png</file>
         <file>icons/instagram.png</file>
         <file>icons/telegram.png</file>
+        <file>icons/info-circle.png</file>
+        <file>icons/info-circle.svg</file>
+        <file>icons/edit-info.svg</file>
+        <file>icons/addTask.svg</file>
+        <file>icons/category.svg</file>
+        <file>icons/priority.svg</file>
+        <file>icons/time.svg</file>
+        <file>icons/logo-transparent.png</file>
+        <file>icons/daily-icon.svg</file>
+        <file>icons/manage-icon.svg</file>
+        <file>icons/org-icon.svg</file>
     </qresource>
 </RCC>

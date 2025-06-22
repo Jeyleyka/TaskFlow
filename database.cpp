@@ -10,7 +10,11 @@ QSqlDatabase DatabaseManager::db;
 bool DatabaseManager::initializeDatabase() {
     if (!QSqlDatabase::contains("qt_sql_default_connection")) {
         QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-        db.setDatabaseName("tasks.db");
+        QString dbPath = QCoreApplication::applicationDirPath() + "/../../tasks.db";
+        db.setDatabaseName(dbPath);
+
+        qDebug() << "DB path:" << dbPath;
+
         if (!db.open()) {
             qDebug() << "Не удалось открыть базу данных:" << db.lastError().text();
         } else {
@@ -127,7 +131,7 @@ bool DatabaseManager::deleteTaskFromDatabase(int id)
     return true;
 }
 
-bool DatabaseManager::updateTaskInDatabase(Task& task) {
+bool DatabaseManager::updateTaskInDatabase(const Task& task) {
     QSqlQuery query;
 
     query.prepare(R"(
@@ -135,7 +139,8 @@ bool DatabaseManager::updateTaskInDatabase(Task& task) {
         SET title = :title,
             description = :description,
             due_date = :due_date,
-            is_completed = :is_completed,
+            priority = :priority,
+            completed = :completed,
             category_name = :category_name,
             category_color = :category_color,
             category_icon = :category_icon
@@ -144,8 +149,9 @@ bool DatabaseManager::updateTaskInDatabase(Task& task) {
 
     query.bindValue(":title", task.title);
     query.bindValue(":description", task.description);
-    query.bindValue(":due_date", task.dueDate.toString(Qt::ISODate));
-    query.bindValue(":is_completed", task.completed);
+    query.bindValue(":due_date", task.dueDate.toString("yyyy-MM-dd HH:mm:ss"));
+    query.bindValue(":priority", task.priority);
+    query.bindValue(":completed", task.completed);
     query.bindValue(":category_name", task.categoryName);
     query.bindValue(":category_color", task.categoryColor.name()); // сохраняем как строку "#RRGGBB"
 
@@ -163,6 +169,42 @@ bool DatabaseManager::updateTaskInDatabase(Task& task) {
     }
 
     return true;
+}
+
+Task DatabaseManager::getTaskById(int id) {
+    QSqlQuery query;
+    query.prepare(R"(
+        SELECT id, user_id, title, description, creation_date, due_date, priority,
+               completed, category_name, category_color, category_icon
+        FROM tasks
+        WHERE id = :id
+    )");
+
+    query.bindValue(":id", id);
+
+    Task task;
+
+    if (query.exec() && query.next()) {
+        task.id = query.value("id").toInt();
+        task.user_id = query.value("user_id").toInt();
+        task.title = query.value("title").toString();
+        task.description = query.value("description").toString();
+        task.creationDate = query.value("creation_date").toDateTime();
+        task.dueDate = query.value("due_date").toDateTime();
+        task.priority = query.value("priority").toInt();
+        task.completed = query.value("completed").toBool();
+        task.categoryName = query.value("category_name").toString();
+        task.categoryColor = QColor(query.value("category_color").toString());
+
+        QByteArray iconData = query.value("category_icon").toByteArray();
+        QPixmap pixmap;
+        pixmap.loadFromData(iconData);
+        task.categoryIcon = QIcon(pixmap);
+    } else {
+        qDebug() << "DatabaseManager::getTaskById failed:" << query.lastError().text();
+    }
+
+    return task;
 }
 
 QList<Task> DatabaseManager::loadTasksFromDatabase() {
@@ -244,6 +286,22 @@ QSet<QDate> DatabaseManager::getDatesWithTasksForUser(int userId)
     return dates;
 }
 
+bool DatabaseManager::isUsersTableExists() {
+    QSqlQuery query;
+    QString queryString = "SELECT COUNT(*) FROM users";
+
+    if (!query.exec(queryString)) {
+        qDebug() << "Ошибка запроса:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        int count = query.value(0).toInt();
+        return count > 0;
+    }
+
+    return false;
+}
 
 QSqlDatabase DatabaseManager::getDatabase() {
     return db;

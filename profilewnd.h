@@ -11,7 +11,7 @@
 #include <QSqlError>
 
 #include "navigationbar.h"
-#include "taskdialog.h"
+#include "addtask.h"
 #include "taskui.h"
 #include "taskinfo.h"
 #include "database.h"
@@ -46,7 +46,7 @@ signals:
 private:
     NavigationBar* navBar;
 
-    TaskDialog* dialog = nullptr;
+    AddTask* addTaskWnd = nullptr;
 
     DatabaseManager* dataBase;
 

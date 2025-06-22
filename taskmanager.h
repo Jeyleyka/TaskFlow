@@ -5,7 +5,7 @@
 #include <QVector>
 #include <QGridLayout>
 
-#include "taskdialog.h"
+#include "addtask.h"
 #include "taskui.h"
 #include "database.h"
 #include "taskinfo.h"
@@ -17,7 +17,7 @@ public:
     TaskManager(DatabaseManager* db, QObject* parent = nullptr);
 
     bool createTask(Task& task);
-    bool updateTask(Task& task);
+    bool updateTask(const Task& task);
     bool deleteTask(const int taskId);
     bool setTaskCompleted(int taskId, bool completed);
     QList<Task> getAllTasks() const;
